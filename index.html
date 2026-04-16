@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power PH - All-in-One Dashboard</title>
+    <title>Power PH - Full Professional Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; overflow: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; overflow-x: hidden; }
         
         #sidebar { transition: transform 0.3s ease-in-out; }
         .sidebar-open { transform: translateX(0) !important; }
@@ -18,6 +18,9 @@
         .nav-link-active { background-color: #1d4ed8 !important; border-radius: 12px; }
         .custom-scroll::-webkit-scrollbar { width: 3px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #1e3a8a; }
+        
+        /* Image alignment for scholarship cards */
+        .card-img { width: 100px; height: auto; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -40,7 +43,7 @@
                     <i class="fas fa-home w-5"></i> Home
                 </button>
                 <button onclick="showPage('profile', this)" class="nav-btn w-full flex items-center gap-4 p-3 hover:bg-white/10 transition">
-                    <i class="fas fa-user-circle w-5"></i> My Profile
+                    <i class="fas fa-user-circle w-5"></i> Profile
                 </button>
                 <button onclick="showPage('refer', this)" class="nav-btn w-full flex items-center gap-4 p-3 hover:bg-white/10 transition">
                     <i class="fas fa-share-nodes w-5"></i> Refer & Earn
@@ -54,32 +57,41 @@
                     <i class="fas fa-chevron-right text-[10px]"></i> 8th to 10th
                 </button>
                 <button onclick="showPage('scholarship', this)" class="nav-btn w-full flex items-center gap-4 p-3 text-sm hover:bg-white/10 transition ml-2">
-                    <i class="fas fa-chevron-right text-[10px]"></i> Higher Education
+                    <i class="fas fa-chevron-right text-[10px]"></i> 11th to Higher Ed.
+                </button>
+                <button onclick="showPage('scholarship', this)" class="nav-btn w-full flex items-center gap-4 p-3 text-sm hover:bg-white/10 transition ml-2 mb-4">
+                    <i class="fas fa-chevron-right text-[10px]"></i> Govt Exam
                 </button>
 
-                <div class="pt-6 space-y-1">
+                <div class="pt-4 space-y-1">
                     <button onclick="showPage('ebooks', this)" class="nav-btn w-full flex items-center gap-4 p-3 hover:bg-white/10 transition"><i class="fas fa-book w-5"></i> eBooks</button>
                     <button onclick="showPage('videos', this)" class="nav-btn w-full flex items-center gap-4 p-3 hover:bg-white/10 transition"><i class="fas fa-video w-5"></i> Videos</button>
                     <button onclick="showPage('reels', this)" class="nav-btn w-full flex items-center gap-4 p-3 hover:bg-white/10 transition"><i class="fas fa-bolt w-5 text-yellow-400"></i> Reels</button>
                     <button onclick="showPage('achievements', this)" class="nav-btn w-full flex items-center gap-4 p-3 hover:bg-white/10 transition"><i class="fas fa-trophy w-5"></i> Achievements</button>
+                    <button onclick="showPage('teachers', this)" class="nav-btn w-full flex items-center gap-4 p-3 hover:bg-white/10 transition"><i class="fas fa-chalkboard-teacher w-5"></i> Our Teachers</button>
                 </div>
 
                 <button onclick="window.location.reload()" class="w-full flex items-center gap-4 p-3 text-red-400 mt-10 border-t border-gray-700 pt-6 font-bold">
                     <i class="fas fa-sign-out-alt w-5"></i> Logout
                 </button>
             </nav>
+            
+            <div class="mt-6 bg-blue-800/50 p-4 rounded-2xl text-center">
+                <p class="text-[10px] font-bold mb-2">Invite Friends & Earn Rewards</p>
+                <button onclick="showPage('refer')" class="bg-white text-blue-900 text-[10px] py-2 px-4 rounded-lg font-bold">Refer Now</button>
+            </div>
         </aside>
 
         <main class="flex-1 h-screen overflow-y-auto bg-white flex flex-col">
 
             <header class="bg-white p-4 flex justify-between items-center border-b px-6 md:px-10 sticky top-0 z-40">
                 <button onclick="toggleSidebar()" class="md:hidden text-2xl text-[#0a192f]"><i class="fas fa-bars"></i></button>
-                <div class="hidden md:block text-xs font-bold text-gray-400 uppercase tracking-widest">Dashboard / <span id="current-page-title">Home</span></div>
+                <div class="hidden md:block"></div>
                 
                 <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('profile')">
                     <div class="text-right hidden sm:block">
                         <p id="user-display-name" class="text-sm font-bold text-blue-900 leading-none">Rahul Kumar</p>
-                        <p class="text-[9px] text-gray-400 mt-1">ID: PH-2026-001</p>
+                        <p class="text-[9px] text-gray-400 mt-1 uppercase">ID: 1000107597</p>
                     </div>
                     <img id="user-display-img" src="https://i.pravatar.cc/100?u=rahul" class="w-10 h-10 rounded-full border-2 border-blue-600 p-0.5">
                 </div>
@@ -87,25 +99,197 @@
 
             <div id="pages" class="p-4 md:p-8 flex-1">
                 
-                <div id="home-page" class="page-content page-active space-y-10">
-                    <section class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 rounded-[2.5rem] p-8 md:p-14 text-white overflow-hidden shadow-2xl">
+                <div id="home-page" class="page-content page-active space-y-12">
+                    
+                    <section class="relative bg-gradient-to-r from-[#0a192f] via-blue-900 to-blue-700 rounded-[2rem] p-8 md:p-14 text-white overflow-hidden shadow-2xl">
                         <div class="max-w-xl relative z-10">
-                            <h2 class="text-4xl md:text-6xl font-black italic tracking-tighter mb-4 uppercase">National Merit Prize</h2>
-                            <span class="bg-yellow-400 text-black px-4 py-1.5 font-black text-[10px] rounded uppercase shadow-lg">Scholarship For Your Bright Future</span>
-                            <p class="mt-6 opacity-80 text-lg">शिक्षा का नया दौर, अब आपके साथ।</p>
-                            <button onclick="showPage('profile')" class="mt-8 bg-pink-600 hover:bg-pink-700 px-10 py-4 rounded-2xl font-bold flex items-center gap-3 transition-all shadow-xl active:scale-95">
-                                REGISTER NOW <i class="fas fa-arrow-right"></i>
+                            <h2 class="text-4xl md:text-5xl font-black tracking-tighter mb-2 uppercase">National Merit Prize</h2>
+                            <span class="bg-yellow-400 text-black px-4 py-1 font-bold text-xs rounded-sm tracking-widest">SCHOLARSHIP FOR YOUR BRIGHT FUTURE</span>
+                            <p class="mt-6 opacity-80 text-lg font-light">Empowering Students. Building Tomorrow.</p>
+                            <button onclick="showPage('scholarship')" class="mt-8 bg-[#e91e63] hover:bg-pink-700 px-10 py-3 rounded-lg font-bold flex items-center gap-3 transition-all active:scale-95">
+                                REGISTER NOW <i class="fas fa-chevron-right"></i>
                             </button>
                         </div>
-                        <img src="https://cdn-icons-png.flaticon.com/512/3112/3112946.png" class="absolute right-10 bottom-10 w-72 hidden lg:block opacity-90 rotate-6">
+                        <img src="https://i.ibb.co/Vpkf9YQ/trophy-banner.png" class="absolute right-10 bottom-0 w-80 hidden lg:block drop-shadow-2xl">
                     </section>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div onclick="showPage('scholarship')" class="bg-blue-50 p-8 rounded-[2rem] border border-blue-100 flex justify-between items-center cursor-pointer hover:shadow-xl transition group shadow-sm">
-                            <div><h4 class="font-bold text-blue-900 uppercase">8th to 10th</h4><p class="text-xs text-gray-500 mt-1 mb-6">School Level</p><button class="bg-blue-600 text-white px-5 py-2 rounded-lg text-[10px] font-bold">DETAILS</button></div>
-                            <i class="fas fa-user-graduate text-5xl text-blue-200 group-hover:scale-110 transition"></i>
+                    <section>
+                        <div class="flex justify-between items-center mb-6 px-2">
+                            <h3 class="font-black text-[#0a192f] tracking-tight uppercase">Scholarship Categories</h3>
+                            <button onclick="showPage('scholarship')" class="text-blue-600 text-xs font-bold">View All &rarr;</button>
                         </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-[#ebf4ff] p-6 rounded-3xl border border-blue-100 flex justify-between items-center hover:shadow-lg transition cursor-pointer">
+                                <div>
+                                    <h4 class="font-bold text-blue-900">8th to 10th Scholarship</h4>
+                                    <p class="text-[10px] text-gray-500 mt-1 mb-4">For Students in 8th to 10th Class</p>
+                                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[10px] font-bold">View Details</button>
+                                </div>
+                                <img src="https://cdn-icons-png.flaticon.com/512/3067/3067443.png" class="card-img">
+                            </div>
+                            <div class="bg-[#e7f9ee] p-6 rounded-3xl border border-green-100 flex justify-between items-center hover:shadow-lg transition cursor-pointer">
+                                <div>
+                                    <h4 class="font-bold text-green-900">11th to Higher Education</h4>
+                                    <p class="text-[10px] text-gray-500 mt-1 mb-4">For Students in 11th to Graduation</p>
+                                    <button class="bg-green-600 text-white px-4 py-2 rounded-lg text-[10px] font-bold">View Details</button>
+                                </div>
+                                <img src="https://cdn-icons-png.flaticon.com/512/2941/2941658.png" class="card-img">
+                            </div>
+                            <div class="bg-[#f3ebff] p-6 rounded-3xl border border-purple-100 flex justify-between items-center hover:shadow-lg transition cursor-pointer">
+                                <div>
+                                    <h4 class="font-bold text-purple-900">Government Exam Scholarship</h4>
+                                    <p class="text-[10px] text-gray-500 mt-1 mb-4">For SSC, Banking, Railway & Others</p>
+                                    <button class="bg-purple-600 text-white px-4 py-2 rounded-lg text-[10px] font-bold">View Details</button>
+                                </div>
+                                <img src="https://cdn-icons-png.flaticon.com/512/3233/3233508.png" class="card-img">
+                            </div>
                         </div>
+                    </section>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                        <div class="lg:col-span-2">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="font-bold text-sm uppercase">Featured Videos</h3>
+                                <button class="text-blue-600 text-xs font-bold">View All</button>
+                            </div>
+                            <div class="relative group cursor-pointer overflow-hidden rounded-[2rem] h-64 shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center p-6 text-center">
+                                    <div class="bg-red-600 w-16 h-16 rounded-full flex items-center justify-center mb-4 shadow-xl">
+                                        <i class="fas fa-play text-white text-xl"></i>
+                                    </div>
+                                    <h4 class="text-white text-2xl font-black">How to Prepare for EXAMS Smartly</h4>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="font-bold text-sm uppercase">Reels</h3>
+                                    <button class="text-blue-600 text-xs font-bold">View All</button>
+                                </div>
+                                <div class="grid grid-cols-4 gap-4">
+                                    <div class="h-40 bg-gray-200 rounded-2xl relative overflow-hidden group">
+                                        <img src="https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?w=400" class="h-full w-full object-cover">
+                                        <div class="absolute bottom-2 left-2 text-white text-[10px] font-bold"><i class="fas fa-play text-[8px] mr-1"></i> 12.4K</div>
+                                    </div>
+                                    <div class="h-40 bg-gray-200 rounded-2xl relative overflow-hidden">
+                                        <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?w=400" class="h-full w-full object-cover">
+                                        <div class="absolute bottom-2 left-2 text-white text-[10px] font-bold"><i class="fas fa-play text-[8px] mr-1"></i> 8.7K</div>
+                                    </div>
+                                    <div class="h-40 bg-gray-200 rounded-2xl relative overflow-hidden">
+                                        <img src="https://images.unsplash.com/photo-1517673132405-a56a62b18caf?w=400" class="h-full w-full object-cover">
+                                        <div class="absolute bottom-2 left-2 text-white text-[10px] font-bold"><i class="fas fa-play text-[8px] mr-1"></i> 15.2K</div>
+                                    </div>
+                                    <div class="h-40 bg-gray-200 rounded-2xl relative overflow-hidden">
+                                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400" class="h-full w-full object-cover">
+                                        <div class="absolute bottom-2 left-2 text-white text-[10px] font-bold"><i class="fas fa-play text-[8px] mr-1"></i> 11.3K</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-1 bg-white border border-gray-100 rounded-[2rem] p-6 shadow-sm flex flex-col">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="font-bold text-sm uppercase">Top Achievers</h3>
+                                <button class="text-blue-600 text-[10px] font-bold">View All</button>
+                            </div>
+                            <div class="space-y-5">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://i.pravatar.cc/100?img=32" class="w-10 h-10 rounded-full">
+                                        <div><p class="text-xs font-bold">Anjali Sharma</p><p class="text-[9px] text-gray-400">National Science Olympiad Winner</p></div>
+                                    </div>
+                                    <i class="fas fa-trophy text-yellow-500"></i>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://i.pravatar.cc/100?img=33" class="w-10 h-10 rounded-full">
+                                        <div><p class="text-xs font-bold">Rohit Verma</p><p class="text-[9px] text-gray-400">JEE Advanced Rank 1256</p></div>
+                                    </div>
+                                    <i class="fas fa-trophy text-yellow-500"></i>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://i.pravatar.cc/100?img=44" class="w-10 h-10 rounded-full">
+                                        <div><p class="text-xs font-bold">Sneha Patel</p><p class="text-[9px] text-gray-400">NEET All India Rank 942</p></div>
+                                    </div>
+                                    <i class="fas fa-trophy text-yellow-500"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 pb-10 border-b border-gray-100">
+                        <div>
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="font-bold text-sm uppercase">Our Top Teachers</h3>
+                                <button class="text-blue-600 text-xs font-bold">View All</button>
+                            </div>
+                            <div class="grid grid-cols-4 gap-4">
+                                <div class="text-center"><img src="https://i.pravatar.cc/100?img=12" class="w-12 h-12 rounded-full mx-auto mb-2"><p class="text-[10px] font-bold">Ankit Sir</p><p class="text-[8px] text-blue-500">Maths Expert</p></div>
+                                <div class="text-center"><img src="https://i.pravatar.cc/100?img=26" class="w-12 h-12 rounded-full mx-auto mb-2"><p class="text-[10px] font-bold">Neha Ma'am</p><p class="text-[8px] text-blue-500">Science Expert</p></div>
+                                <div class="text-center"><img src="https://i.pravatar.cc/100?img=59" class="w-12 h-12 rounded-full mx-auto mb-2"><p class="text-[10px] font-bold">Sandeep Sir</p><p class="text-[8px] text-blue-500">Reasoning Expert</p></div>
+                                <div class="text-center"><img src="https://i.pravatar.cc/100?img=45" class="w-12 h-12 rounded-full mx-auto mb-2"><p class="text-[10px] font-bold">Pooja Ma'am</p><p class="text-[8px] text-blue-500">English Expert</p></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="font-bold text-sm uppercase">Study Hints & Tips</h3>
+                                <button class="text-blue-600 text-xs font-bold">View All</button>
+                            </div>
+                            <div class="bg-[#f0f7ff] p-6 rounded-[2rem] border border-blue-100 flex items-center gap-6">
+                                <div class="space-y-2 flex-1">
+                                    <p class="text-[11px] flex gap-2"><i class="fas fa-check-circle text-green-500"></i> Make a daily study schedule and follow it strictly.</p>
+                                    <p class="text-[11px] flex gap-2"><i class="fas fa-check-circle text-green-500"></i> Focus on concepts, not just on memorizing.</p>
+                                    <p class="text-[11px] flex gap-2"><i class="fas fa-check-circle text-green-500"></i> Practice previous year papers regularly.</p>
+                                    <p class="text-[11px] flex gap-2"><i class="fas fa-check-circle text-green-500"></i> Take short breaks and stay consistent.</p>
+                                </div>
+                                <img src="https://cdn-icons-png.flaticon.com/512/3209/3209265.png" class="w-20 hidden sm:block">
+                            </div>
+                        </div>
+                    </div>
+
+                    <footer class="bg-[#0a192f] text-gray-400 p-10 rounded-[2rem] grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="text-yellow-400 text-2xl">⚡</span>
+                                <h2 class="text-white font-bold italic tracking-tighter">POWER PH</h2>
+                            </div>
+                            <p class="text-[10px] leading-relaxed uppercase tracking-widest font-bold">Empowering Your Future</p>
+                            <div class="flex gap-4 mt-6">
+                                <i class="fab fa-facebook text-lg hover:text-white cursor-pointer"></i>
+                                <i class="fab fa-instagram text-lg hover:text-white cursor-pointer"></i>
+                                <i class="fab fa-youtube text-lg hover:text-white cursor-pointer"></i>
+                                <i class="fab fa-telegram text-lg hover:text-white cursor-pointer"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-xs mb-4 uppercase">Quick Links</h4>
+                            <ul class="text-[10px] space-y-2">
+                                <li><button onclick="showPage('home')" class="hover:text-white">Home</button></li>
+                                <li><button onclick="showPage('scholarship')" class="hover:text-white">Scholarships</button></li>
+                                <li><button onclick="showPage('ebooks')" class="hover:text-white">eBooks</button></li>
+                                <li><button onclick="showPage('profile')" class="hover:text-white">Contact Us</button></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-xs mb-4 uppercase">Company</h4>
+                            <ul class="text-[10px] space-y-2">
+                                <li><a href="#" class="hover:text-white">About Us</a></li>
+                                <li><a href="#" class="hover:text-white">Our Mission</a></li>
+                                <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                                <li><a href="#" class="hover:text-white">Terms & Conditions</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-xs mb-4 uppercase">Subscribe to our newsletter</h4>
+                            <div class="flex overflow-hidden rounded-lg">
+                                <input type="email" placeholder="Enter your email" class="p-2 w-full text-black text-xs outline-none">
+                                <button class="bg-blue-600 text-white px-4 text-[10px] font-bold">SUBSCRIBE</button>
+                            </div>
+                        </div>
+                    </footer>
+                    <p class="text-center text-[10px] text-gray-500 pb-10 italic">© 2026 Power PH Company. All Rights Reserved.</p>
                 </div>
 
                 <div id="profile-page" class="page-content space-y-8 max-w-2xl mx-auto">
@@ -116,15 +300,13 @@
                                 <input type="text" id="nameInput" placeholder="Enter Name" class="w-full border-b-2 border-gray-100 p-3 outline-none focus:border-blue-600 transition"></div>
                             <div><label class="text-[10px] font-bold text-gray-400 uppercase">Email Address</label>
                                 <input type="email" id="emailInput" placeholder="Email" class="w-full border-b-2 border-gray-100 p-3 outline-none focus:border-blue-600 transition"></div>
-                            <div><label class="text-[10px] font-bold text-gray-400 uppercase">Mobile Number</label>
-                                <input type="tel" id="phoneInput" placeholder="Mobile" class="w-full border-b-2 border-gray-100 p-3 outline-none focus:border-blue-600 transition"></div>
                             <button onclick="saveProfile()" class="w-full bg-[#0a192f] text-white font-bold py-4 rounded-2xl shadow-lg hover:bg-blue-900 transition">UPDATE PROFILE</button>
                         </div>
                     </div>
                 </div>
 
                 <div id="generic-page" class="page-content text-center py-20">
-                    <i id="generic-icon" class="fas fa-tools text-64 text-gray-200 text-7xl mb-6"></i>
+                    <i id="generic-icon" class="fas fa-tools text-gray-200 text-7xl mb-6"></i>
                     <h2 id="generic-title" class="text-3xl font-black text-gray-400 uppercase">Coming Soon</h2>
                     <p class="text-gray-400 mt-2">हम इस पेज पर काम कर रहे हैं।</p>
                     <button onclick="showPage('home')" class="mt-8 text-blue-600 font-bold underline">Go Back Home</button>
@@ -137,12 +319,8 @@
     <div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden"></div>
 
     <script>
-        // NAVIGATION LOGIC
         function showPage(pageId, btnElement) {
-            // Hide all pages
             document.querySelectorAll('.page-content').forEach(p => p.classList.remove('page-active'));
-            
-            // Show requested page (or generic)
             const target = document.getElementById(pageId + '-page');
             if (target) {
                 target.classList.add('page-active');
@@ -150,21 +328,15 @@
                 document.getElementById('generic-page').classList.add('page-active');
                 document.getElementById('generic-title').innerText = pageId;
             }
-
-            // Update Header Title
-            document.getElementById('current-page-title').innerText = pageId.charAt(0).toUpperCase() + pageId.slice(1);
-
-            // Update Sidebar Active Class
             if (btnElement) {
                 document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('nav-link-active'));
                 btnElement.classList.add('nav-link-active');
             }
-
-            // Close sidebar on mobile after click
             if (window.innerWidth < 768) toggleSidebar();
+            // Scroll to top
+            document.querySelector('main').scrollTop = 0;
         }
 
-        // SIDEBAR TOGGLE
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
@@ -172,15 +344,12 @@
             overlay.classList.toggle('hidden');
         }
 
-        // SAVE PROFILE DATA
         function saveProfile() {
             const name = document.getElementById('nameInput').value;
             if (name) {
                 document.getElementById('user-display-name').innerText = name;
-                alert('Profile Updated Successfully!');
+                alert('Profile Updated!');
                 showPage('home');
-            } else {
-                alert('Please enter a name');
             }
         }
     </script>
