@@ -4,147 +4,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power pH | National Merit Prize</title>
+    <title>Power pH | National Merit Prize 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
         
-        /* Sidebar Styling */
-        #userSidebar {
-            transition: transform 0.3s ease-in-out;
-            z-index: 1001;
-        }
-        .sidebar-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-        }
+        .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; backdrop-filter: blur(4px); }
+        #userSidebar { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1001; }
         
-        .reel-container::-webkit-scrollbar { display: none; }
-        .reel-container { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Hero Image Effect */
+        .hero-bg {
+            background-image: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.95)), 
+                              url('https://images.unsplash.com/photo-1523050853063-bd8012fec21b?auto=format&fit=crop&q=80&w=1500');
+            background-size: cover;
+            background-position: center;
+            filter: none; /* Text should be sharp, only background image blurred via container */
+        }
     </style>
 </head>
 <body class="bg-gray-50">
 
     <div id="overlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
-    <div id="userSidebar" class="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl transform translate-x-full p-6">
-        <div class="flex justify-between items-center mb-8">
-            <h2 class="text-xl font-bold text-blue-900">User Profile</h2>
-            <button onclick="toggleSidebar()" class="text-2xl text-gray-500">&times;</button>
-        </div>
-        
-        <div class="text-center mb-8">
-            <div class="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden border-4 border-yellow-400">
-                <i class="fas fa-user text-4xl text-blue-900"></i> </div>
-            <h3 class="text-lg font-bold">Dinesh Kumar</h3>
-            <p class="text-sm text-gray-500">+91 98765-43210</p>
-            <p class="text-sm text-gray-500 italic">dk44business@gmail.com</p>
-        </div>
+    <div id="userSidebar" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-2xl transform translate-x-full overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8 border-b pb-4">
+                <h2 class="text-xl font-bold text-blue-900">कस्टमर प्रोफाइल</h2>
+                <button onclick="toggleSidebar()" class="text-3xl text-gray-400 hover:text-red-500">&times;</button>
+            </div>
+            
+            <div class="text-center bg-blue-50 p-6 rounded-2xl mb-8">
+                <div class="relative w-28 h-28 mx-auto mb-4">
+                    <img id="displayImg" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="w-full h-full rounded-full object-cover border-4 border-white shadow-lg">
+                    <label for="imgUpload" class="absolute bottom-0 right-0 bg-yellow-400 p-2 rounded-full cursor-pointer shadow-md">
+                        <i class="fas fa-camera text-xs text-blue-900"></i>
+                    </label>
+                    <input type="file" id="imgUpload" class="hidden" accept="image/*" onchange="updateImage(this)">
+                </div>
+                <h3 id="displayName" class="text-xl font-bold text-gray-800">आपका नाम यहाँ</h3>
+                <p id="displayEmail" class="text-sm text-gray-500 mb-1">email@example.com</p>
+                <p id="displayPhone" class="text-sm text-gray-500">मोबाइल नंबर यहाँ</p>
+            </div>
 
-        <nav class="space-y-4">
-            <a href="#" class="block p-3 hover:bg-blue-50 rounded-lg border-l-4 border-blue-900 font-medium">
-                <i class="fas fa-hand-holding-heart mr-2"></i> My Contribution
-            </a>
-            <a href="#" class="block p-3 hover:bg-blue-50 rounded-lg border-l-4 border-transparent">
-                <i class="fas fa-trophy mr-2"></i> Applied Scholarships
-            </a>
-            <a href="#" class="block p-3 hover:bg-blue-50 rounded-lg border-l-4 border-transparent text-red-600">
-                <i class="fas fa-sign-out-alt mr-2"></i> Logout
-            </a>
-        </nav>
+            <div class="space-y-4 mb-8">
+                <h4 class="font-bold text-gray-700">प्रोफ़ाइल अपडेट करें</h4>
+                <input type="text" id="inputName" placeholder="पूरा नाम" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="email" id="inputEmail" placeholder="ईमेल पता" class="w-full p-3 border rounded-lg">
+                <input type="tel" id="inputPhone" placeholder="मोबाइल नंबर" class="w-full p-3 border rounded-lg">
+                <button onclick="saveProfile()" class="w-full bg-blue-900 text-white py-3 rounded-lg font-bold hover:bg-blue-800 transition">डेटा सेव करें</button>
+            </div>
+
+            <nav class="border-t pt-6 space-y-3">
+                <button onclick="alert('आपका योगदान: ₹0.00')" class="w-full text-left p-4 hover:bg-gray-100 rounded-xl flex items-center">
+                    <i class="fas fa-hand-holding-heart text-blue-600 mr-4"></i> 
+                    <span class="font-medium">My Contribution</span>
+                </button>
+                <button onclick="window.location.reload()" class="w-full text-left p-4 hover:bg-red-50 text-red-600 rounded-xl flex items-center">
+                    <i class="fas fa-sign-out-alt mr-4"></i> 
+                    <span class="font-medium">Logout</span>
+                </button>
+            </nav>
+        </div>
     </div>
 
-    <nav class="bg-blue-900 text-white p-4 sticky top-0 z-50 shadow-lg">
+    <nav class="bg-blue-900 text-white p-4 sticky top-0 z-50 shadow-md">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold cursor-pointer hover:opacity-80">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter hover:text-yellow-400 transition">
                 Power <span class="text-yellow-400">pH</span>
             </a>
             
-            <div class="flex items-center gap-6">
-                <ul class="hidden md:flex gap-6">
-                    <li><a href="#home" class="hover:text-yellow-400 transition">Home</a></li>
-                    <li><a href="#categories" class="hover:text-yellow-400 transition">Scholarships</a></li>
-                    <li><a href="#reels" class="hover:text-yellow-400 transition">Reactions</a></li>
-                </ul>
-                
-                <button onclick="toggleSidebar()" class="flex items-center gap-2 bg-blue-800 px-3 py-1.5 rounded-full hover:bg-blue-700 transition border border-blue-400">
-                    <span class="text-sm font-medium hidden sm:block">Menu</span>
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
+            <button onclick="toggleSidebar()" class="flex items-center gap-3 bg-white/10 px-4 py-2 rounded-lg hover:bg-white/20 transition">
+                <i class="fas fa-bars text-xl"></i>
+                <span class="font-medium hidden sm:block">Account</span>
+            </button>
         </div>
     </nav>
 
-    <section id="home" class="bg-blue-800 text-white py-24 text-center px-4">
-        <h2 class="text-4xl md:text-6xl font-bold mb-6">National Merit Prize 2026</h2>
-        <p class="text-xl mb-10 max-w-2xl mx-auto opacity-90">Power Prestigious Hub की एक नई पहल - आपकी प्रतिभा को मिलेगा असली मंच और सम्मान।</p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <button onclick="location.href='#categories'" class="bg-yellow-500 text-blue-900 px-10 py-4 rounded-full font-bold shadow-lg hover:bg-yellow-400 transform hover:-translate-y-1 transition">
-                Apply Now
-            </button>
-            <button onclick="location.href='#reels'" class="bg-transparent border-2 border-white px-10 py-4 rounded-full font-bold hover:bg-white hover:text-blue-800 transition">
-                Watch Success Stories
-            </button>
-        </div>
-    </section>
-
-    <section id="categories" class="container mx-auto py-20 px-4">
-        <h3 class="text-3xl font-bold text-center mb-12">हमारी स्कॉलरशिप कैटेगरी</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div onclick="alert('10th-12th details loading...')" class="cursor-pointer bg-white p-8 rounded-2xl shadow-md border-b-8 border-blue-600 hover:shadow-2xl transition group">
-                <i class="fas fa-user-graduate text-5xl text-blue-600 mb-6 group-hover:scale-110 transition"></i>
-                <h4 class="text-2xl font-bold mb-3">10th - 12th Standard</h4>
-                <p class="text-gray-600 mb-4">बोर्ड परीक्षा के मेधावी छात्रों के लिए विशेष पुरस्कार।</p>
-                <span class="text-blue-600 font-bold">View Details →</span>
-            </div>
-            <div onclick="alert('Graduation details loading...')" class="cursor-pointer bg-white p-8 rounded-2xl shadow-md border-b-8 border-yellow-500 hover:shadow-2xl transition group">
-                <i class="fas fa-university text-5xl text-yellow-500 mb-6 group-hover:scale-110 transition"></i>
-                <h4 class="text-2xl font-bold mb-3">Graduation / Degree</h4>
-                <p class="text-gray-600 mb-4">BA, BSc, BCom और इंजीनियरिंग छात्रों के लिए सहायता।</p>
-                <span class="text-yellow-600 font-bold">View Details →</span>
-            </div>
-            <div onclick="alert('Govt Exams details loading...')" class="cursor-pointer bg-white p-8 rounded-2xl shadow-md border-b-8 border-green-600 hover:shadow-2xl transition group">
-                <i class="fas fa-book-reader text-5xl text-green-600 mb-6 group-hover:scale-110 transition"></i>
-                <h4 class="text-2xl font-bold mb-3">Govt Exams (SSC/RRB)</h4>
-                <p class="text-gray-600 mb-4">प्रतियोगी परीक्षाओं की तैयारी के लिए आर्थिक मदद।</p>
-                <span class="text-green-600 font-bold">View Details →</span>
+    <section id="home" class="hero-bg relative text-white py-28 md:py-40 text-center px-4 shadow-inner">
+        <div class="container mx-auto">
+            <h2 class="text-5xl md:text-7xl font-bold mb-6 drop-shadow-md">National Merit Prize 2026</h2>
+            <p class="text-xl md:text-2xl mb-12 max-w-3xl mx-auto opacity-95">
+                Power Prestigious Hub की एक नई पहल। अपनी प्रतिभा को साबित करें और अपनी पढ़ाई के लिए स्कॉलरशिप जीतें।
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="#categories" class="bg-yellow-500 text-blue-900 px-12 py-4 rounded-full font-bold text-lg shadow-xl hover:scale-105 transition-all">Apply Now</a>
+                <a href="#reels" class="bg-white/10 backdrop-blur-md border border-white/40 px-12 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-blue-900 transition-all">Student Stories</a>
             </div>
         </div>
     </section>
 
-    <footer id="contact" class="bg-gray-900 text-white py-12 text-center border-t-4 border-yellow-500">
-        <div class="container mx-auto px-4">
-            <h4 class="text-2xl font-bold mb-4">Power Prestigious Hub (Power pH)</h4>
-            <p class="mb-8 opacity-70">Email: dk44business@gmail.com | New Delhi, India</p>
-            <div class="flex justify-center gap-8 mb-8">
-                <a href="#" class="text-3xl hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-3xl hover:text-yellow-400"><i class="fab fa-youtube"></i></a>
-                <a href="#" class="text-3xl hover:text-yellow-400"><i class="fab fa-whatsapp"></i></a>
+    <section id="categories" class="container mx-auto py-20 px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div onclick="alert('Redirecting to Application...')" class="cursor-pointer group bg-white p-10 rounded-3xl shadow-lg border border-gray-100 hover:border-blue-500 transition-all hover:-translate-y-2">
+                <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-colors">
+                    <i class="fas fa-graduation-cap text-3xl text-blue-600 group-hover:text-white"></i>
+                </div>
+                <h4 class="text-2xl font-bold text-gray-800 mb-4">10th - 12th Merit</h4>
+                <p class="text-gray-500">कक्षा 10वीं और 12वीं के छात्रों के लिए विशेष छात्रवृत्ति प्रोग्राम।</p>
             </div>
-            <p class="text-sm opacity-50">© 2026 Power pH. All Rights Reserved.</p>
+            <div onclick="alert('Redirecting to Graduation...')" class="cursor-pointer group bg-white p-10 rounded-3xl shadow-lg border border-gray-100 hover:border-yellow-500 transition-all hover:-translate-y-2">
+                <div class="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-yellow-500 transition-colors">
+                    <i class="fas fa-university text-3xl text-yellow-600 group-hover:text-white"></i>
+                </div>
+                <h4 class="text-2xl font-bold text-gray-800 mb-4">Degree Students</h4>
+                <p class="text-gray-500">ग्रेजुएशन (BA, BSc, BCom) कर रहे छात्रों के लिए आर्थिक मदद।</p>
+            </div>
+            <div onclick="alert('Redirecting to Competitive Exams...')" class="cursor-pointer group bg-white p-10 rounded-3xl shadow-lg border border-gray-100 hover:border-green-500 transition-all hover:-translate-y-2">
+                <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-600 transition-colors">
+                    <i class="fas fa-book text-3xl text-green-600 group-hover:text-white"></i>
+                </div>
+                <h4 class="text-2xl font-bold text-gray-800 mb-4">Govt Exams</h4>
+                <p class="text-gray-500">SSC, RRB, UPSC जैसी परीक्षाओं की तैयारी के लिए मार्गदर्शन।</p>
+            </div>
         </div>
-    </footer>
+    </section>
 
     <script>
+        // Sidebar Toggle Logic
         function toggleSidebar() {
             const sidebar = document.getElementById('userSidebar');
             const overlay = document.getElementById('overlay');
-            const isOpen = sidebar.style.transform === 'translateX(0px)';
+            const isOpen = sidebar.classList.contains('translate-x-0');
             
             if (isOpen) {
-                sidebar.style.transform = 'translateX(100%)';
+                sidebar.classList.add('translate-x-full');
+                sidebar.classList.remove('translate-x-0');
                 overlay.style.display = 'none';
             } else {
-                sidebar.style.transform = 'translateX(0px)';
+                sidebar.classList.remove('translate-x-full');
+                sidebar.classList.add('translate-x-0');
                 overlay.style.display = 'block';
             }
+        }
+
+        // Image Update Preview
+        function updateImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('displayImg').src = e.target.result;
+                    localStorage.setItem('userPhoto', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Save Profile to LocalStorage
+        function saveProfile() {
+            const name = document.getElementById('inputName').value;
+            const email = document.getElementById('inputEmail').value;
+            const phone = document.getElementById('inputPhone').value;
+
+            if(name) {
+                localStorage.setItem('userName', name);
+                document.getElementById('displayName').innerText = name;
+            }
+            if(email) {
+                localStorage.setItem('userEmail', email);
+                document.getElementById('displayEmail').innerText = email;
+            }
+            if(phone) {
+                localStorage.setItem('userPhone', phone);
+                document.getElementById('displayPhone').innerText = phone;
+            }
+            alert('प्रोफ़ाइल सफलतापूर्वक सेव हो गई!');
+        }
+
+        // Load Profile on Page Load
+        window.onload = function() {
+            if(localStorage.getItem('userName')) document.getElementById('displayName').innerText = localStorage.getItem('userName');
+            if(localStorage.getItem('userEmail')) document.getElementById('displayEmail').innerText = localStorage.getItem('userEmail');
+            if(localStorage.getItem('userPhone')) document.getElementById('displayPhone').innerText = localStorage.getItem('userPhone');
+            if(localStorage.getItem('userPhoto')) document.getElementById('displayImg').src = localStorage.getItem('userPhoto');
         }
     </script>
 </body>
 </html>
-        
