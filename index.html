@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -8,155 +9,142 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        
         body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
         
-        /* Reel Container Styling */
-        .reel-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 15px;
-            padding: 20px 0;
+        /* Sidebar Styling */
+        #userSidebar {
+            transition: transform 0.3s ease-in-out;
+            z-index: 1001;
         }
-        .reel-card {
-            min-width: 280px;
-            height: 450px;
-            background: #000;
-            border-radius: 15px;
-            scroll-snap-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .reel-overlay {
-            position: absolute;
-            bottom: 0;
-            padding: 20px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            width: 100%;
-            color: white;
-        }
-
-        /* Language Sidebar */
-        .lang-sidebar {
+        .sidebar-overlay {
+            display: none;
             position: fixed;
-            right: -150px;
-            top: 30%;
-            background: #1e3a8a;
-            padding: 10px;
-            border-radius: 10px 0 0 10px;
-            transition: 0.3s;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
             z-index: 1000;
-            color: white;
         }
-        .lang-sidebar:hover { right: 0; }
-        .lang-btn { display: block; padding: 8px; cursor: pointer; border-bottom: 1px solid #3b82f6; }
+        
+        .reel-container::-webkit-scrollbar { display: none; }
+        .reel-container { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-gray-50">
 
-    <div class="lang-sidebar">
-        <div class="text-xs font-bold mb-2 text-center">Select Language</div>
-        <span class="lang-btn" onclick="changeLang('hi')">हिन्दी</span>
-        <span class="lang-btn" onclick="changeLang('en')">English</span>
+    <div id="overlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <div id="userSidebar" class="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl transform translate-x-full p-6">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-xl font-bold text-blue-900">User Profile</h2>
+            <button onclick="toggleSidebar()" class="text-2xl text-gray-500">&times;</button>
+        </div>
+        
+        <div class="text-center mb-8">
+            <div class="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden border-4 border-yellow-400">
+                <i class="fas fa-user text-4xl text-blue-900"></i> </div>
+            <h3 class="text-lg font-bold">Dinesh Kumar</h3>
+            <p class="text-sm text-gray-500">+91 98765-43210</p>
+            <p class="text-sm text-gray-500 italic">dk44business@gmail.com</p>
+        </div>
+
+        <nav class="space-y-4">
+            <a href="#" class="block p-3 hover:bg-blue-50 rounded-lg border-l-4 border-blue-900 font-medium">
+                <i class="fas fa-hand-holding-heart mr-2"></i> My Contribution
+            </a>
+            <a href="#" class="block p-3 hover:bg-blue-50 rounded-lg border-l-4 border-transparent">
+                <i class="fas fa-trophy mr-2"></i> Applied Scholarships
+            </a>
+            <a href="#" class="block p-3 hover:bg-blue-50 rounded-lg border-l-4 border-transparent text-red-600">
+                <i class="fas fa-sign-out-alt mr-2"></i> Logout
+            </a>
+        </nav>
     </div>
 
     <nav class="bg-blue-900 text-white p-4 sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold">Power <span class="text-yellow-400">pH</span></h1>
-            <ul class="hidden md:flex gap-6">
-                <li><a href="#home" class="hover:text-yellow-400">Home</a></li>
-                <li><a href="#categories" class="hover:text-yellow-400">Scholarships</a></li>
-                <li><a href="#reels" class="hover:text-yellow-400">Student Reactions</a></li>
-                <li><a href="#contact" class="hover:text-yellow-400">Contact</a></li>
-            </ul>
-            <button class="bg-yellow-500 text-blue-900 px-4 py-2 rounded-full font-bold">Login</button>
+            <a href="#" class="text-2xl font-bold cursor-pointer hover:opacity-80">
+                Power <span class="text-yellow-400">pH</span>
+            </a>
+            
+            <div class="flex items-center gap-6">
+                <ul class="hidden md:flex gap-6">
+                    <li><a href="#home" class="hover:text-yellow-400 transition">Home</a></li>
+                    <li><a href="#categories" class="hover:text-yellow-400 transition">Scholarships</a></li>
+                    <li><a href="#reels" class="hover:text-yellow-400 transition">Reactions</a></li>
+                </ul>
+                
+                <button onclick="toggleSidebar()" class="flex items-center gap-2 bg-blue-800 px-3 py-1.5 rounded-full hover:bg-blue-700 transition border border-blue-400">
+                    <span class="text-sm font-medium hidden sm:block">Menu</span>
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <section id="home" class="bg-blue-800 text-white py-20 text-center px-4">
-        <h2 class="text-4xl md:text-6xl font-bold mb-4">National Merit Prize 2026</h2>
-        <p class="text-xl mb-8">Power Prestigious Hub (Power pH) की एक नई पहल - आपकी प्रतिभा, हमारा सम्मान।</p>
-        <div class="flex justify-center gap-4">
-            <a href="#categories" class="bg-white text-blue-800 px-8 py-3 rounded-lg font-bold shadow-xl">Apply Now</a>
-            <a href="#reels" class="border-2 border-white px-8 py-3 rounded-lg font-bold">Watch Success Stories</a>
+    <section id="home" class="bg-blue-800 text-white py-24 text-center px-4">
+        <h2 class="text-4xl md:text-6xl font-bold mb-6">National Merit Prize 2026</h2>
+        <p class="text-xl mb-10 max-w-2xl mx-auto opacity-90">Power Prestigious Hub की एक नई पहल - आपकी प्रतिभा को मिलेगा असली मंच और सम्मान।</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <button onclick="location.href='#categories'" class="bg-yellow-500 text-blue-900 px-10 py-4 rounded-full font-bold shadow-lg hover:bg-yellow-400 transform hover:-translate-y-1 transition">
+                Apply Now
+            </button>
+            <button onclick="location.href='#reels'" class="bg-transparent border-2 border-white px-10 py-4 rounded-full font-bold hover:bg-white hover:text-blue-800 transition">
+                Watch Success Stories
+            </button>
         </div>
     </section>
 
-    <section id="categories" class="container mx-auto py-16 px-4">
-        <h3 class="text-3xl font-bold text-center mb-12">स्कॉलरशिप केटेगरी</h3>
+    <section id="categories" class="container mx-auto py-20 px-4">
+        <h3 class="text-3xl font-bold text-center mb-12">हमारी स्कॉलरशिप कैटेगरी</h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white p-8 rounded-xl shadow-md border-t-4 border-blue-600 hover:scale-105 transition">
-                <i class="fas fa-user-graduate text-4xl text-blue-600 mb-4"></i>
-                <h4 class="text-2xl font-bold mb-2">10th - 12th Standard</h4>
-                <p class="text-gray-600">मैट्रिक और इंटरमीडिएट के छात्रों के लिए विशेष मेरिट प्राइज और सहायता।</p>
+            <div onclick="alert('10th-12th details loading...')" class="cursor-pointer bg-white p-8 rounded-2xl shadow-md border-b-8 border-blue-600 hover:shadow-2xl transition group">
+                <i class="fas fa-user-graduate text-5xl text-blue-600 mb-6 group-hover:scale-110 transition"></i>
+                <h4 class="text-2xl font-bold mb-3">10th - 12th Standard</h4>
+                <p class="text-gray-600 mb-4">बोर्ड परीक्षा के मेधावी छात्रों के लिए विशेष पुरस्कार।</p>
+                <span class="text-blue-600 font-bold">View Details →</span>
             </div>
-            <div class="bg-white p-8 rounded-xl shadow-md border-t-4 border-yellow-500 hover:scale-105 transition">
-                <i class="fas fa-university text-4xl text-yellow-500 mb-4"></i>
-                <h4 class="text-2xl font-bold mb-2">Graduation / Degree</h4>
-                <p class="text-gray-600">BA, BSc, BCom और अन्य उच्च शिक्षा के लिए स्कॉलरशिप प्रोग्राम।</p>
+            <div onclick="alert('Graduation details loading...')" class="cursor-pointer bg-white p-8 rounded-2xl shadow-md border-b-8 border-yellow-500 hover:shadow-2xl transition group">
+                <i class="fas fa-university text-5xl text-yellow-500 mb-6 group-hover:scale-110 transition"></i>
+                <h4 class="text-2xl font-bold mb-3">Graduation / Degree</h4>
+                <p class="text-gray-600 mb-4">BA, BSc, BCom और इंजीनियरिंग छात्रों के लिए सहायता।</p>
+                <span class="text-yellow-600 font-bold">View Details →</span>
             </div>
-            <div class="bg-white p-8 rounded-xl shadow-md border-t-4 border-green-600 hover:scale-105 transition">
-                <i class="fas fa-book-reader text-4xl text-green-600 mb-4"></i>
-                <h4 class="text-2xl font-bold mb-2">Govt Exams (SSC/RRB/IBPS)</h4>
-                <p class="text-gray-600">सरकारी परीक्षाओं की तैयारी के लिए आर्थिक मदद और मार्गदर्शन।</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="reels" class="bg-gray-900 py-16 px-4 text-white">
-        <div class="container mx-auto">
-            <h3 class="text-3xl font-bold mb-2">Student Reactions & Updates</h3>
-            <p class="text-gray-400 mb-8">रील की तरह स्क्रॉल करें और देखें विजेताओं की खुशी!</p>
-            
-            <div class="reel-container">
-                <div class="reel-card">
-                    <img src="https://images.unsplash.com/photo-1523240715639-994589998160?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover opacity-60" alt="Student">
-                    <div class="reel-overlay">
-                        <p class="font-bold">Rahul Kumar (SSC Winner)</p>
-                        <p class="text-sm">"Power pH ने मेरा सपना सच कर दिया!"</p>
-                    </div>
-                </div>
-                <div class="reel-card">
-                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover opacity-60" alt="Student">
-                    <div class="reel-overlay">
-                        <p class="font-bold">Priya Singh (12th Merit)</p>
-                        <p class="text-sm">National Merit Prize के लिए धन्यवाद।</p>
-                    </div>
-                </div>
-                <div class="reel-card">
-                    <img src="https://images.unsplash.com/photo-1529070532901-ba8c30094b92?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover opacity-60" alt="Student">
-                    <div class="reel-overlay">
-                        <p class="font-bold">Dinesh 'DK' (Admin)</p>
-                        <p class="text-sm">न्यू स्कॉलरशिप अपडेट: आवेदन शुरू!</p>
-                    </div>
-                </div>
+            <div onclick="alert('Govt Exams details loading...')" class="cursor-pointer bg-white p-8 rounded-2xl shadow-md border-b-8 border-green-600 hover:shadow-2xl transition group">
+                <i class="fas fa-book-reader text-5xl text-green-600 mb-6 group-hover:scale-110 transition"></i>
+                <h4 class="text-2xl font-bold mb-3">Govt Exams (SSC/RRB)</h4>
+                <p class="text-gray-600 mb-4">प्रतियोगी परीक्षाओं की तैयारी के लिए आर्थिक मदद।</p>
+                <span class="text-green-600 font-bold">View Details →</span>
             </div>
         </div>
     </section>
 
-    <footer id="contact" class="bg-blue-950 text-white py-12 text-center">
+    <footer id="contact" class="bg-gray-900 text-white py-12 text-center border-t-4 border-yellow-500">
         <div class="container mx-auto px-4">
             <h4 class="text-2xl font-bold mb-4">Power Prestigious Hub (Power pH)</h4>
-            <p class="mb-6">106 Nizamuddin New Delhi, India | Email: dk44business@gmail.com</p>
-            <div class="flex justify-center gap-6 text-2xl mb-8">
-                <i class="fab fa-instagram cursor-pointer hover:text-yellow-400"></i>
-                <i class="fab fa-youtube cursor-pointer hover:text-yellow-400"></i>
-                <i class="fab fa-facebook cursor-pointer hover:text-yellow-400"></i>
+            <p class="mb-8 opacity-70">Email: dk44business@gmail.com | New Delhi, India</p>
+            <div class="flex justify-center gap-8 mb-8">
+                <a href="#" class="text-3xl hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-3xl hover:text-yellow-400"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="text-3xl hover:text-yellow-400"><i class="fab fa-whatsapp"></i></a>
             </div>
-            <p class="text-gray-500 text-sm">© 2026 Power pH. All Rights Reserved.</p>
+            <p class="text-sm opacity-50">© 2026 Power pH. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
-        function changeLang(lang) {
-            if(lang === 'hi') {
-                alert("हिन्दी भाषा चुनी गई!");
-                // यहाँ आप हिन्दी कंटेंट लोड करने का लॉजिक डाल सकते हैं
+        function toggleSidebar() {
+            const sidebar = document.getElementById('userSidebar');
+            const overlay = document.getElementById('overlay');
+            const isOpen = sidebar.style.transform === 'translateX(0px)';
+            
+            if (isOpen) {
+                sidebar.style.transform = 'translateX(100%)';
+                overlay.style.display = 'none';
             } else {
-                alert("English Language Selected!");
+                sidebar.style.transform = 'translateX(0px)';
+                overlay.style.display = 'block';
             }
         }
     </script>
 </body>
 </html>
+        
