@@ -1,139 +1,59 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Power PH Company</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100"><div class="flex">  <!-- Sidebar -->  <div class="w-64 bg-blue-700 text-white min-h-screen p-5">
-    <h1 class="text-2xl font-bold mb-6">Power PH</h1><button onclick="showSection('home')" class="block w-full text-left mb-3 hover:bg-blue-500 p-2 rounded">🏠 Home</button>
-<button onclick="showSection('login')" class="block w-full text-left mb-3 hover:bg-blue-500 p-2 rounded">🔐 Login</button>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power PH Mobile Ready</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head><body class="bg-gray-100"><!-- MOBILE HEADER --><div class="flex md:hidden justify-between items-center bg-blue-900 text-white p-4">
+  <h1 class="font-bold">⚡ Power PH</h1>
+  <button onclick="toggleMenu()" class="text-2xl">☰</button>
+</div><div class="flex"><!-- SIDEBAR --><div id="sidebar" class="fixed md:relative top-0 left-0 h-full w-64 bg-blue-900 text-white p-5 transform -translate-x-full md:translate-x-0 transition duration-300 z-50 overflow-y-auto">
+  <h1 class="text-xl font-bold mb-4">⚡ Power PH</h1><button onclick="openPage('home')" class="menu">🏠 Home</button> <button onclick="openPage('profile')" class="menu">👤 Profile</button> <button onclick="openPage('refer')" class="menu">💰 Refer</button> <button onclick="openPage('videos')" class="menu">🎥 Videos</button> <button onclick="openPage('reels')" class="menu">📱 Reels</button>
 
-<hr class="my-4">
-
-<button onclick="showSection('profile')" class="block w-full text-left mb-3 hover:bg-blue-500 p-2 rounded">👤 Profile</button>
-<button onclick="showSection('refer')" class="block w-full text-left mb-3 hover:bg-blue-500 p-2 rounded">💰 Refer & Earn</button>
-<button onclick="showSection('contribution')" class="block w-full text-left mb-3 hover:bg-blue-500 p-2 rounded">🤝 Contribution</button>
-
-<hr class="my-4">
-
-<button onclick="showSection('school')" class="block w-full text-left mb-3 hover:bg-blue-500 p-2 rounded">🏫 School Scholarship</button>
-<button onclick="showSection('college')" class="block w-full text-left mb-3 hover:bg-blue-500 p-2 rounded">🎓 College Scholarship</button>
-<button onclick="showSection('govt')" class="block w-full text-left mb-3 hover:bg-blue-500 p-2 rounded">🏆 Govt Exam Scholarship</button>
-
-<hr class="my-4">
-
-<button onclick="showSection('videos')" class="block w-full text-left mb-3 hover:bg-blue-500 p-2 rounded">🎥 Videos</button>
-<button onclick="showSection('reels')" class="block w-full text-left mb-3 hover:bg-blue-500 p-2 rounded">📱 Reels</button>
-
-<hr class="my-4">
-
-<button onclick="showSection('achievements')" class="block w-full text-left mb-3 hover:bg-blue-500 p-2 rounded">🏅 Achievements</button>
-<button onclick="showSection('teachers')" class="block w-full text-left mb-3 hover:bg-blue-500 p-2 rounded">👨‍🏫 Teachers</button>
-
-<hr class="my-4">
-
-<button onclick="showSection('ebooks')" class="block w-full text-left mb-3 hover:bg-blue-500 p-2 rounded">📚 My eBooks</button>
-
-  </div>  <!-- Main Content -->  <div class="flex-1 p-6"><!-- Home -->
-<div id="home" class="section">
-  <h2 class="text-4xl font-bold mb-4">National Merit Prize</h2>
-  <p class="mb-4">Join India's biggest scholarship program.</p>
-  <a href="https://forms.gle/your-google-form-link" target="_blank" class="inline-block bg-green-600 text-white px-6 py-3 rounded-xl">Register Now</a>
-  <img src="https://source.unsplash.com/800x400/?success,students" class="mt-6 rounded">
-</div>
-
-<!-- Login -->
-<div id="login" class="section hidden">
-  <h2 class="text-3xl font-bold mb-4">Login</h2>
-  <input id="name" type="text" placeholder="Name" class="block w-full mb-3 p-2 border rounded">
-  <input id="email" type="email" placeholder="Email" class="block w-full mb-3 p-2 border rounded">
-  <input id="mobile" type="text" placeholder="Mobile Number" class="block w-full mb-3 p-2 border rounded">
-  <input id="photo" type="file" class="block w-full mb-3">
-  <button onclick="saveUser()" class="bg-blue-600 text-white px-4 py-2 rounded">Login</button>
-</div>
-
-<!-- Profile -->
-<div id="profile" class="section hidden">
-  <h2 class="text-3xl font-bold mb-4">User Profile</h2>
-  <img id="profilePhoto" class="w-24 h-24 rounded-full mb-3" />
-  <p><strong>Name:</strong> <span id="profileName"></span></p>
-  <p><strong>Email:</strong> <span id="profileEmail"></span></p>
-  <p><strong>Mobile:</strong> <span id="profileMobile"></span></p>
-</div>
-
-<!-- Videos -->
-<div id="videos" class="section hidden">
-  <h2 class="text-2xl font-bold mb-4">YouTube Videos</h2>
-  <iframe class="w-full h-64" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-</div>
-
-<!-- Reels -->
-<div id="reels" class="section hidden overflow-x-scroll flex gap-4">
-  <iframe width="200" height="350" src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
-  <iframe width="200" height="350" src="https://www.youtube.com/embed/ysz5S6PUM-U"></iframe>
-</div>
-
-<!-- Achievements -->
-<div id="achievements" class="section hidden">
-  <h2 class="text-2xl font-bold">Achievements</h2>
-  <p>Our success stories and milestones.</p>
-  <img src="https://source.unsplash.com/600x300/?award" class="mt-4 rounded">
-</div>
-
-<!-- Teachers -->
-<div id="teachers" class="section hidden">
-  <h2 class="text-2xl font-bold">Our Teachers</h2>
-  <p>Meet our expert contributors.</p>
-  <img src="https://source.unsplash.com/600x300/?teacher" class="mt-4 rounded">
-</div>
-
-<!-- Other sections remain same -->
-
+</div><div id="overlay" onclick="toggleMenu()" class="fixed inset-0 bg-black bg-opacity-50 hidden md:hidden"></div><!-- MAIN --><div class="flex-1 p-4 md:p-6 w-full"><!-- HOME --><div id="home" class="page">
+  <div class="bg-gradient-to-r from-blue-900 to-blue-600 text-white p-5 rounded-xl">
+    <h2 class="text-2xl md:text-4xl font-bold">National Merit Prize</h2>
+    <p class="mt-2">Scholarship for your bright future</p>
+    <a href="#" class="inline-block mt-4 bg-green-500 px-5 py-2 rounded-lg">Register Now</a>
+  </div>  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+    <div class="card">8th to 10th Scholarship</div>
+    <div class="card">11th to Higher</div>
+    <div class="card">Govt Exams</div>
   </div>
-</div><!-- Footer --><footer class="bg-blue-700 text-white text-center p-4 mt-6">
-  <p class="font-bold">Power PH Company</p>
-  <p>Email: support@powerph.com</p>
-  <p>© 2026 All Rights Reserved</p>
-</footer><script>
-function showSection(id) {
-  document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
+</div><!-- VIDEOS --><div id="videos" class="page hidden">
+  <h2 class="text-xl font-bold mb-3">Videos</h2>
+  <iframe class="w-full h-56 md:h-72 rounded" src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
+</div><!-- REELS --><div id="reels" class="page hidden">
+  <h2 class="text-xl font-bold mb-3">Reels</h2>
+  <div class="flex gap-3 overflow-x-auto">
+    <iframe width="180" height="300" src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
+    <iframe width="180" height="300" src="https://www.youtube.com/embed/ysz5S6PUM-U"></iframe>
+  </div>
+</div><!-- PROFILE --><div id="profile" class="page hidden">
+  <h2 class="text-xl font-bold">User Profile</h2>
+  <p>Coming soon...</p>
+</div><!-- REFER --><div id="refer" class="page hidden">
+  <h2 class="text-xl font-bold">Refer & Earn</h2>
+  <p>Invite and earn rewards.</p>
+</div></div>
+</div><!-- FOOTER --><footer class="bg-blue-900 text-white text-center p-3 mt-6">
+  Power PH Company
+</footer><style>
+.menu{display:block;width:100%;text-align:left;padding:10px;margin-bottom:5px;border-radius:6px}
+.menu:hover{background:#1e40af}
+.card{background:white;padding:15px;border-radius:10px;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
+</style><script>
+function toggleMenu(){
+ document.getElementById('sidebar').classList.toggle('-translate-x-full');
+ document.getElementById('overlay').classList.toggle('hidden');
 }
 
-function saveUser() {
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const mobile = document.getElementById('mobile').value;
-  const photoInput = document.getElementById('photo');
-
-  const reader = new FileReader();
-  reader.onload = function() {
-    localStorage.setItem('userPhoto', reader.result);
-    localStorage.setItem('userName', name);
-    localStorage.setItem('userEmail', email);
-    localStorage.setItem('userMobile', mobile);
-
-    loadProfile();
-    showSection('profile');
-  }
-  if(photoInput.files[0]) {
-    reader.readAsDataURL(photoInput.files[0]);
-  }
+function openPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));
+ document.getElementById(id).classList.remove('hidden');
+ toggleMenu();
 }
 
-function loadProfile() {
-  document.getElementById('profileName').innerText = localStorage.getItem('userName');
-  document.getElementById('profileEmail').innerText = localStorage.getItem('userEmail');
-  document.getElementById('profileMobile').innerText = localStorage.getItem('userMobile');
-  document.getElementById('profilePhoto').src = localStorage.getItem('userPhoto');
-}
-
-window.onload = function() {
-  showSection('home');
-  if(localStorage.getItem('userName')) {
-    loadProfile();
-  }
-}
+window.onload=function(){openPage('home')}
 </script></body>
 </html>
