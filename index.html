@@ -280,12 +280,35 @@
             <span class="text-[9px] text-gray-400 mt-0.5">Engineering India</span>
         </div>
 
-        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center">
-            <i class="fas fa-user-md text-2xl text-emerald-600 mb-2"></i>
-            <span class="font-bold text-xs text-gray-800">AIIMS</span>
-            <span class="text-[9px] text-gray-400 mt-0.5">Medical Premier</span>
-        </div>
+        <div class="bg-blue-50/50 p-4 rounded-2xl border border-blue-100 text-center">
+    <p class="text-[11px] md:text-xs text-blue-900 leading-relaxed font-medium">
+        <i class="fas fa-info-circle mr-1"></i> 
+        <span>Disclaimer: Power PH (Power Prestigious Hub) is not an official partner or affiliated with these institutions. Our primary objective is to offer exclusive **Scholarships** and comprehensive academic guidance to help meritorious students clear entrance examinations and secure admissions in these elite national and international organizations.</span>
+        
+        <span id="more-disclaimer-text" class="hidden block mt-2 pt-2 border-t border-blue-200/60 text-blue-800">
+            Additionally, Power PH proudly collaborates with top-tier private institutions and industry leaders to create unique educational pathways, alternative corporate sponsorships, and verified career mentorship programs for our global achievers.
+        </span>
+        
+        <button onclick="toggleDisclaimer()" id="disclaimer-btn" class="text-blue-600 hover:text-blue-800 font-bold ml-1 underline cursor-pointer block mx-auto mt-2 focus:outline-none">
+            [More]
+        </button>
+    </p>
+</div>
 
+<script>
+function toggleDisclaimer() {
+    const moreText = document.getElementById("more-disclaimer-text");
+    const btnText = document.getElementById("disclaimer-btn");
+
+    if (moreText.classList.contains("hidden")) {
+        moreText.classList.remove("hidden");
+        btnText.innerHTML = "[Less]";
+    } else {
+        moreText.classList.add("hidden");
+        btnText.innerHTML = "[More]";
+    }
+}
+</script>
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center">
             <i class="fas fa-book-reader text-2xl text-purple-600 mb-2"></i>
             <span class="font-bold text-xs text-gray-800">Central Univ.</span>
