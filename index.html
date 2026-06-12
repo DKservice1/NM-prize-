@@ -293,11 +293,35 @@
     </div>
 
     <div class="bg-blue-50/50 p-3 rounded-xl border border-blue-100 text-center">
-        <p class="text-[10px] md:text-[11px] text-blue-900 leading-relaxed font-medium">
-            <i class="fas fa-info-circle mr-1"></i> 
-            <strong>Disclaimer:</strong> Power PH (Power Prestigious Hub) is not an official partner or affiliated with these institutions. Our primary objective is to offer exclusive **Scholarships** and comprehensive academic guidance to help meritorious students clear entrance examinations and secure admissions in these elite national and international organizations.
-        </p>
-    </div>
+    <p class="text-[10px] md:text-[11px] text-blue-900 leading-relaxed font-medium">
+        <i class="fas fa-info-circle mr-1"></i> 
+        <span><strong>Disclaimer:</strong> Power PH (Power Prestigious Hub) is not an official partner or affiliated with these institutions. Our primary objective is to offer exclusive Scholarships and comprehensive academic guidance to help meritorious students clear entrance examinations and secure admissions...</span>
+        
+        <span id="more-disclaimer-text" class="hidden">
+            Additionally, Power PH proudly collaborates with top-tier private institutions and industry leaders to create unique educational pathways, alternative corporate sponsorships, and verified career mentorship programs for our global achievers.
+        </span>
+        
+        <button onclick="toggleDisclaimer()" id="disclaimer-btn" class="text-blue-600 hover:text-blue-800 font-bold ml-1 underline cursor-pointer inline focus:outline-none bg-transparent border-none p-0">
+            [More]
+        </button>
+    </p>
+</div>
+
+<script>
+function toggleDisclaimer() {
+    const moreText = document.getElementById("more-disclaimer-text");
+    const btnText = document.getElementById("disclaimer-btn");
+
+    if (moreText.classList.contains("hidden")) {
+        moreText.classList.remove("hidden");
+        btnText.innerHTML = "[Less]";
+    } else {
+        moreText.classList.add("hidden");
+        btnText.innerHTML = "[More]";
+    }
+}
+</script>
+
 </div>
                         <div class="lg:col-span-1 bg-white border border-gray-100 rounded-[2rem] p-6 shadow-sm flex flex-col">
                             <div class="flex justify-between items-center mb-6">
