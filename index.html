@@ -724,7 +724,11 @@ function toggleDisclaimer() {
         if(document.getElementById('inputProfileName')) document.getElementById('inputProfileName').value = savedName;
         if(document.getElementById('inputProfileEmail')) document.getElementById('inputProfileEmail').value = savedEmail;
         if(document.getElementById('inputProfilePhone')) document.getElementById('inputProfilePhone').value = savedPhone;
-        if(document.getElementById('inputProfileId')) document.getElementById('inputProfileId').value = savedId;
+                if(document.getElementById('inputProfileId')) {
+            document.getElementById('inputProfileId').value = savedId;
+            document.getElementById('inputProfileId').disabled = true;
+        }
+
         if(document.getElementById('inputProfileBio')) document.getElementById('inputProfileBio').value = savedBio;
 
         // 5. Update Top Header Profile Name and Image
