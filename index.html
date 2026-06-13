@@ -96,9 +96,8 @@
             <span class="text-[7px] text-slate-500 font-bold uppercase tracking-tight block">EMPOWERING YOUR FUTURE</span>
         </a>
     </div>
-                <div class="hidden md:block"></div>
-                
-                <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('profile')">
+                <div class="hidden md:block"></div>       
+             <div class="flex items-center gap-3 cursor-pointer" onclick="openProfileModal()">
                     <div class="text-right hidden sm:block">
                         <p id="user-display-name" class="text-sm font-bold text-blue-900 leading-none">Rahul Kumar</p>
                         <p class="text-[9px] text-gray-400 mt-1 uppercase">ID: 1000107597</p>
@@ -106,7 +105,6 @@
                     <img id="user-display-img" src="https://i.pravatar.cc/100?u=rahul" class="w-10 h-10 rounded-full border-2 border-blue-600 p-0.5">
                 </div>
             </header>
-
             <div id="pages" class="p-4 md:p-8 flex-1">
                 
                 <div id="home-page" class="page-content page-active space-y-12">
@@ -583,41 +581,197 @@ function toggleDisclaimer() {
     </div>
 
     <div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden"></div>
+<div id="profileModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl border border-slate-100 relative max-h-[90vh] flex flex-col">
+        
+        <div class="bg-gradient-to-r from-blue-700 via-indigo-800 to-slate-900 h-24 relative shrink-0">
+            <button onclick="closeProfileModal()" class="absolute top-4 right-4 text-white/80 hover:text-white text-xl bg-black/20 w-8 h-8 rounded-full flex items-center justify-center cursor-pointer">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
 
-    <script>
-        function showPage(pageId, btnElement) {
-            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('page-active'));
-            const target = document.getElementById(pageId + '-page');
-            if (target) {
-                target.classList.add('page-active');
-            } else {
-                document.getElementById('generic-page').classList.add('page-active');
-                document.getElementById('generic-title').innerText = pageId;
-            }
-            if (btnElement) {
-                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('nav-link-active'));
-                btnElement.classList.add('nav-link-active');
-            }
-            if (window.innerWidth < 768) toggleSidebar();
-            // Scroll to top
-            document.querySelector('main').scrollTop = 0;
-        }
+        <div class="absolute top-10 left-1/2 -translate-x-1/2 z-10">
+            <div class="w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-md relative group bg-slate-200">
+                <img id="modal-user-img" src="https://i.pravatar.cc/100?u=rahul" alt="Student" class="w-full h-full object-cover">
+                <label for="profilePhotoInput" class="absolute inset-0 bg-black/40 flex items-center justify-center text-white text-xs opacity-0 group-hover:opacity-100 cursor-pointer transition-opacity">
+                    <i class="fas fa-camera"></i>
+                </label>
+            </div>
+            <input type="file" id="profilePhotoInput" accept="image/*" class="hidden" onchange="previewAndSavePhoto(this)">
+        </div>
 
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            sidebar.classList.toggle('sidebar-open');
-            overlay.classList.toggle('hidden');
-        }
+        <div class="overflow-y-auto pt-14 pb-6 px-6 text-center flex-1">
+            <h3 id="displayModalName" class="text-slate-900 font-black text-lg flex items-center justify-center gap-1.5 uppercase tracking-wide">Rahul</h3>
+            <span class="inline-block bg-blue-50 text-blue-700 text-[10px] font-black uppercase px-3 py-1 rounded-full mt-1 tracking-wider border border-blue-100">
+                ID: <span id="displayModalId">1000107597</span>
+            </span>
 
-        function saveProfile() {
-            const name = document.getElementById('nameInput').value;
-            if (name) {
-                document.getElementById('user-display-name').innerText = name;
-                alert('Profile Updated!');
-                showPage('home');
+            <hr class="border-slate-100 my-4">
+
+            <div class="space-y-3 text-left">
+                <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-2xl flex items-center gap-3">
+                    <div class="bg-white w-8 h-8 rounded-xl flex items-center justify-center border border-slate-100 shadow-sm shrink-0"><i class="fas fa-user text-xs text-blue-600"></i></div>
+                    <div class="w-full">
+                        <label class="text-[8px] text-slate-400 font-bold uppercase tracking-tight block">Full Name</label>
+                        <input type="text" id="inputProfileName" placeholder="Enter full name" class="w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none p-0 m-0">
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-2xl flex items-center gap-3">
+                    <div class="bg-white w-8 h-8 rounded-xl flex items-center justify-center border border-slate-100 shadow-sm shrink-0"><i class="fas fa-envelope text-xs text-indigo-600"></i></div>
+                    <div class="w-full">
+                        <label class="text-[8px] text-slate-400 font-bold uppercase tracking-tight block">Email Address</label>
+                        <input type="email" id="inputProfileEmail" placeholder="student@powerph.in" class="w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none p-0 m-0">
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-2xl flex items-center gap-3">
+                    <div class="bg-white w-8 h-8 rounded-xl flex items-center justify-center border border-slate-100 shadow-sm shrink-0"><i class="fas fa-phone text-xs text-emerald-600"></i></div>
+                    <div class="w-full">
+                        <label class="text-[8px] text-slate-400 font-bold uppercase tracking-tight block">Phone Number</label>
+                        <input type="tel" id="inputProfilePhone" placeholder="+91 0000000000" class="w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none p-0 m-0">
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-2xl flex items-center gap-3">
+                    <div class="bg-white w-8 h-8 rounded-xl flex items-center justify-center border border-slate-100 shadow-sm shrink-0"><i class="fas fa-id-card text-xs text-purple-600"></i></div>
+                    <div class="w-full">
+                        <label class="text-[8px] text-slate-400 font-bold uppercase tracking-tight block">Registration ID</label>
+                        <input type="text" id="inputProfileId" placeholder="1000107597" class="w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none p-0 m-0">
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-2xl flex items-center gap-3">
+                    <div class="bg-white w-8 h-8 rounded-xl flex items-center justify-center border border-slate-100 shadow-sm shrink-0"><i class="fas fa-pen text-xs text-amber-600"></i></div>
+                    <div class="w-full">
+                        <label class="text-[8px] text-slate-400 font-bold uppercase tracking-tight block">Student Bio / Slogan</label>
+                        <input type="text" id="inputProfileBio" placeholder="An aspiring learner..." class="w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none p-0 m-0">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-2 mt-5">
+                <button onclick="saveStudentData()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black text-xs py-3 px-4 rounded-xl shadow-md active:scale-[0.98] transition-all cursor-pointer uppercase tracking-wider">Save Profile</button>
+                <button onclick="closeProfileModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-black text-xs py-3 px-4 rounded-xl shadow-md active:scale-[0.98] transition-all cursor-pointer uppercase tracking-wider">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // वेबसाइट के पुराने और ज़रूरी फंक्शन्स (showPage और toggleSidebar)
+    function showPage(pageId, btnElement) {
+        const pages = document.querySelectorAll('.page-content');
+        pages.forEach(p => p.classList.remove('page-active'));
+        
+        const target = document.getElementById(pageId + '-page');
+        if (target) {
+            target.classList.add('page-active');
+        } else {
+            const genericPage = document.getElementById('generic-page');
+            if (genericPage) genericPage.classList.add('page-active');
+            const genericTitle = document.getElementById('generic-title');
+            if (genericTitle) genericTitle.innerText = pageId;
+        }
+        if (btnElement) {
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('nav-link-active'));
+            btnElement.classList.add('nav-link-active');
+        }
+        if (window.innerWidth < 768) toggleSidebar();
+        const mainElement = document.querySelector('main');
+        if (mainElement) mainElement.scrollTop = 0;
+    }
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        if (sidebar) sidebar.classList.toggle('sidebar-open');
+        if (overlay) overlay.classList.toggle('hidden');
+    }
+
+    // प्रोफाइल फोटो और लोकलस्टोरेज का नया ऑटो-लोड सिस्टम
+    const defaultImg = "https://i.pravatar.cc/100?u=rahul";
+
+    function loadSavedData() {
+        const savedName = localStorage.getItem('student_name') || "Rahul";
+        const savedEmail = localStorage.getItem('student_email') || "student@powerph.in";
+        const savedPhone = localStorage.getItem('student_phone') || "+91 9876543210";
+        const savedId = localStorage.getItem('student_id') || "1000107597";
+        const savedBio = localStorage.getItem('student_bio') || "Passionate Scholar";
+        const savedPhoto = localStorage.getItem('student_photo') || defaultImg;
+
+        if(document.getElementById('displayModalName')) document.getElementById('displayModalName').innerText = savedName;
+        if(document.getElementById('displayModalId')) document.getElementById('displayModalId').innerText = savedId;
+        if(document.getElementById('modal-user-img')) document.getElementById('modal-user-img').src = savedPhoto;
+
+        if(document.getElementById('inputProfileName')) document.getElementById('inputProfileName').value = savedName;
+        if(document.getElementById('inputProfileEmail')) document.getElementById('inputProfileEmail').value = savedEmail;
+        if(document.getElementById('inputProfilePhone')) document.getElementById('inputProfilePhone').value = savedPhone;
+        if(document.getElementById('inputProfileId')) document.getElementById('inputProfileId').value = savedId;
+        if(document.getElementById('inputProfileBio')) document.getElementById('inputProfileBio').value = savedBio;
+
+        const headerNameElement = document.getElementById('user-display-name');
+        if (headerNameElement) headerNameElement.innerText = savedName;
+
+        const headerImgElement = document.getElementById('user-display-img');
+        if (headerImgElement) headerImgElement.src = savedPhoto;
+        
+        const allParagraphs = document.getElementsByTagName('p');
+        for (let i = 0; i < allParagraphs.length; i++) {
+            if (allParagraphs[i].innerText.includes('ID:')) {
+                allParagraphs[i].innerText = 'ID: ' + savedId;
+                break;
             }
         }
-    </script>
+    }
+
+    function openProfileModal() {
+        loadSavedData();
+        const modal = document.getElementById('profileModal');
+        if(modal) modal.classList.remove('hidden');
+    }
+
+    function previewAndSavePhoto(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64Image = e.target.result;
+                document.getElementById('modal-user-img').src = base64Image;
+                localStorage.setItem('student_photo', base64Image);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function closeProfileModal() {
+        const modal = document.getElementById('profileModal');
+        if(modal) modal.classList.add('hidden');
+    }
+
+    function saveStudentData() {
+        localStorage.setItem('student_name', document.getElementById('inputProfileName').value);
+        localStorage.setItem('student_email', document.getElementById('inputProfileEmail').value);
+        localStorage.setItem('student_phone', document.getElementById('inputProfilePhone').value);
+        localStorage.setItem('student_id', document.getElementById('inputProfileId').value);
+        localStorage.setItem('student_bio', document.getElementById('inputProfileBio').value);
+
+        loadSavedData();
+        alert('Profile saved securely on your device!');
+        closeProfileModal();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadSavedData);
+    } else {
+        loadSavedData();
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById('profileModal');
+        if (event.target == modal) modal.classList.add('hidden');
+    }
+</script>
+
+  
 </body>
 </html>
