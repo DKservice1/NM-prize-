@@ -72,9 +72,7 @@
                     <button onclick="showPage('teachers', this)" class="nav-btn w-full flex items-center gap-4 p-3 hover:bg-white/10 transition"><i class="fas fa-chalkboard-teacher w-5"></i> Our Teachers</button>
                 </div>
 
-                <button onclick="window.location.reload()" class="w-full flex items-center gap-4 p-3 text-red-400 mt-10 border-t border-gray-700 pt-6 font-bold">
-                    <i class="fas fa-sign-out-alt w-5"></i> Logout
-                </button>
+                <div id="sidebar-auth-container" class="mt-10"></div>
             </nav>
             
             <div class="mt-6 bg-blue-800/50 p-4 rounded-2xl text-center">
@@ -579,7 +577,7 @@ function toggleDisclaimer() {
 
             </div>
         </main>
-    </div>
+     </div>
 
     <div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden"></div>
 <div id="profileModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
@@ -802,6 +800,26 @@ function toggleDisclaimer() {
         const modal = document.getElementById('profileModal');
         if (event.target == modal) modal.classList.add('hidden');
     }
+        function handleLogout() {
+        localStorage.removeItem('is_logged_in');
+        localStorage.removeItem('active_user_phone');
+        window.location.reload();
+    }
+    
+    function clearProfileUIForLogin() {
+        const authContainer = document.getElementById('sidebar-auth-container');
+        if (authContainer) {
+            authContainer.innerHTML = `<button onclick="openProfileModal()" class="w-full flex items-center gap-4 p-3 text-emerald-400 font-bold text-sm bg-emerald-500/10 rounded-xl cursor-pointer"><i class="fas fa-sign-in-alt w-5 text-lg"></i> Login / Profile</button>`;
+        }
+        if(document.getElementById('displayModalName')) document.getElementById('displayModalName').innerText = "Please Login";
+        if(document.getElementById('displayModalId')) document.getElementById('displayModalId').innerText = "0000000000";
+        if(document.getElementById('inputProfilePhone')) {
+            document.getElementById('inputProfilePhone').value = "";
+            document.getElementById('inputProfilePhone').disabled = false; 
+        }
+        if(document.getElementById('user-display-name')) document.getElementById('user-display-name').innerText = "Guest";
+    }
+
 </script>
 
   
