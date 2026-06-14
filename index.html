@@ -821,6 +821,23 @@ function toggleDisclaimer() {
         }
         if(document.getElementById('user-display-name')) document.getElementById('user-display-name').innerText = "Guest";
     }
+        function checkSidebarAuth() {
+        const isLoggedIn = localStorage.getItem('is_logged_in');
+        const authContainer = document.getElementById('sidebar-auth-container');
+        if (!authContainer) return;
+
+        if (isLoggedIn === 'true') {
+            // अगर लॉगिन है, तो लाल रंग का Logout बटन दिखाओ और फील्ड्स लॉक करो
+            authContainer.innerHTML = `<button onclick="handleLogout()" class="w-full flex items-center gap-4 p-3 text-red-400 font-medium text-sm rounded-xl cursor-pointer"><i class="fas fa-sign-out-alt w-5 text-lg"></i> Logout</button>`;
+            if(document.getElementById('inputProfilePhone')) document.getElementById('inputProfilePhone').disabled = true;
+            if(document.getElementById('inputProfileId')) document.getElementById('inputProfileId').disabled = true;
+        } else {
+            // अगर लॉगिन नहीं है, तो हरा वाला Login बटन दिखाओ
+            authContainer.innerHTML = `<button onclick="openProfileModal()" class="w-full flex items-center gap-4 p-3 text-emerald-400 font-bold text-sm bg-emerald-500/10 rounded-xl cursor-pointer"><i class="fas fa-sign-in-alt w-5 text-lg"></i> Login / Profile</button>`;
+        }
+    }
+    // इसे हर आधे सेकंड में ऑटो-चेक पर लगा देते हैं ताकि कोई लफड़ा न हो
+    setInterval(checkSidebarAuth, 500);
 
 </script>
 
