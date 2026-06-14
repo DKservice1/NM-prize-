@@ -692,6 +692,13 @@ function toggleDisclaimer() {
     const defaultImg = "https://i.pravatar.cc/100?u=rahul";
 
     function loadSavedData() {
+                const isLoggedIn = localStorage.getItem('is_logged_in');
+        const activePhone = localStorage.getItem('active_user_phone');
+        if (!isLoggedIn || !activePhone) {
+            clearProfileUIForLogin();
+            return;
+        }
+
         // 1. Check if unique Student ID exists, if not generate a new random 10-digit ID
         let savedId = localStorage.getItem('student_id');
         if (!savedId) {
