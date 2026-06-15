@@ -375,25 +375,9 @@
             [More]
         </button>
     </p>
-</div>
-
-<script>
-function toggleDisclaimer() {
-    const moreText = document.getElementById("more-disclaimer-text");
-    const btnText = document.getElementById("disclaimer-btn");
-
-    if (moreText.classList.contains("hidden")) {
-        moreText.classList.remove("hidden");
-        btnText.innerHTML = "[Less]";
-    } else {
-        moreText.classList.add("hidden");
-        btnText.innerHTML = "[More]";
-    }
-}
-</script>
-
-</div>
-                        <div class="lg:col-span-1 bg-white border border-gray-100 rounded-[2rem] p-6 shadow-sm flex flex-col">
+</div>  
+              </div
+                  <div   class="lg:col-span-1 bg-white border border-gray-100 rounded-[2rem] p-6 shadow-sm flex flex-col">
                             <div class="flex justify-between items-center mb-6">
                                 <h3 class="font-bold text-sm uppercase">Top Achievers</h3>
                                 <button class="text-blue-600 text-[10px] font-bold">View All</button>
@@ -841,10 +825,20 @@ function toggleDisclaimer() {
     } else {
         fixSidebarAuthBtn();
     }
+function toggleDisclaimer() {
+    const moreText = document.getElementById("more-disclaimer-text");
+    const btnText = document.getElementById("disclaimer-btn");
 
+    if (moreText.classList.contains("hidden")) {
+        moreText.classList.remove("hidden");
+        btnText.innerHTML = "[Less]";
+    } else {
+        moreText.classList.add("hidden");
+        btnText.innerHTML = "[More]";
+    }
+}
 
 </script>
-
   
 </body>
 </html>
