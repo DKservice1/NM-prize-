@@ -683,9 +683,7 @@
     // प्रोफाइल फोटो और लोकलस्टोरेज का नया ऑटो-लोड सिस्टम
     const defaultImg = "https://i.pravatar.cc/100?u=rahul";
    function loadSavedData() {
-        }
-
-        // 1. Check if unique Student ID exists, if not generate a new random 10-digit ID
+          // 1. Check if unique Student ID exists, if not generate a new random 10-digit ID
         let savedId = localStorage.getItem('student_id');
         if (!savedId) {
             const randomNumber = Math.floor(1000000000 + Math.random() * 1000000000);
