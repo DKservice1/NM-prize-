@@ -908,11 +908,6 @@ async function loginUser() {
     }
 }
 
-        loadSavedData();
-        alert('Profile saved securely on your device!');
-        closeProfileModal();
-    }
-
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', loadSavedData);
     } else {
