@@ -836,6 +836,23 @@
         const modal = document.getElementById('profileModal');
         if(modal) modal.classList.add('hidden');
     }
+function openLoginModal() {
+    document.getElementById('loginModal').classList.remove('hidden');
+}
+
+function closeLoginModal() {
+    document.getElementById('loginModal').classList.add('hidden');
+}
+
+function handleLogin() {
+    const id = document.getElementById('loginIdentifier').value;
+    const pass = document.getElementById('loginPassword').value;
+
+    if (!id || !pass) return;
+
+    console.log("Login attempt:", id);
+    closeLoginModal();
+}
 
     function saveStudentData() {
         localStorage.setItem('student_name', document.getElementById('inputProfileName').value);
