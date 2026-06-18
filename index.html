@@ -858,28 +858,21 @@ function handleLogin() {
 }
 
     function saveStudentData() {
-    
-       /* localStorage.setItem('student_name', document.getElementById('inputProfileName').value);
-        localStorage.setItem('student_email', document.getElementById('inputProfileEmail').value);
-        localStorage.setItem('student_phone', document.getElementById('inputProfilePhone').value);
-        localStorage.setItem('student_id', document.getElementById('inputProfileId').value);
-        localStorage.setItem('student_bio', document.getElementById('inputProfileBio').value);
-       */
-        async function registerUser() {
-    // फॉर्म से डेटा लें
+    registerUser();
+}
+
+async function registerUser() {
     const email = document.getElementById('inputProfileEmail').value;
-    const password = document.getElementById('inputProfilePassword').value; // ये फील्ड आपके HTML में होनी चाहिए
+    const password = document.getElementById('inputProfilePassword').value;
     const name = document.getElementById('inputProfileName').value;
     const phone = document.getElementById('inputProfilePhone').value;
     const studentId = document.getElementById('inputProfileId').value;
     const bio = document.getElementById('inputProfileBio').value;
 
     try {
-        // 1. फायरबेस ऑथेंटिकेशन में यूजर बनाएँ
         const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
         const userId = userCredential.user.uid;
 
-        // 2. फायरस्टोर में डेटा सेव करें
         await db.collection("Users").doc(userId).set({
             name: name,
             email: email,
@@ -889,12 +882,17 @@ function handleLogin() {
             createdAt: new Date()
         });
 
-        alert("साइन अप सफल! डेटा फायरबेस पर सेव हो गया।");
+        localStorage.setItem('student_name', name);
+        localStorage.setItem('student_phone', phone);
+        localStorage.setItem('student_bio', bio);
+
+        loadSavedData();
+        alert("साइन अप सफल! Firebase पर सेव हो गया।");
         closeProfileModal();
     } catch (error) {
-        alert("एरर आया: " + error.message);
+        alert("एरर: " + error.message);
     }
-        }
+}
 
 // 2. लॉगिन फंक्शन (इसे भी नीचे ही पेस्ट करें)
 async function loginUser() {
