@@ -908,12 +908,7 @@ async function loginUser() {
     }
 }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadSavedData);
-    } else {
-        loadSavedData();
-    }
-
+    
     window.onclick = function(event) {
         const modal = document.getElementById('profileModal');
         if (event.target == modal) modal.classList.add('hidden');
@@ -950,12 +945,7 @@ async function loginUser() {
         }
     }
 
-    // इसे बिना किसी लूप के सिर्फ एक बार पेज लोड होने पर चलाएंगे
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', fixSidebarAuthBtn);
-    } else {
-        fixSidebarAuthBtn();
-    }
+    
 function toggleDisclaimer() {
     const moreText = document.getElementById("more-disclaimer-text");
     const btnText = document.getElementById("disclaimer-btn");
