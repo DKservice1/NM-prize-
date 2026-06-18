@@ -1051,6 +1051,28 @@ firebase.auth().onAuthStateChanged(function(user) {
                 document.getElementById('vName').innerText = data.name || "";
             }
         });
+        // यह फंक्शन फायरबेस से डेटा लाकर आपके नए मोडल में भर देगा
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        var db = firebase.firestore();
+        db.collection("users").doc(user.uid).get().then(function(doc) {
+            if (doc.exists) {
+                var data = doc.data();
+                // नए मोडल के इनपुट फील्ड्स में डेटा भरें
+                document.getElementById('pName').value = data.name || "";
+                document.getElementById('pEmail').value = data.email || "";
+                document.getElementById('pPhone').value = data.phone || "";
+                document.getElementById('pClass').value = data.class || "";
+                
+                // प्रोफाइल हेडर में नाम अपडेट करें
+                document.getElementById('vName').innerText = data.name || "User";
+                // अगर आप यूजर आईडी भी दिखाना चाहते हैं
+                document.getElementById('vId').innerText = user.uid; 
+            }
+        });
+    }
+});
+
     }
 });
 
