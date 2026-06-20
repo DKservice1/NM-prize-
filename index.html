@@ -946,7 +946,8 @@ async function registerUser() {
         const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
         const userId = userCredential.user.uid;
 
-        await db.collection("Users").doc(userId).set({
+           await db.collection("users").doc(userId).set({   // lowercase "users"
+
             name: name,
             email: email,
             phone: phone,
