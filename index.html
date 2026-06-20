@@ -1087,16 +1087,20 @@ firebase.auth().onAuthStateChanged(function(user) {
                 document.getElementById('pName').value = data.name || "";
                 document.getElementById('pEmail').value = data.email || "";
                 document.getElementById('pPhone').value = data.phone || "";
-                document.getElementById('pClass').value = data.class || "";
+                document.getElementById('pStudentId').value = data.studentId || "";
+                document.getElementById('pBio').value = data.bio || "";
                 document.getElementById('vName').innerText = data.name || "User";
-                document.getElementById('vId').innerText = user.uid;
+                document.getElementById('vId').innerText = data.studentId || user.uid;
+
+                // ✅ हेडर में भी तुरंत दिखाओ, बिना क्लिक किए
+                document.getElementById('user-display-name').innerText = data.name || "Student";
+                document.getElementById('user-display-img').src = data.photo || "https://i.pravatar.cc/100?u=" + user.uid;
             }
         });
     } else {
         document.getElementById('vName').innerText = "Please Login";
     }
 });
-
 
 </script>
       
