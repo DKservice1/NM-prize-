@@ -1125,6 +1125,27 @@ function toggleDisclaimer() {
 function openNewProfile() {
     document.getElementById('newProfileSystem').classList.remove('hidden');
 }
+    
+    // ऑटो-स्क्रॉल फंक्शन
+    const container = document.querySelector('.overflow-x-auto'); // आपके सेक्शन का क्लास
+    let scrollAmount = 0;
+    
+    function autoScroll() {
+        if (container) {
+            // हर 3 सेकंड में स्क्रॉल करेगा
+            container.scrollBy({ left: 300, behavior: 'smooth' });
+            
+            // अगर आखिरी में पहुँच जाए, तो वापस शुरू में आ जाए
+            if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+                container.scrollTo({ left: 0, behavior: 'smooth' });
+            }
+        }
+    }
+    
+    // 2000ms यानी 3 सेकंड का टाइमर
+    setInterval(autoScroll, 2000);
+</script>
+
 
 // 1. एडिट मोड चालू करने के लिए
 function enableEditing() {
