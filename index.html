@@ -1126,28 +1126,49 @@ function openNewProfile() {
     document.getElementById('newProfileSystem').classList.remove('hidden');
 }
     
-    // ऑटो-स्क्रॉल फंक्शन
-    const container = document.querySelector('.overflow-x-auto'); // आपके सेक्शन का क्लास
-    let scrollAmount = 0;
+    const container = document.querySelector('.overflow-x-auto');
+let scrollInterval;
+
+// ऑटो-स्क्रॉल चालू करने का फंक्शन
+function startAutoScroll() {
+    // पहले सुनिश्चित करें कि कोई पुराना टाइमर चल तो नहीं रहा
+    clearInterval(scrollInterval);
     
-    function autoScroll() {
+    scrollInterval = setInterval(() => {
         if (container) {
-            // हर 3 सेकंड में स्क्रॉल करेगा
-            container.scrollBy({ left: 300, behavior: 'smooth' });
-            
-            // अगर आखिरी में पहुँच जाए, तो वापस शुरू में आ जाए
+            // अगर आखिर में पहुँच गए, तो वापस शुरू में आएं
             if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
                 container.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                // आगे बढ़ाएं
+                container.scrollBy({ left: 300, behavior: 'smooth' });
             }
         }
-    }
+    }, 3000);
+}
+
+// ऑटो-स्क्रॉल रोकने का फंक्शन
+function stopAutoScroll() {
+    clearInterval(scrollInterval);
+}
+
+// इवेंट लिसनर्स
+if (container) {
+    // माउस ले जाने या टच करने पर रुके
+    container.addEventListener('mouseenter', stopAutoScroll);
+    container.addEventListener('touchstart', stopAutoScroll, { passive: true });
+
+    // माउस हटाने या टच छोड़ने पर फिर से शुरू हो
+    container.addEventListener('mouseleave', startAutoScroll);
+    container.addEventListener('touchend', startAutoScroll);
+
+    // पहली बार शुरू करें
+    startAutoScroll();
+}
+
     
-    // 2000ms यानी 3 सेकंड का टाइमर
-    setInterval(autoScroll, 2000);
-</script>
 
-
-// 1. एडिट मोड चालू करने के लिए
+// 1. एडिट मोड चालू करने के लि
 function enableEditing() {
     const inputs = document.querySelectorAll('.p-input');
     inputs.forEach(input => {
