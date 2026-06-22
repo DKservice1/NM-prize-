@@ -1248,54 +1248,72 @@ function saveProfile() {
         });
     }
 }
-firebase.auth().onAuthStateChanged(function(user) {
+
+    firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         db.collection("users").doc(user.uid).get().then(function(doc) {
             if (doc.exists) {
                 var data = doc.data();
+
+                // Profile data
                 document.getElementById('pName').value = data.name || "";
                 document.getElementById('pEmail').value = data.email || "";
                 document.getElementById('pPhone').value = data.phone || "";
-                document.getElementById('pStudentId').value = data.studentId || "";
-                document.getElementById('pBio').value = data.bio || "";
                 document.getElementById('vName').innerText = data.name || "User";
                 document.getElementById('vId').innerText = data.studentId || user.uid;
-
-                // ✅ हेडर में भी तुरंत दिखाओ, बिना क्लिक किए
                 document.getElementById('user-display-name').innerText = data.name || "Student";
-                document.getElementById('user-display-img').src = data.photo || "https://i.pravatar.cc/100?u=" + user.uid;
+
+                // ✅ Referral code — studentId use करो
+                const refCode = data.studentId || user.uid.slice(0, 8).toUpperCase();
+                document.getElementById('user-ref-code').innerText = refCode;
+
+                // ✅ Save/withdraw bank details भी यहीं से load करो
+                if (data.upiId) document.getElementById('upiId').value = data.upiId;
+                if (data.holderName) document.getElementById('holderName').value = data.holderName;
+                if (data.bankName) document.getElementById('bankName').value = data.bankName;
+                if (data.ifscCode) document.getElementById('ifscCode').value = data.ifscCode;
             }
         });
     } else {
         document.getElementById('vName').innerText = "Please Login";
+        document.getElementById('user-ref-code').innerText = "Login करें";
     }
 });
     // शेयर फंक्शन
 function shareOn(platform) {
+    // लाइन 1275-1276 को ऐसे लिखें:
     const code = document.getElementById('user-ref-code').innerText;
-    const msg = `नमस्ते! मेरा रेफरल कोड ${code} इस्तेमाल करें: `;
-    const url = "https://powerph.in"; // अपनी वेबसाइट लिंक
-    
-    if (platform === 'whatsapp') window.open(`https://wa.me/?text=${encodeURIComponent(msg + url)}`);
-    else if (platform === 'facebook') window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
-    else if (platform === 'telegram') window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(msg)}`);
-    else if (platform === 'instagram') {
-        navigator.clipboard.writeText(msg + url);
-        alert("लिंक कॉपी हो गया! इसे इंस्टाग्राम स्टोरी में पेस्ट करें।");
+    // अगर कोड 'Loading...' है, तो यूजर को अलर्ट दें
+    if (code === 'Loading...' || code === '') {
+        alert("अभी आपका कोड लोड हो रहा है, कृपया थोड़ा इंतज़ार करें!");
+        return;
     }
+    
+    const msg = `नमस्ते! मेरा रेफरल कोड ${code} इस्तेमाल करें: `;
+    const url = "https://powerph.in";
+    
+    // बाकी का कोड...
 }
+
 
 // बैंक सेक्शन टॉगल
 function toggleBankSection() {
     document.getElementById('bank-form-div').classList.toggle('hidden');
 }
-
-// यहाँ फायरबेस का लॉजिक आएगा (Save/Load)
 function saveBankDetails() {
-    const name = document.getElementById('holderName').value;
-    const upi = document.getElementById('upiId').value;
-    // यहाँ Firebase firestore.collection('users').doc(userId).update(...) का इस्तेमाल करें
-    alert("डिटेल्स सेव करने का फंक्शन तैयार है!");
+    const user = firebase.auth().currentUser;
+    if (!user) { alert("पहले Login करें!"); return; }
+
+    db.collection("users").doc(user.uid).update({
+        holderName: document.getElementById('holderName').value,
+        upiId: document.getElementById('upiId').value,
+        bankName: document.getElementById('bankName').value,
+        ifscCode: document.getElementById('ifscCode').value
+    }).then(() => {
+        alert("बैंक डिटेल्स सेव हो गई!");
+    }).catch(err => {
+        alert("एरर: " + err.message);
+    });
 }
 
 function processWithdraw() {
