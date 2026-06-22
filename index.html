@@ -1330,18 +1330,17 @@ window.onload = function() {
     // यहाँ Firebase auth से current User ID लें और डेटाबेस से रेफरल कोड फेच करें
     // document.getElementById('user-ref-code').innerText = "आपका_कोड_यहाँ";
 };
-    function showPage(pageId, btn) {
-    // 1. सबसे पहले सारे पेजों को छिपा दो
+   function showPage(pageId, btn) {
+    // 1. सारे पेजों को छिपाएं
     document.querySelectorAll('.page-content').forEach(p => {
         p.classList.remove('page-active');
-        p.style.display = 'none'; // यह लाइन सुनिश्चित करेगी कि पुराना पेज हट जाए
+        p.style.display = 'none'; 
     });
 
-    // 2. अब उस पेज को ढूंढो जिसका ID "refer-page" है
-    // यहाँ 'refer' + '-page' मिलकर 'refer-page' बन जाता है
+    // 2. सही ID को ढूंढें (यहाँ 'refer' + '-page' मिलकर 'refer-page' बनेगा)
     const targetDiv = document.getElementById(pageId + '-page');
 
-    // 3. अगर पेज मिल गया, तो उसे 'page-active' क्लास देकर दिखा दो
+    // 3. पेज दिखाएं
     if (targetDiv) {
         targetDiv.classList.add('page-active');
         targetDiv.style.display = 'block';
@@ -1349,6 +1348,7 @@ window.onload = function() {
         console.error("ID नहीं मिली: " + pageId + '-page');
     }
 }
+ 
 
 </script>
       
