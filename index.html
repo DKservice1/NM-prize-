@@ -510,6 +510,51 @@
 </div>
 
                             </div>
+
+                            <div id="refer-page" class="page-content p-4 md:p-6">
+    <div class="max-w-xl mx-auto bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-gray-100">
+        <h2 class="text-2xl md:text-3xl font-black text-blue-900 text-center uppercase">Refer & Earn</h2>
+        
+        <p class="text-center mt-2 text-sm text-gray-500">
+            आपका यूनिक कोड: <span id="user-ref-code" class="font-bold text-indigo-600">Loading...</span>
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-3 mt-6">
+            <button onclick="shareOn('whatsapp')" class="cursor-pointer bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-xl text-sm font-bold shadow-md transition-all">WhatsApp</button>
+            <button onclick="shareOn('facebook')" class="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl text-sm font-bold shadow-md transition-all">Facebook</button>
+            <button onclick="shareOn('instagram')" class="cursor-pointer bg-pink-600 hover:bg-pink-700 text-white px-5 py-2 rounded-xl text-sm font-bold shadow-md transition-all">Instagram</button>
+            <button onclick="shareOn('telegram')" class="cursor-pointer bg-blue-400 hover:bg-blue-500 text-white px-5 py-2 rounded-xl text-sm font-bold shadow-md transition-all">Telegram</button>
+        </div>
+
+        <div class="mt-8 border-t pt-6">
+            <button onclick="toggleBankSection()" class="w-full flex justify-between items-center p-4 bg-gray-50 rounded-xl font-bold text-gray-700 cursor-pointer hover:bg-gray-100">
+                <span>बैंक डिटेल्स भरें</span>
+                <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            
+            <div id="bank-form-div" class="hidden mt-4 space-y-3">
+                <input type="text" id="holderName" placeholder="नाम" class="w-full p-3 border rounded-xl outline-none">
+                <input type="text" id="upiId" placeholder="UPI ID" class="w-full p-3 border rounded-xl outline-none">
+                <input type="text" id="bankName" placeholder="बैंक का नाम" class="w-full p-3 border rounded-xl outline-none">
+                <input type="text" id="ifscCode" placeholder="IFSC कोड" class="w-full p-3 border rounded-xl outline-none">
+                <button onclick="saveBankDetails()" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700">सेव करें</button>
+            </div>
+        </div>
+
+        <button onclick="processWithdraw()" class="w-full mt-6 bg-indigo-900 text-white py-4 rounded-xl font-black text-lg shadow-xl hover:bg-black transition-all">
+            विड्रॉल करें
+        </button>
+    </div>
+</div>
+
+<style>
+    .page-content { display: none; }
+    .page-active { display: block; }
+    .hidden { display: none !important; }
+</style>
+
+
+                            
                   <div   class="lg:col-span-1 bg-white border border-gray-100 rounded-[2rem] p-6 shadow-sm flex flex-col">
                             <div class="flex justify-between items-center mb-6">
                                 <h3 class="font-bold text-sm uppercase">Top Achievers</h3>
@@ -1229,6 +1274,44 @@ firebase.auth().onAuthStateChanged(function(user) {
         document.getElementById('vName').innerText = "Please Login";
     }
 });
+    // शेयर फंक्शन
+function shareOn(platform) {
+    const code = document.getElementById('user-ref-code').innerText;
+    const msg = `नमस्ते! मेरा रेफरल कोड ${code} इस्तेमाल करें: `;
+    const url = "https://powerph.in"; // अपनी वेबसाइट लिंक
+    
+    if (platform === 'whatsapp') window.open(`https://wa.me/?text=${encodeURIComponent(msg + url)}`);
+    else if (platform === 'facebook') window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
+    else if (platform === 'telegram') window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(msg)}`);
+    else if (platform === 'instagram') {
+        navigator.clipboard.writeText(msg + url);
+        alert("लिंक कॉपी हो गया! इसे इंस्टाग्राम स्टोरी में पेस्ट करें।");
+    }
+}
+
+// बैंक सेक्शन टॉगल
+function toggleBankSection() {
+    document.getElementById('bank-form-div').classList.toggle('hidden');
+}
+
+// यहाँ फायरबेस का लॉजिक आएगा (Save/Load)
+function saveBankDetails() {
+    const name = document.getElementById('holderName').value;
+    const upi = document.getElementById('upiId').value;
+    // यहाँ Firebase firestore.collection('users').doc(userId).update(...) का इस्तेमाल करें
+    alert("डिटेल्स सेव करने का फंक्शन तैयार है!");
+}
+
+function processWithdraw() {
+    alert("विड्रॉल रिक्वेस्ट भेजी जा रही है...");
+}
+
+// पेज लोड होते ही यूजर का रेफरल कोड फेच करें
+window.onload = function() {
+    // यहाँ Firebase auth से current User ID लें और डेटाबेस से रेफरल कोड फेच करें
+    // document.getElementById('user-ref-code').innerText = "आपका_कोड_यहाँ";
+};
+
 
 </script>
       
