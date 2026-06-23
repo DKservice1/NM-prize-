@@ -529,7 +529,9 @@
         </div>
 
         <div class="grid grid-cols-2 gap-4 mt-6">
-            <button class="bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition">WhatsApp</button>
+            <button onclick="shareOnWhatsApp()" class="bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition">
+    <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+            </button>
             <button class="bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-black transition">Copy Link</button>
         </div>
     </div>
@@ -1249,7 +1251,21 @@ window.onclick = function(event) {
         closeReferModal();
     }
 }
-
+function shareOnWhatsApp() {
+    const user = firebase.auth().currentUser;
+    const refCode = user ? (document.getElementById('vId').innerText || user.uid.slice(0,8).toUpperCase()) : "POWERPH";
+    
+    const message = `🎓 *Power PH* - National Merit Prize Scholarship!\n\n` +
+        `मेरे रेफरल कोड से जॉइन करें और पाएं:\n` +
+        `✅ Free eBooks हर महीने\n` +
+        `✅ Free Exam Tickets\n` +
+        `✅ ₹5000 तक Cash Reward\n\n` +
+        `👉 मेरा रेफरल कोड: *${refCode}*\n` +
+        `🔗 Join Now: https://powerph.in`;
+    
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
     
 </script>
       
