@@ -853,50 +853,8 @@
         </div>
     </div>
 </div>
-               <div id="refer-page" class="page-content p-4 md:p-6">
-    <div class="max-w-xl mx-auto bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-gray-100">
-        <h2 class="text-2xl md:text-3xl font-black text-blue-900 text-center uppercase">Refer & Earn</h2>
-        
-        <p class="text-center mt-2 text-sm text-gray-500">
-            आपका यूनिक कोड: <span id="user-ref-code" class="font-bold text-indigo-600">Loading...</span>
-        </p>
-        
-        <div class="flex flex-wrap justify-center gap-3 mt-6">
-            <button onclick="shareOn('whatsapp')" class="cursor-pointer bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-xl text-sm font-bold shadow-md transition-all">WhatsApp</button>
-            <button onclick="shareOn('facebook')" class="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl text-sm font-bold shadow-md transition-all">Facebook</button>
-            <button onclick="shareOn('instagram')" class="cursor-pointer bg-pink-600 hover:bg-pink-700 text-white px-5 py-2 rounded-xl text-sm font-bold shadow-md transition-all">Instagram</button>
-            <button onclick="shareOn('telegram')" class="cursor-pointer bg-blue-400 hover:bg-blue-500 text-white px-5 py-2 rounded-xl text-sm font-bold shadow-md transition-all">Telegram</button>
-        </div>
-
-        <div class="mt-8 border-t pt-6">
-            <button onclick="toggleBankSection()" class="w-full flex justify-between items-center p-4 bg-gray-50 rounded-xl font-bold text-gray-700 cursor-pointer hover:bg-gray-100">
-                <span>बैंक डिटेल्स भरें</span>
-                <i class="fas fa-chevron-down text-xs"></i>
-            </button>
-            
-            <div id="bank-form-div" class="hidden mt-4 space-y-3">
-                <input type="text" id="holderName" placeholder="नाम" class="w-full p-3 border rounded-xl outline-none">
-                <input type="text" id="upiId" placeholder="UPI ID" class="w-full p-3 border rounded-xl outline-none">
-                <input type="text" id="bankName" placeholder="बैंक का नाम" class="w-full p-3 border rounded-xl outline-none">
-                <input type="text" id="ifscCode" placeholder="IFSC कोड" class="w-full p-3 border rounded-xl outline-none">
-                <button onclick="saveBankDetails()" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700">सेव करें</button>
-            </div>
-        </div>
-        
-        <button onclick="processWithdraw()" class="w-full mt-6 bg-indigo-900 text-white py-4 rounded-xl font-black text-lg shadow-xl hover:bg-black transition-all">
-            विड्रॉल करें
-        </button>
-    </div>
-</div>
-
-<style>
-    .page-content { display: none; }
-    .page-active { display: block; }
-    .hidden { display: none !important; }
-</style>
+               
  
-
-
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
@@ -1249,101 +1207,8 @@ function saveProfile() {
     }
 }
 
-    firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        db.collection("users").doc(user.uid).get().then(function(doc) {
-            if (doc.exists) {
-                var data = doc.data();
-
-                // Profile data
-                document.getElementById('pName').value = data.name || "";
-                document.getElementById('pEmail').value = data.email || "";
-                document.getElementById('pPhone').value = data.phone || "";
-                document.getElementById('vName').innerText = data.name || "User";
-                document.getElementById('vId').innerText = data.studentId || user.uid;
-                document.getElementById('user-display-name').innerText = data.name || "Student";
-
-                // ✅ Referral code — studentId use करो
-                const refCode = data.studentId || user.uid.slice(0, 8).toUpperCase();
-                document.getElementById('user-ref-code').innerText = refCode;
-
-                // ✅ Save/withdraw bank details भी यहीं से load करो
-                if (data.upiId) document.getElementById('upiId').value = data.upiId;
-                if (data.holderName) document.getElementById('holderName').value = data.holderName;
-                if (data.bankName) document.getElementById('bankName').value = data.bankName;
-                if (data.ifscCode) document.getElementById('ifscCode').value = data.ifscCode;
-            }
-        });
-    } else {
-        document.getElementById('vName').innerText = "Please Login";
-        document.getElementById('user-ref-code').innerText = "Login करें";
-    }
-});
-    // शेयर फंक्शन
-function shareOn(platform) {
-    // लाइन 1275-1276 को ऐसे लिखें:
-    const code = document.getElementById('user-ref-code').innerText;
-    // अगर कोड 'Loading...' है, तो यूजर को अलर्ट दें
-    if (code === 'Loading...' || code === '') {
-        alert("अभी आपका कोड लोड हो रहा है, कृपया थोड़ा इंतज़ार करें!");
-        return;
-    }
     
-    const msg = `नमस्ते! मेरा रेफरल कोड ${code} इस्तेमाल करें: `;
-    const url = "https://powerph.in";
-    
-    // बाकी का कोड...
-}
-
-
-// बैंक सेक्शन टॉगल
-function toggleBankSection() {
-    document.getElementById('bank-form-div').classList.toggle('hidden');
-}
-function saveBankDetails() {
-    const user = firebase.auth().currentUser;
-    if (!user) { alert("पहले Login करें!"); return; }
-
-    db.collection("users").doc(user.uid).update({
-        holderName: document.getElementById('holderName').value,
-        upiId: document.getElementById('upiId').value,
-        bankName: document.getElementById('bankName').value,
-        ifscCode: document.getElementById('ifscCode').value
-    }).then(() => {
-        alert("बैंक डिटेल्स सेव हो गई!");
-    }).catch(err => {
-        alert("एरर: " + err.message);
-    });
-}
-
-function processWithdraw() {
-    alert("विड्रॉल रिक्वेस्ट भेजी जा रही है...");
-}
-
-// पेज लोड होते ही यूजर का रेफरल कोड फेच करें
-window.onload = function() {
-    // यहाँ Firebase auth से current User ID लें और डेटाबेस से रेफरल कोड फेच करें
-    // document.getElementById('user-ref-code').innerText = "आपका_कोड_यहाँ";
-};
-   function showPage(pageId, btn) {
-    // 1. सारे पेजों को छिपाएं
-    document.querySelectorAll('.page-content').forEach(p => {
-        p.classList.remove('page-active');
-        p.style.display = 'none'; 
-    });
-
-    // 2. सही ID को ढूंढें (यहाँ 'refer' + '-page' मिलकर 'refer-page' बनेगा)
-    const targetDiv = document.getElementById(pageId + '-page');
-
-    // 3. पेज दिखाएं
-    if (targetDiv) {
-        targetDiv.classList.add('page-active');
-        targetDiv.style.display = 'block';
-    } else {
-        console.error("ID नहीं मिली: " + pageId + '-page');
-    }
-}
- 
+   
 
 </script>
       
