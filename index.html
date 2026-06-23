@@ -508,7 +508,33 @@
         </span>
     </button>
 </div>
-              
+                                
+              <div id="refer-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden">
+    <div class="bg-white rounded-3xl p-8 max-w-lg w-full mx-4 shadow-2xl relative">
+        <button onclick="closeReferModal()" class="absolute top-4 right-4 text-gray-400 hover:text-black">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+
+        <div class="text-center">
+            <div class="bg-yellow-100 text-yellow-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-gift text-2xl"></i>
+            </div>
+            <h2 class="text-2xl font-black text-gray-900">दोस्तों को इनवाइट करें!</h2>
+            <p class="text-gray-500 mt-2 text-sm">अपना रेफरल कोड शेयर करें और हर जॉइनिंग पर रिवॉर्ड पाएं।</p>
+        </div>
+
+        <div class="mt-6 border-2 border-dashed border-gray-200 rounded-xl p-4 text-center">
+            <p class="text-xs text-gray-400 uppercase font-bold">आपका कोड</p>
+            <div class="text-2xl font-mono font-bold text-blue-600 mt-1">REF-POWERPH</div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mt-6">
+            <button class="bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition">WhatsApp</button>
+            <button class="bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-black transition">Copy Link</button>
+        </div>
+    </div>
+</div>
+
                   <div   class="lg:col-span-1 bg-white border border-gray-100 rounded-[2rem] p-6 shadow-sm flex flex-col">
                             <div class="flex justify-between items-center mb-6">
                                 <h3 class="font-bold text-sm uppercase">Top Achievers</h3>
@@ -1206,10 +1232,25 @@ function saveProfile() {
         });
     }
 }
+// मॉडल खोलने के लिए फंक्शन
+function openReferModal() {
+    document.getElementById('refer-modal').classList.remove('hidden');
+}
+
+// मॉडल बंद करने के लिए फंक्शन
+function closeReferModal() {
+    document.getElementById('refer-modal').classList.add('hidden');
+}
+
+// अगर यूजर बाहर क्लिक करे तो भी बंद हो जाए (Optional)
+window.onclick = function(event) {
+    const modal = document.getElementById('refer-modal');
+    if (event.target == modal) {
+        closeReferModal();
+    }
+}
 
     
-   
-
 </script>
       
 </body>
