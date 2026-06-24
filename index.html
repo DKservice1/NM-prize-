@@ -143,6 +143,52 @@
                        </div>
                         <img src="https://i.ibb.co/Vpkf9YQ/trophy-banner.png" class="absolute right-10 bottom-0 w-80 hidden lg:block drop-shadow-2xl">
                     </section>
+                    <!-- बाइक कंटेनर -->
+<div class="bike-stage">
+  <img src="https://www.pngall.com/wp-content/uploads/5/Yamaha-R15-PNG-Image.png" 
+       alt="Sports Bike" 
+       class="moving-bike">
+</div>
+
+<style>
+  .bike-stage {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #f0f0f0, #ccc); /* रोड जैसा लुक */
+    border-bottom: 5px solid #333; /* सड़क की लाइन */
+  }
+
+  .moving-bike {
+    width: 250px; /* बाइक का साइज */
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    /* 8 सेकंड का स्लो मोशन एनीमेशन */
+    animation: bikeRide 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes bikeRide {
+    0% {
+      left: 0;
+      transform: scaleX(1); /* सीधी दिशा */
+    }
+    48% {
+      left: calc(100% - 280px);
+      transform: scaleX(1);
+    }
+    52% {
+      left: calc(100% - 280px);
+      transform: scaleX(-1); /* यहाँ बाइक रुककर पलटी */
+    }
+    100% {
+      left: 0;
+      transform: scaleX(-1); /* वापस मुड़कर आई */
+    }
+  }
+</style>
+
 
 <section class="py-10 px-4 bg-gradient-to-b from-blue-900 via-blue-950 to-black text-white">
     <div class="max-w-4xl mx-auto border-x border-b border-blue-500/30 border-t border-blue-500/10 rounded-3xl p-6">
