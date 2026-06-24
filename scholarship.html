@@ -2,43 +2,46 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Power PH Scholarships</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 p-4">
 
-    <!-- भाषा बदलने वाला छोटा बटन -->
-    <button id="langBtn" onclick="toggleLanguage()" class="fixed top-4 right-4 bg-gray-900 text-white px-3 py-1 rounded-full text-[10px] font-bold shadow-lg z-50">
+    <!-- भाषा बटन -->
+    <button id="langBtn" onclick="toggleLanguage()" class="fixed top-4 right-4 bg-gray-900 text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg z-50 hover:scale-105 transition">
         English
     </button>
 
-    <div class="max-w-md mx-auto mt-10">
-        <h1 id="title" class="text-xl font-black text-center mb-6">स्कॉलरशिप प्रोग्राम्स</h1>
+    <div class="max-w-7xl mx-auto mt-10">
+        <h1 id="title" class="text-3xl font-black text-center mb-10 text-gray-900">स्कॉलरशिप प्रोग्राम्स</h1>
         
-        <div class="space-y-4">
-            <!-- कार्ड 1 -->
-            <div class="bg-white p-4 rounded-2xl border shadow-sm">
-                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400" class="w-full h-32 object-cover rounded-xl mb-3" alt="Image 1">
-                <h2 class="font-bold text-sm">Power PH Junior Merit Award</h2>
-                <p class="desc text-xs text-gray-600 mt-1">कक्षा 6वीं से 9वीं के छात्रों के लिए विशेष छात्रवृत्ति।</p>
-                <button class="mt-3 bg-gray-900 text-white px-3 py-1 rounded-lg text-[10px] font-bold">Apply Now</button>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- कार्ड 1: Amber Theme -->
+            <div class="bg-amber-50 p-6 rounded-[2rem] border border-amber-200 shadow-sm hover:shadow-xl transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800" class="w-full h-48 object-cover rounded-2xl mb-5" alt="Scholarship 1">
+                <h2 class="font-black text-lg text-amber-900">Power PH Junior Merit Award</h2>
+                <p class="desc text-sm text-amber-800 mt-2">कक्षा 6वीं से 9वीं के छात्रों के लिए विशेष छात्रवृत्ति।</p>
+                <button class="w-full mt-6 bg-amber-600 text-white py-3 rounded-2xl font-bold hover:bg-amber-700 transition">Apply Now →</button>
             </div>
 
-            <!-- कार्ड 2 -->
-            <div class="bg-white p-4 rounded-2xl border shadow-sm">
-                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400" class="w-full h-32 object-cover rounded-xl mb-3" alt="Image 2">
-                <h2 class="font-bold text-sm">Young Achievers Scholarship</h2>
-                <p class="desc text-xs text-gray-600 mt-1">10वीं और 12वीं के विज्ञान और गणित के छात्रों के लिए सहायता।</p>
-                <button class="mt-3 bg-gray-900 text-white px-3 py-1 rounded-lg text-[10px] font-bold">Apply Now</button>
+            <!-- कार्ड 2: Blue Theme -->
+            <div class="bg-blue-50 p-6 rounded-[2rem] border border-blue-200 shadow-sm hover:shadow-xl transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800" class="w-full h-48 object-cover rounded-2xl mb-5" alt="Scholarship 2">
+                <h2 class="font-black text-lg text-blue-900">Young Achievers Scholarship</h2>
+                <p class="desc text-sm text-blue-800 mt-2">10वीं और 12वीं के विज्ञान और गणित के छात्रों के लिए सहायता।</p>
+                <button class="w-full mt-6 bg-blue-600 text-white py-3 rounded-2xl font-bold hover:bg-blue-700 transition">Apply Now →</button>
             </div>
 
-            <!-- कार्ड 3 -->
-            <div class="bg-white p-4 rounded-2xl border shadow-sm">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400" class="w-full h-32 object-cover rounded-xl mb-3" alt="Image 3">
-                <h2 class="font-bold text-sm">Exam Rocket Booster</h2>
-                <p class="desc text-xs text-gray-600 mt-1">सरकारी नौकरी के एस्पिरेंट्स के लिए फ्री कोचिंग और मॉक टेस्ट।</p>
-                <button class="mt-3 bg-gray-900 text-white px-3 py-1 rounded-lg text-[10px] font-bold">Apply Now</button>
+            <!-- कार्ड 3: Purple Theme -->
+            <div class="bg-purple-50 p-6 rounded-[2rem] border border-purple-200 shadow-sm hover:shadow-xl transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800" class="w-full h-48 object-cover rounded-2xl mb-5" alt="Scholarship 3">
+                <h2 class="font-black text-lg text-purple-900">Exam Rocket Booster</h2>
+                <p class="desc text-sm text-purple-800 mt-2">सरकारी नौकरी के एस्पिरेंट्स के लिए फ्री कोचिंग और मॉक टेस्ट।</p>
+                <button class="w-full mt-6 bg-purple-600 text-white py-3 rounded-2xl font-bold hover:bg-purple-700 transition">Apply Now →</button>
             </div>
+
         </div>
     </div>
 
