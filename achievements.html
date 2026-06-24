@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | Power PH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans p-4 md:p-8">
+
+    <div class="max-w-5xl mx-auto">
+        <!-- हेडर के साथ बड़ा ट्रॉफी कप -->
+        <div class="flex items-center gap-4 mb-8">
+            <div class="bg-yellow-400 p-4 rounded-2xl shadow-lg shadow-yellow-200">
+                <i class="fas fa-trophy text-3xl text-white"></i>
+            </div>
+            <div>
+                <h1 class="text-2xl font-black text-gray-900">Student Achievement Portal</h1>
+                <p class="text-sm text-gray-500">आपकी मेहनत, हमारी पहचान</p>
+            </div>
+        </div>
+
+        <!-- डैशबोर्ड कार्ड्स (Summary) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <!-- यहाँ गोल्ड, सिल्वर, ब्रॉन्ज़ मेडल्स के आइकन्स -->
+            <div class="bg-white p-5 rounded-3xl border shadow-sm text-center">
+                <i class="fas fa-medal text-yellow-500 text-xl mb-2"></i> <!-- गोल्ड मेडल -->
+                <p class="text-[10px] uppercase font-bold text-gray-400">Gold Rank</p>
+                <p class="text-xl font-black mt-1">01</p>
+            </div>
+            <div class="bg-white p-5 rounded-3xl border shadow-sm text-center">
+                <i class="fas fa-medal text-gray-400 text-xl mb-2"></i> <!-- सिल्वर मेडल -->
+                <p class="text-[10px] uppercase font-bold text-gray-400">Silver Rank</p>
+                <p class="text-xl font-black mt-1">05</p>
+            </div>
+            <div class="bg-white p-5 rounded-3xl border shadow-sm text-center">
+                <i class="fas fa-medal text-orange-700 text-xl mb-2"></i> <!-- ब्रॉन्ज़ मेडल -->
+                <p class="text-[10px] uppercase font-bold text-gray-400">Bronze Rank</p>
+                <p class="text-xl font-black mt-1">09</p>
+            </div>
+            <div class="bg-white p-5 rounded-3xl border shadow-sm text-center">
+                <i class="fas fa-award text-blue-500 text-xl mb-2"></i>
+                <p class="text-[10px] uppercase font-bold text-gray-400">Certificates</p>
+                <p class="text-xl font-black mt-1">15</p>
+            </div>
+        </div>
+
+        <!-- मुख्य डेटा टेबल -->
+        <div class="bg-white rounded-3xl border shadow-sm overflow-hidden">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-50 border-b">
+                        <th class="p-4 text-[10px] uppercase font-bold text-gray-500">Exam Name</th>
+                        <th class="p-4 text-[10px] uppercase font-bold text-gray-500">Rank</th>
+                        <th class="p-4 text-[10px] uppercase font-bold text-gray-500">Reward</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm">
+                    <tr class="border-b hover:bg-gray-50 transition">
+                        <td class="p-4 font-bold">Junior Merit Award</td>
+                        <td class="p-4 font-black text-yellow-600"><i class="fas fa-medal mr-1"></i> Gold</td>
+                        <td class="p-4 text-gray-600">Scholarship Grant</td>
+                    </tr>
+                    <tr class="border-b hover:bg-gray-50 transition">
+                        <td class="p-4 font-bold">Science Logic Quiz</td>
+                        <td class="p-4 font-black text-gray-400"><i class="fas fa-medal mr-1"></i> Silver</td>
+                        <td class="p-4 text-gray-600">Merit Medal</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="p-4 font-bold">Exam Rocket Booster</td>
+                        <td class="p-4 font-black text-orange-700"><i class="fas fa-medal mr-1"></i> Bronze</td>
+                        <td class="p-4 text-gray-600">Study Kit</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
