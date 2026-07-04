@@ -1490,6 +1490,46 @@ function shareOnWhatsApp() {
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 }
+    let isLoginMode = false;
+
+function toggleAuthMode() {
+    isLoginMode = !isLoginMode;
+    const title = document.getElementById('authTitle');
+    const btn = document.getElementById('authBtn');
+    const toggleText = document.getElementById('authToggleText');
+    const toggleLink = document.querySelector('a[onclick="toggleAuthMode()"]');
+
+    if (isLoginMode) {
+        title.innerText = "Login";
+        btn.innerText = "Login";
+        toggleText.innerText = "Don't have an account?";
+        toggleLink.innerText = "Sign Up";
+    } else {
+        title.innerText = "Sign Up";
+        btn.innerText = "Sign Up";
+        toggleText.innerText = "Already have an account?";
+        toggleLink.innerText = "Login";
+    }
+}
+
+function handleAuthAction() {
+    const email = document.getElementById('authEmail').value;
+    const password = document.getElementById('authPassword').value;
+
+    if (isLoginMode) {
+        // यहाँ लॉगिन का Firebase फंक्शन चलाएं
+        console.log("Logging in...", email);
+    } else {
+        // यहाँ रजिस्टर का Firebase फंक्शन चलाएं
+        console.log("Signing up...", email);
+    }
+}
+
+// मॉडल खोलने के लिए
+function openAuthModal() {
+    document.getElementById('authModal').classList.remove('hidden');
+}
+
     
 </script>
       
