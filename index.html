@@ -978,93 +978,67 @@
             </button>
         </div>
 
-        <div class="absolute top-10 left-1/2 -translate-x-1/2 z-10">
-            <div class="w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-md relative group bg-slate-200">
-                <img id="modal-user-img" src="https://i.pravatar.cc/100?u=rahul" alt="Student" class="w-full h-full object-cover">
-                <label for="profilePhotoInput" class="absolute inset-0 bg-black/40 flex items-center justify-center text-white text-xs opacity-0 group-hover:opacity-100 cursor-pointer transition-opacity">
-                    <i class="fas fa-camera"></i>
-                </label>
+
+<div class="absolute top-10 left-1/2 -translate-x-1/2 z-10">
+    <div class="w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-md relative group bg-slate-200">
+        <img id="modal-user-img" src="https://i.pravatar.cc/100?u=student" alt="Student" class="w-full h-full object-cover">
+        <label for="profilePhotoInput" class="absolute inset-0 bg-black/40 flex items-center justify-center text-white text-xs opacity-0 group-hover:opacity-100 cursor-pointer transition-opacity">
+            <i class="fas fa-camera"></i>
+        </label>
+    </div>
+    <input type="file" id="profilePhotoInput" accept="image/*" class="hidden" onchange="previewAndSavePhoto(this)">
+</div>
+
+<div class="overflow-y-auto pt-14 pb-6 px-6 text-center flex-1">
+    <h3 id="displayModalName" class="text-slate-900 font-black text-lg uppercase tracking-wide">Rahul</h3>
+    <span class="inline-block bg-blue-50 text-blue-700 text-[10px] font-black uppercase px-3 py-1 rounded-full mt-1 border border-blue-100">
+        ID: <span id="displayModalId">1000107597</span>
+    </span>
+
+    <hr class="border-slate-100 my-4">
+
+    <div class="space-y-3 text-left">
+        <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-2xl flex items-center gap-3">
+            <div class="bg-white w-8 h-8 rounded-xl flex items-center justify-center shadow-sm shrink-0"><i class="fas fa-user text-xs text-blue-600"></i></div>
+            <div class="w-full">
+                <label class="text-[8px] text-slate-400 font-bold uppercase block">Full Name</label>
+                <input type="text" id="inputProfileName" disabled class="p-input w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none p-0 m-0">
             </div>
-            <input type="file" id="profilePhotoInput" accept="image/*" class="hidden" onchange="previewAndSavePhoto(this)">
         </div>
 
-        <div class="overflow-y-auto pt-14 pb-6 px-6 text-center flex-1">
-            <h3 id="displayModalName" class="text-slate-900 font-black text-lg flex items-center justify-center gap-1.5 uppercase tracking-wide">Rahul</h3>
-            <span class="inline-block bg-blue-50 text-blue-700 text-[10px] font-black uppercase px-3 py-1 rounded-full mt-1 tracking-wider border border-blue-100">
-                ID: <span id="displayModalId">1000107597</span>
-            </span>
-
-            <hr class="border-slate-100 my-4">
-
-            <div class="space-y-3 text-left">
-                <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-2xl flex items-center gap-3">
-                    <div class="bg-white w-8 h-8 rounded-xl flex items-center justify-center border border-slate-100 shadow-sm shrink-0"><i class="fas fa-user text-xs text-blue-600"></i></div>
-                    <div class="w-full">
-                        <label class="text-[8px] text-slate-400 font-bold uppercase tracking-tight block">Full Name</label>
-                        <input type="text" id="inputProfileName" placeholder="Enter full name" class="w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none p-0 m-0">
-                    </div>
-                </div>
-
-                <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-2xl flex items-center gap-3">
-                    <div class="bg-white w-8 h-8 rounded-xl flex items-center justify-center border border-slate-100 shadow-sm shrink-0"><i class="fas fa-envelope text-xs text-indigo-600"></i></div>
-                    <div class="w-full">
-                        <label class="text-[8px] text-slate-400 font-bold uppercase tracking-tight block">Email Address</label>
-                        <input type="email" id="inputProfileEmail" placeholder="student@powerph.in" class="w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none p-0 m-0">
-                    </div>
-                </div>
-
-                <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-2xl flex items-center gap-3">
-                    <div class="bg-white w-8 h-8 rounded-xl flex items-center justify-center border border-slate-100 shadow-sm shrink-0"><i class="fas fa-phone text-xs text-emerald-600"></i></div>
-                    <div class="w-full">
-                        <label class="text-[8px] text-slate-400 font-bold uppercase tracking-tight block">Phone Number</label>
-                        <input type="tel" id="inputProfilePhone" placeholder="+91 0000000000" class="w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none p-0 m-0">
-                    </div>
-                </div>
-                <div class="bg-slate-50 p-2.5 rounded-2xl flex items-center gap-3">
-              <input type="password" id="inputProfilePassword" placeholder="Create a Password" class="w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none">
-                </div>
-                   
-                <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-2xl flex items-center gap-3">
-                    <div class="bg-white w-8 h-8 rounded-xl flex items-center justify-center border border-slate-100 shadow-sm shrink-0"><i class="fas fa-phone text-xs text-emerald-600"></i></div>
-                    <div class="w-full">
-                        <label class="text-[8px] text-slate-400 font-bold uppercase tracking-tight block">Class</label>
-                        <input type="tel" id="inputProfilePhone" placeholder="+Ex- 8th,10th,Graduation etc" class="w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none p-0 m-0">
-                    </div>
-                </div>
-
-            
-                <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-2xl flex items-center gap-3">
-                    <div class="bg-white w-8 h-8 rounded-xl flex items-center justify-center border border-slate-100 shadow-sm shrink-0"><i class="fas fa-id-card text-xs text-purple-600"></i></div>
-                    <div class="w-full">
-                        <label class="text-[8px] text-slate-400 font-bold uppercase tracking-tight block">Registration ID</label>
-                        <input type="text" id="inputProfileId" placeholder="1000107597" class="w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none p-0 m-0">
-                    </div>
-                </div>
-
-                <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-2xl flex items-center gap-3">
-                    <div class="bg-white w-8 h-8 rounded-xl flex items-center justify-center border border-slate-100 shadow-sm shrink-0"><i class="fas fa-pen text-xs text-amber-600"></i></div>
-                    <div class="w-full">
-                        <label class="text-[8px] text-slate-400 font-bold uppercase tracking-tight block">Student Bio / Slogan</label>
-                        <input type="text" id="inputProfileBio" placeholder="An aspiring learner..." class="w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none p-0 m-0">   
-                     </div>
-                    
-                 </div>
+        <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-2xl flex items-center gap-3">
+            <div class="bg-white w-8 h-8 rounded-xl flex items-center justify-center shadow-sm shrink-0"><i class="fas fa-phone text-xs text-emerald-600"></i></div>
+            <div class="w-full">
+                <label class="text-[8px] text-slate-400 font-bold uppercase block">Phone Number</label>
+                <input type="tel" id="inputProfilePhone" disabled class="p-input w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none p-0 m-0">
             </div>
+        </div>
 
-            <div class="flex gap-2 mt-5">
-                <button onclick="saveStudentData()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black text-xs py-3 px-4 rounded-xl shadow-md active:scale-[0.98] transition-all cursor-pointer uppercase tracking-wider">SAVE</button>
-                <button onclick="closeProfileModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-black text-xs py-3 px-4 rounded-xl shadow-md active:scale-[0.98] transition-all cursor-pointer uppercase tracking-wider">EDIT</button>
+        <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-2xl flex items-center gap-3">
+            <div class="bg-white w-8 h-8 rounded-xl flex items-center justify-center shadow-sm shrink-0"><i class="fas fa-book text-xs text-orange-600"></i></div>
+            <div class="w-full">
+                <label class="text-[8px] text-slate-400 font-bold uppercase block">Class</label>
+                <input type="text" id="inputProfileClass" disabled class="p-input w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none p-0 m-0">
             </div>
-            <p class="text-center mt-4 text-xs text-slate-500">
-    Already have an account? 
-    <span onclick="openLoginModal()" class="text-blue-600 font-bold cursor-pointer hover:underline">
-        Login
-    </span>
-</p>
+        </div>
 
+        <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-2xl flex items-center gap-3">
+            <div class="bg-white w-8 h-8 rounded-xl flex items-center justify-center shadow-sm shrink-0"><i class="fas fa-pen text-xs text-amber-600"></i></div>
+            <div class="w-full">
+                <label class="text-[8px] text-slate-400 font-bold uppercase block">Student Bio</label>
+                <input type="text" id="inputProfileBio" disabled class="p-input w-full bg-transparent border-none text-xs text-slate-700 font-bold focus:outline-none p-0 m-0">
+            </div>
         </div>
     </div>
+
+    <div class="flex gap-2 mt-6">
+        <button id="editBtn" onclick="enableEditing()" class="w-full bg-slate-900 text-white font-black text-xs py-3 rounded-xl uppercase">Edit Profile</button>
+        <button id="saveBtn" onclick="saveProfile()" class="hidden w-full bg-blue-600 text-white font-black text-xs py-3 rounded-xl uppercase">Save Changes</button>
+    </div>
 </div>
+
+        
+
     <div id="loginModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
     <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative">
         
@@ -1267,6 +1241,62 @@ function handleLogin() {
     closeLoginModal();
 }
 
+    // 1. EDIT मोड ऑन करना (इनपुट फील्ड्स खोलना)
+function enableEditing() {
+    // सभी इनपुट फील्ड्स को डिसेबल हटाकर इनेबल करना
+    document.querySelectorAll('.p-input').forEach(input => {
+        input.disabled = false;
+        input.parentElement.parentElement.classList.replace('bg-slate-50', 'bg-white');
+    });
+    
+    // बटन टॉगल करना
+    document.getElementById('editBtn').classList.add('hidden');
+    document.getElementById('saveBtn').classList.remove('hidden');
+}
+
+// 2. SAVE मोड (फायरबेस में डेटा अपडेट करना और UI अपडेट करना)
+async function saveProfile() {
+    const user = firebase.auth().currentUser;
+    if (!user) { alert("कृपया पहले लॉगिन करें!"); return; }
+
+    try {
+        const db = firebase.firestore();
+        
+        // नए इनपुट मान लेना
+        const newName = document.getElementById('inputProfileName').value;
+        const newPhone = document.getElementById('inputProfilePhone').value;
+        const newClass = document.getElementById('inputProfileClass').value;
+        const newBio = document.getElementById('inputProfileBio').value;
+
+        // फायरबेस में अपडेट
+        await db.collection("users").doc(user.uid).update({
+            name: newName,
+            phone: newPhone,
+            class: newClass,
+            bio: newBio
+        });
+
+        // UI को तुरंत अपडेट करना (ऊपर जो नाम और बाकी दिखता है)
+        document.getElementById('displayModalName').innerText = newName;
+        
+        alert("प्रोफाइल सफलतापूर्वक सेव हो गई!");
+
+        // बटन और इनपुट को वापस लॉक करना
+        document.querySelectorAll('.p-input').forEach(input => {
+            input.disabled = true;
+            input.parentElement.parentElement.classList.replace('bg-white', 'bg-slate-50');
+        });
+        
+        document.getElementById('editBtn').classList.remove('hidden');
+        document.getElementById('saveBtn').classList.add('hidden');
+        
+    } catch (error) {
+        console.error("Error updating profile: ", error);
+        alert("सेव करने में एरर आया: " + error.message);
+    }
+}
+
+
     function saveStudentData() {
     registerUser();
 }
@@ -1369,13 +1399,7 @@ function toggleDisclaimer() {
         btnText.innerHTML = "[More]";
     }
 }
-    // --- प्रोफाइल सिस्टम के लिए नया फंक्शन ---
-
-// --- प्रोफाइल सिस्टम को ओपन करने का फंक्शन ---
-// यह फंक्शन आपके उस बटन पर लगेगा जिस पर आपने क्लिक किया था
-/*function openNewProfile() {
-    document.getElementById('newProfileSystem').classList.remove('hidden');
-} */
+    
     
     const container = document.querySelector('.overflow-x-auto');
 let scrollInterval;
@@ -1418,46 +1442,6 @@ if (container) {
 }
 
     
-
-// 1. एडिट मोड चालू करने के लि
-/*function enableEditing() {
-    const inputs = document.querySelectorAll('.p-input');
-    inputs.forEach(input => {
-        input.disabled = false;
-        input.classList.replace('bg-gray-50', 'bg-white');
-    });
-    
-    document.getElementById('editBtn').classList.add('hidden');
-    document.getElementById('saveBtn').classList.remove('hidden');
-}
-
-// 2. डेटा सेव करने के लिए (Firebase)
-function saveProfile() {
-    const user = firebase.auth().currentUser;
-    if(user) {
-        const db = firebase.firestore();
-        db.collection("users").doc(user.uid).update({
-            name: document.getElementById('pName').value,
-            email: document.getElementById('pEmail').value,
-            phone: document.getElementById('pPhone').value,
-            class: document.getElementById('pClass').value
-        }).then(() => {
-            alert("डेटा सफलतापूर्वक सेव हो गया!");
-            
-            // वापस लॉक करें
-            document.querySelectorAll('.p-input').forEach(input => {
-                input.disabled = true;
-                input.classList.replace('bg-white', 'bg-gray-50');
-            });
-            
-            // बटन वापस बदलें
-            document.getElementById('editBtn').classList.remove('hidden');
-            document.getElementById('saveBtn').classList.add('hidden');
-        }).catch((error) => {
-            alert("एरर: " + error.message);
-        });
-    }
-}*/
 // मॉडल खोलने के लिए फंक्शन
 function openReferModal() {
     document.getElementById('refer-modal').classList.remove('hidden');
