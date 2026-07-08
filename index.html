@@ -1042,6 +1042,55 @@
         <button id="saveBtn" onclick="saveProfile()" class="hidden w-full bg-blue-600 text-white font-black text-xs py-3 rounded-xl uppercase">Save Changes</button>
     </div>
 </div>
+        <div id="openAuthModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-gray-100 overflow-hidden relative animate-fade-in">
+        
+        <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+
+        <div class="flex border-b border-gray-100">
+            <button id="loginTabBtn" onclick="switchAuthTab('login')" class="w-1/2 py-4 text-center font-bold text-blue-600 border-b-2 border-blue-600 transition">लॉगिन</button>
+            <button id="signupTabBtn" onclick="switchAuthTab('signup')" class="w-1/2 py-4 text-center font-bold text-gray-500 hover:text-gray-700 transition">साइन-अप</button>
+        </div>
+
+        <div class="p-6">
+            <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Email</label>
+                    <input type="email" id="loginEmail" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm" placeholder="example@powerph.in">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">password</label>
+                    <input type="password" id="loginPassword" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white font-bold p-3 rounded-xl hover:bg-blue-700 transition shadow-md shadow-blue-200 text-sm">प्रवेश करें</button>
+            </form>
+
+            <form id="signupForm" onsubmit="handleSignup(event)" class="space-y-4 hidden">
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Name</label>
+                    <input type="text" id="signupName" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm" placeholder="Dinesh Kumar">
+                </div>
+                <div>
+    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Class/College</label>
+    <input type="text" id="signupClass" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm" placeholder="e.g. 10th, 12th">
+</div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Email</label>
+                    <input type="email" id="signupEmail" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm" placeholder="example@powerph.in">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">password</label>
+                    <input type="password" id="signupPassword" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm" placeholder="न्यूनतम 6 अंक">
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white font-bold p-3 rounded-xl hover:bg-green-700 transition shadow-md shadow-green-200 text-sm">नया अकाउंट बनाएं</button>
+            </form>
+        </div>
+    </div>
+</div>
+
       
  
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
@@ -1441,6 +1490,122 @@ function shareOnWhatsApp() {
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 }
+    // पॉप-अप खोलने और बंद करने का फंक्शन
+function toggleAuthModal() {
+    const modal = document.getElementById('openAuthModal');
+    modal.classList.toggle('hidden');
+}
+
+// लॉगिन और साइन-अप फॉर्म के बीच स्विच करने का फंक्शन
+function switchAuthTab(tab) {
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const loginTabBtn = document.getElementById('loginTabBtn');
+    const signupTabBtn = document.getElementById('signupTabBtn');
+
+    if (tab === 'login') {
+        loginForm.classList.remove('hidden');
+        signupForm.classList.add('hidden');
+        loginTabBtn.className = "w-1/2 py-4 text-center font-bold text-blue-600 border-b-2 border-blue-600 transition";
+        signupTabBtn.className = "w-1/2 py-4 text-center font-bold text-gray-500 hover:text-gray-700 transition";
+    } else {
+        loginForm.classList.add('hidden');
+        signupForm.classList.remove('hidden');
+        signupTabBtn.className = "w-1/2 py-4 text-center font-bold text-green-600 border-b-2 border-green-600 transition";
+        loginTabBtn.className = "w-1/2 py-4 text-center font-bold text-gray-500 hover:text-gray-700 transition";
+    }
+}
+
+// ===================================================
+// बटन हाईलाइट और छुपाने का असली सिस्टम (Firebase Auth Monitor)
+// ===================================================
+firebase.auth().onAuthStateChanged((user) => {
+    // स्क्रीनशॉट के मुताबिक आपके पास ये दोनों बटन आईडी मौजूद हैं
+    const signupBtn = document.querySelector('[onclick="openAuthModal()"]'); // आपका लॉगिन बटन डिव
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    if (user) {
+        // अगर यूजर लॉगिन है: लॉगिन बटन छुपाएं, लॉगआउट दिखाएं
+        if (signupBtn) signupBtn.classList.add('hidden');
+        if (logoutBtn) {
+            logoutBtn.classList.remove('hidden');
+            // लॉगआउट बटन को एक सुंदर लाल रंग में हाईलाइट करने के लिए क्लास (चाहें तो बदल सकते हैं)
+            logoutBtn.className = "w-full flex items-center gap-4 p-3 text-sm font-bold text-red-600 bg-red-50 rounded-xl mt-2 transition";
+        }
+    } else {
+        // अगर यूजर लॉगआउट है: लॉगिन बटन दिखाएं, लॉगआउट छुपाएं
+        if (signupBtn) signupBtn.classList.remove('hidden');
+        if (logoutBtn) logoutBtn.classList.add('hidden');
+    }
+});
+
+// लॉगआउट करने का फंक्शन
+function doLogout() {
+    firebase.auth().signOut().then(() => {
+        alert("आप सफलतापूर्वक लॉगआउट हो गए हैं!");
+    }).catch((error) => {
+        alert("एरर: " + error.message);
+    });
+}
+async function handleSignup(event) {
+    event.preventDefault(); // फॉर्म को रीलोड होने से रोकने के लिए
+
+    const name = document.getElementById('signupName').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    const studentClass = document.getElementById('signupClass').value.trim();
+    const password = document.getElementById('signupPassword').value();
+
+    if (password.length < 6) {
+        alert("पासवर्ड कम से कम 6 अंकों का होना चाहिए!");
+        return;
+    }
+
+    try {
+        // 1. Firebase Auth में नया यूजर बनाना
+        const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+
+        // एक रैंडम स्टूडेंट आईडी बनाना (अगर पहले से लोकल स्टोरेज में नहीं है)
+        let studentId = localStorage.getItem('student_id');
+        if (!studentId) {
+            studentId = Math.floor(1000000000 + Math.random() * 1000000000).toString();
+        }
+
+        // 2. तुरंत लोकल स्टोरेज में डेटा सेव करना (ताकि ऑफलाइन/रिफ्रेश पर न उड़े)
+        localStorage.setItem('student_name', name);
+        localStorage.setItem('student_email', email);
+        localStorage.setItem('student_class', studentClass);
+        localStorage.setItem('student_id', studentId);
+        localStorage.setItem('student_bio', ""); // शुरू में बायो खाली रहेगा
+
+        // 3. Firestore (डेटाबेस) में डेटा सुरक्षित करना
+        await db.collection("users").doc(user.uid).set({
+            name: name,
+            email: email,
+            class: studentClass,
+            studentId: studentId,
+            bio: "", // नया यूजर है तो बायो खाली जाएगा
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        // 4. प्रोफाइल के इनपुट बॉक्स को ऑटोमैटिकली भर देना (Auto-fill)
+        if (document.getElementById('inputProfileName')) document.getElementById('inputProfileName').value = name;
+        if (document.getElementById('inputProfileEmail')) document.getElementById('inputProfileEmail').value = email;
+        if (document.getElementById('inputProfileClass')) document.getElementById('inputProfileClass').value = studentClass;
+        if (document.getElementById('inputProfileBio')) document.getElementById('inputProfileBio').value = "";
+        
+        // हेडर और मोडल में नाम अपडेट करना
+        if (document.getElementById('displayModalName')) document.getElementById('displayModalName').innerText = name;
+        if (document.getElementById('user-display-name')) document.getElementById('user-display-name').innerText = name;
+
+        alert("अकाउंट सफलतापूर्वक बन गया और प्रोफाइल अपडेट हो गई! 🎉");
+        toggleAuthModal(); // पॉप-अप बंद करने के लिए
+
+    } catch (error) {
+        alert("साइन-अप में एरर आया: " + error.message);
+    }
+}
+
     
     
 </script>
