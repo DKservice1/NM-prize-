@@ -1225,10 +1225,33 @@ async function saveProfile() {
     const newClass = document.getElementById('inputProfileClass').value;
     const newBio = document.getElementById('inputProfileBio').value;
 
-    // UI अपडेट
+        // 1. लोकल स्टोरेज में डेटा सेव करें (ताकि ऑफलाइन और रिफ्रेश करने पर डेटा न उड़े)
+    localStorage.setItem('student_name', newName);
+    localStorage.setItem('student_phone', newPhone);
+    localStorage.setItem('student_class', newClass);
+    localStorage.setItem('student_bio', newBio);
+
+    // 2. UI अपडेट
     document.getElementById('displayModalName').innerText = newName;
-    
-    alert("प्रोफाइल सुरक्षित रूप से सेव हो गई!");
+    alert("प्रोफाइल सुरक्षित रूप से सेव हो गई है! 🎉");
+
+    // 3. बैकग्राउंड में फायरबेस पर डेटा भेजना
+    try {
+        const user = firebase.auth().currentUser;
+        if (user) {
+            // अगर यूजर लॉग-इन है, तो उसकी UID के अंदर डेटा सिंक करें
+            db.collection("users").doc(user.uid).set({
+                name: newName,
+                phone: newPhone,
+                class: newClass,
+                bio: newBio,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            }, { merge: true });
+        }
+    } catch (e) {
+        console.log("फायरबेस सिंक बैकग्राउंड में काम करेगा (इंटरनेट चेक करें):", e.message);
+    }
+
 
     // बटन और इनपुट लॉक करें
     document.querySelectorAll('.p-input').forEach(input => {
