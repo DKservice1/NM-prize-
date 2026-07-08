@@ -1516,37 +1516,40 @@ function switchAuthTab(tab) {
     }
 }
 
-// ===================================================
-// बटन हाईलाइट और छुपाने का असली सिस्टम (Firebase Auth Monitor)
-// ===================================================
+    
 firebase.auth().onAuthStateChanged((user) => {
-    // स्क्रीनशॉट के मुताबिक आपके पास ये दोनों बटन आईडी मौजूद हैं
-    const signupBtn = document.querySelector('[onclick="openAuthModal()"]'); // आपका लॉगिन बटन डिव
+    // आपके साइडबार का लॉगिन बटन (लाइन 79)
+    const signupBtn = document.querySelector('[onclick="toggleAuthModal()"]') || document.querySelector('[onclick="openAuthModal()"]');
+    // आपका लॉगआउट बटन
     const logoutBtn = document.getElementById('logoutBtn');
 
     if (user) {
-        // अगर यूजर लॉगिन है: लॉगिन बटन छुपाएं, लॉगआउट दिखाएं
-        if (signupBtn) signupBtn.classList.add('hidden');
-        if (logoutBtn) {
-            logoutBtn.classList.remove('hidden');
-            // लॉगआउट बटन को एक सुंदर लाल रंग में हाईलाइट करने के लिए क्लास (चाहें तो बदल सकते हैं)
-            logoutBtn.className = "w-full flex items-center gap-4 p-3 text-sm font-bold text-red-600 bg-red-50 rounded-xl mt-2 transition";
-        }
+        // अगर यूजर लॉग-इन है
+        if (signupBtn) signupBtn.classList.add('hidden'); // लॉगिन छुपाएं
+        if (logoutBtn) logoutBtn.classList.remove('hidden'); // लॉगआउट दिखाएं
     } else {
-        // अगर यूजर लॉगआउट है: लॉगिन बटन दिखाएं, लॉगआउट छुपाएं
-        if (signupBtn) signupBtn.classList.remove('hidden');
-        if (logoutBtn) logoutBtn.classList.add('hidden');
+        // अगर यूजर लॉग-आउट है
+        if (signupBtn) signupBtn.classList.remove('hidden'); // लॉगिन दिखाएं
+        if (logoutBtn) logoutBtn.classList.add('hidden'); // लॉगआउट छुपाएं
     }
 });
 
-// लॉगआउट करने का फंक्शन
+// लॉगआउट करने का पक्का फंक्शन
 function doLogout() {
     firebase.auth().signOut().then(() => {
-        alert("आप सफलतापूर्वक लॉगआउट हो गए हैं!");
+        alert("आप सफलतापूर्वक लॉगआउट हो गए हैं! 👋");
+        // लॉगआउट होने के बाद लोकल स्टोरेज भी साफ़ करना चाहें तो:
+        localStorage.removeItem('student_name');
+        localStorage.removeItem('student_email');
+        localStorage.removeItem('student_class');
+        
+        // पेज को रीलोड कर दें ताकि सब कुछ एकदम फ्रेश हो जाए
+        window.location.reload();
     }).catch((error) => {
-        alert("एरर: " + error.message);
+        alert("लॉगआउट में दिक्कत आई: " + error.message);
     });
 }
+
 async function handleSignup(event) {
     event.preventDefault(); // फॉर्म को रीलोड होने से रोकने के लिए
 
