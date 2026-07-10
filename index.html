@@ -120,228 +120,134 @@
                 
                 <div id="home-page" class="page-content page-active space-y-12">
 
-<!-- POWER PH HERO SECTION START -->
-<div class="pph-hero-wrapper">
-    <!-- Inline Scoped Fonts & Styles -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+            <!-- POWER PH PREMIUM HERO SECTION -->
+<div class="pph-hero-wrap">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-
     <style>
-        .pph-hero-wrapper, .pph-hero-wrapper * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        .pph-hero-wrapper {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #071e54 0%, #0b328a 100%);
-            color: #ffffff;
+        .pph-hero-wrap, .pph-hero-wrap * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        .pph-hero-wrap { 
+            position: relative;
+            width: 100%; 
+            min-height: 85vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
             padding: 80px 20px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            /* प्रीमियम बैकग्राउंड इमेज + डार्क ओवरले */
+            background: linear-gradient(rgba(6, 18, 56, 0.85), rgba(9, 36, 102, 0.9)), 
+                        url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1920&auto=format&fit=crop') no-repeat center center/cover;
+            overflow: hidden;
         }
-        .pph-hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 40px;
-            align-items: center;
-            width: 100%;
+        .pph-hero-box { 
+            max-width: 900px; 
+            width: 100%; 
+            text-align: center; 
+            z-index: 2;
         }
-        .pph-badge {
-            background: #ffcc00;
-            color: #071e54;
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 13px;
-            display: inline-block;
-            margin-bottom: 20px;
+        .pph-hero-badge { 
+            background: rgba(255, 204, 0, 0.15); 
+            color: #ffcc00; 
+            border: 1px solid rgba(255, 204, 0, 0.4);
+            padding: 6px 18px; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 12px; 
+            display: inline-block; 
+            margin-bottom: 25px; 
             letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+            text-transform: uppercase;
         }
-        .pph-main-title {
-            font-size: 42px;
-            font-weight: 800;
-            line-height: 1.3;
-            margin-bottom: 15px;
-        }
-        .pph-highlight-text {
-            color: #ffcc00;
-        }
-        .pph-sub-title {
-            font-size: 16px;
-            color: #cbd5e1;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            max-width: 550px;
-        }
-        .pph-offer-box {
-            background: rgba(255, 255, 255, 0.06);
-            border-left: 4px solid #ff4a5a;
-            border-radius: 4px 12px 12px 4px;
-            padding: 20px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            text-align: left;
-        }
-        .pph-price-tag {
-            margin-bottom: 8px;
-        }
-        .pph-amount {
-            font-size: 36px;
-            font-weight: 800;
-            color: #ffcc00;
-        }
-        .pph-duration {
-            font-size: 16px;
-            color: #94a3b8;
-        }
-        .pph-bonus-text {
-            font-size: 14px;
-            color: #e2e8f0;
-            line-height: 1.5;
-            margin: 0;
-        }
-        .pph-btn-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .pph-btn {
-            padding: 14px 28px;
-            font-weight: 600;
-            font-size: 16px;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        .pph-btn-primary {
-            background: #ff4a5a;
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(255, 74, 90, 0.4);
-        }
-        .pph-btn-primary:hover {
-            background: #e03b4a;
-            transform: translateY(-2px);
-        }
-        .pph-btn-secondary {
-            background: transparent;
-            color: #fff;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-        .pph-btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: #fff;
-        }
-        .pph-hero-visual {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .pph-feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            text-align: left;
-        }
-        .pph-card-accent {
-            background: linear-gradient(135deg, rgba(255, 204, 0, 0.1) 0%, rgba(255, 74, 90, 0.1) 100%);
-            border: 1px solid rgba(255, 204, 0, 0.2);
-        }
-        .pph-card-icon {
-            font-size: 32px;
-            margin-bottom: 12px;
-        }
-        .pph-feature-card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin: 0 0 6px 0;
+        .pph-hero-title { 
+            font-size: 52px; 
+            font-weight: 800; 
+            line-height: 1.25; 
             color: #ffffff;
+            margin-bottom: 20px; 
+            letter-spacing: -0.5px;
         }
-        .pph-feature-card p {
-            font-size: 14px;
-            color: #94a3b8;
-            margin: 0;
+        .pph-hero-title span { 
+            color: #ffcc00; 
+            display: inline-block;
         }
-
-        /* Responsive Breakpoints */
-        @media (max-width: 991px) {
-            .pph-hero-wrapper {
-                padding: 60px 20px;
-            }
-            .pph-hero-container {
-                grid-template-columns: 1fr;
-                gap: 50px;
-                text-align: center;
-            }
-            .pph-sub-title {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .pph-btn-group {
-                justify-content: center;
-            }
-            .pph-main-title {
-                font-size: 32px;
-            }
+        .pph-hero-sub { 
+            font-size: 18px; 
+            color: #cbd5e1; 
+            line-height: 1.6; 
+            margin-bottom: 35px; 
+            max-width: 650px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .pph-hero-btns { 
+            display: flex; 
+            gap: 15px; 
+            justify-content: center;
+            flex-wrap: wrap; 
+        }
+        .pph-hero-btn { 
+            padding: 15px 32px; 
+            font-weight: 700; 
+            font-size: 16px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            text-align: center; 
+        }
+        .pph-hero-prm { 
+            background: #ff4a5a; 
+            color: #fff; 
+            box-shadow: 0 4px 25px rgba(255, 74, 90, 0.45); 
+        }
+        .pph-hero-prm:hover { 
+            background: #e03b4a; 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 30px rgba(255, 74, 90, 0.6); 
+        }
+        .pph-hero-sec { 
+            border: 2px solid rgba(255, 255, 255, 0.25); 
+            color: #fff; 
+            backdrop-filter: blur(5px);
+        }
+        .pph-hero-sec:hover { 
+            background: rgba(255, 255, 255, 0.1); 
+            border-color: #ffffff;
+            transform: translateY(-3px); 
+        }
+        /* 📱 मोबाइल के लिए रिस्पॉन्सिव */
+        @media (max-width: 768px) {
+            .pph-hero-wrap { min-height: 70vh; padding: 60px 15px; }
+            .pph-hero-title { font-size: 34px; }
+            .pph-hero-sub { font-size: 15px; margin-bottom: 25px; }
+            .pph-hero-btn { width: 100%; max-width: 300px; padding: 12px 24px; font-size: 15px; }
+            .pph-hero-btns { flex-direction: column; align-items: center; gap: 12px; }
         }
     </style>
 
-    <div class="pph-hero-container">
-        <!-- Left Side Content -->
-        <div class="pph-hero-content">
-            <span class="pph-badge">⚡ POWER PH PROJECT</span>
-            
-            <h1 class="pph-main-title">
-                Complete Year of Learning, <br>
-                <span class="pph-highlight-text">At Just ₹199/Year!</span>
-            </h1>
-            
-            <p class="pph-sub-title">
-                Get premium syllabus-based E-Books, curated notes, and practice papers updated monthly. Your all-in-one destination for Board Exams & Competitive prep.
-            </p>
-            
-            <div class="pph-offer-box">
-                <div class="pph-price-tag">
-                    <span class="pph-amount">₹199</span>
-                    <span class="pph-duration">/ Full Year Access</span>
-                </div>
-                <p class="pph-bonus-text">
-                    🎁 <strong>BONUS OFFER:</strong> Your subscription includes <strong>FREE entry</strong> to the 'National Merit Prize Test'. Stand a chance to win Sports Bikes, Laptops, and Mega Cash Rewards!
-                </p>
-            </div>
-            
-            <div class="pph-btn-group">
-                <a href="#subscribe" class="pph-btn pph-btn-primary">Activate Full Year Pass</a>
-                <a href="#sample" class="pph-btn pph-btn-secondary">Download Free Sample PDF</a>
-            </div>
-        </div>
-
-        <!-- Right Side Visual Cards -->
-        <div class="pph-hero-visual">
-            <div class="pph-feature-card">
-                <div class="pph-card-icon">📚</div>
-                <h3>Syllabus Based E-Books</h3>
-                <p>Classes 6th to 12th & Competitive Exams</p>
-            </div>
-            <div class="pph-feature-card pph-card-accent">
-                <div class="pph-card-icon">🏆</div>
-                <h3>National Merit Prize</h3>
-                <p>Mega Scholarship & Rewards Pass Included</p>
-            </div>
+    <div class="pph-hero-box">
+        <!-- छोटे और प्रीमियम बैज -->
+        <span class="pph-hero-badge">⚡ Power PH Premium E-Books</span>
+        
+        <!-- दमदार और कम शब्दों वाली हेडलाइन -->
+        <h1 class="pph-hero-title">
+            Unlock All E-Books<br>
+            <span>At Just ₹199/Year!</span>
+        </h1>
+        
+        <!-- साफ और छोटा सब-टाइटल -->
+        <p class="pph-hero-sub">
+            Get instant access to premium syllabus-based study material, curated notes, and practice sheets. Master your exams with India's most affordable learning pass.
+        </p>
+        
+        <!-- कॉल टू एक्शन बटन्स -->
+        <div class="pph-hero-btns">
+            <a href="#subscribe" class="pph-hero-btn pph-hero-prm">Activate Annual Pass</a>
+            <a href="#sample" class="pph-hero-btn pph-hero-sec">Try Free Sample PDF</a>
         </div>
     </div>
 </div>
-<!-- POWER PH HERO SECTION END -->
+
+
 
                     
                     
