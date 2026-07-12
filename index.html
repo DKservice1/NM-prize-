@@ -454,82 +454,6 @@
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 </style>
                     
-                    <!-- POWER PH INTERACTIVE TRUST BADGES CONTEXT WITH 5s TIMER -->
-<div style="width: 100%; padding: 30px 0; background: #071e54; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); font-family: sans-serif;">
-    
-    <!-- मुख्य रैपर: जो मोबाइल पर हाथ से भी स्वाइप होगा और ऑटोमैटिक भी खिसकेगा -->
-    <div id="pphBadgeSlider" style="display: flex; gap: 20px; overflow-x: auto; scroll-behavior: smooth; padding: 0 20px; width: 100%; white-space: nowrap; -webkit-overflow-scrolling: touch;">
-        
-        <!-- बैज 1: Certified Company -->
-        <div style="flex: 0 0 260px; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 12px; text-align: center;">
-            <div style="width: 45px; height: 45px; background: rgba(255,204,0,0.1); border: 2px solid #ffcc00; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 8px;">🛡️</div>
-            <span style="color: #fff; font-size: 14px; font-weight: 600; margin-bottom: 10px;">Certified Company</span>
-            <a href="/company-details" style="background: rgba(255,255,255,0.1); color: #ffcc00; padding: 4px 12px; border-radius: 4px; font-size: 11px; text-decoration: none; font-weight: 600; transition: 0.3s;">Know More</a>
-        </div>
-
-        <!-- बैज 2: Secure Payment -->
-        <div style="flex: 0 0 260px; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 12px; text-align: center;">
-            <div style="width: 45px; height: 45px; background: rgba(74,222,128,0.1); border: 2px solid #4ade80; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 8px;">🔒</div>
-            <span style="color: #fff; font-size: 14px; font-weight: 600; margin-bottom: 10px;">Secure Payment</span>
-            <a href="/secure-payment" style="background: rgba(255,255,255,0.1); color: #4ade80; padding: 4px 12px; border-radius: 4px; font-size: 11px; text-decoration: none; font-weight: 600; transition: 0.3s;">Know More</a>
-        </div>
-
-        <!-- बैज 3: Instant Access -->
-        <div style="flex: 0 0 260px; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 12px; text-align: center;">
-            <div style="width: 45px; height: 45px; background: rgba(248,113,113,0.1); border: 2px solid #f87171; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 8px;">⚡</div>
-            <span style="color: #fff; font-size: 14px; font-weight: 600; margin-bottom: 10px;">Instant Access</span>
-            <a href="/instant-delivery" style="background: rgba(255,255,255,0.1); color: #f87171; padding: 4px 12px; border-radius: 4px; font-size: 11px; text-decoration: none; font-weight: 600; transition: 0.3s;">Know More</a>
-        </div>
-
-        <!-- बैज 4: 10K+ Trusted Students -->
-        <div style="flex: 0 0 260px; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 12px; text-align: center;">
-            <div style="width: 45px; height: 45px; background: rgba(56,189,248,0.1); border: 2px solid #38bdf8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 8px;">🎓</div>
-            <span style="color: #fff; font-size: 14px; font-weight: 600; margin-bottom: 10px;">10K+ Trusted Students</span>
-            <a href="/student-reviews" style="background: rgba(255,255,255,0.1); color: #38bdf8; padding: 4px 12px; border-radius: 4px; font-size: 11px; text-decoration: none; font-weight: 600; transition: 0.3s;">Know More</a>
-        </div>
-
-        <!-- बैज 5: No Hidden Charges -->
-        <div style="flex: 0 0 260px; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 12px; text-align: center;">
-            <div style="width: 45px; height: 45px; background: rgba(251,146,60,0.1); border: 2px solid #fb923c; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 8px;">💎</div>
-            <span style="color: #fff; font-size: 14px; font-weight: 600; margin-bottom: 10px;">No Hidden Charges</span>
-            <a href="/pricing-policy" style="background: rgba(255,255,255,0.1); color: #fb923c; padding: 4px 12px; border-radius: 4px; font-size: 11px; text-decoration: none; font-weight: 600; transition: 0.3s;">Know More</a>
-        </div>
-
-    </div>
-
-    <!-- स्क्रॉलिंग छिपाने के लिए छोटी सी इनलाइन CSS ट्रिक -->
-    <style>
-        #pphBadgeSlider::-webkit-scrollbar { display: none; } /* Chrome, Safari और Opera के लिए स्क्रॉल बार छिपाएं */
-        #pphBadgeSlider { -ms-overflow-style: none; scrollbar-width: none; } /* IE, Edge और Firefox के लिए स्क्रॉल बार छिपाएं */
-    </style>
-
-    <!-- 5 सेकंड का टाइमर और टच डिटेक्शन के लिए छोटा सा जावास्क्रिप्ट लॉजिक -->
-    <script>
-        (function() {
-            const slider = document.getElementById('pphBadgeSlider');
-            let scrollAmount = 0;
-            const cardWidth = 280; // कार्ड की चौड़ाई + गैप
-
-            function autoScroll() {
-                if (slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth - 10)) {
-                    slider.scrollLeft = 0; // अंत में पहुँचने पर वापस शुरू से शुरू होगा
-                } else {
-                    slider.scrollLeft += cardWidth;
-                }
-            }
-
-            // हर 5 सेकंड (5000ms) में एक कार्ड आगे खिसकेगा
-            let slideTimer = setInterval(autoScroll, 5000);
-
-            // अगर यूजर खुद हाथ से स्क्रॉल (Touch/Swipe) कर रहा है, तो टाइमर को रोक देंगे ताकि झटका न लगे
-            slider.addEventListener('touchstart', () => clearInterval(slideTimer));
-            slider.addEventListener('touchend', () => {
-                clearInterval(slideTimer);
-                slideTimer = setInterval(autoScroll, 5000); // हाथ हटाने पर दोबारा टाइमर चालू
-            });
-        })();
-    </script>
-</div>
 
 
 
@@ -617,6 +541,80 @@
     </div>
 </div>
 
+                    <!-- POWER PH LARGE TRUST BADGES WITH SINGLE STATIC BUTTON -->
+<div style="width: 100%; padding: 40px 15px; background: transparent; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; gap: 30px;">
+    
+    <!-- 1. ऑटो-स्क्रॉलिंग और टच-स्क्रॉलिंग बड़ी बैजेस लेयर -->
+    <div id="pphLargeBadgeSlider" style="display: flex; gap: 40px; overflow-x: auto; scroll-behavior: smooth; padding: 10px 20px; width: 100%; white-space: nowrap; -webkit-overflow-scrolling: touch;">
+        
+        <!-- बैज 1: Certified Company -->
+        <div style="flex: 0 0 280px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <div style="width: 70px; height: 70px; background: rgba(255,204,0,0.1); border: 3px solid #ffcc00; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">🛡️</div>
+            <span style="color: #071e54; font-size: 18px; font-weight: 800;">Certified Company</span>
+        </div>
+
+        <!-- बैज 2: Secure Payment -->
+        <div style="flex: 0 0 280px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <div style="width: 70px; height: 70px; background: rgba(74,222,128,0.1); border: 3px solid #4ade80; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">🔒</div>
+            <span style="color: #071e54; font-size: 18px; font-weight: 800;">Secure Payment</span>
+        </div>
+
+        <!-- बैज 3: Instant Access -->
+        <div style="flex: 0 0 280px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <div style="width: 70px; height: 70px; background: rgba(248,113,113,0.1); border: 3px solid #f87171; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">⚡</div>
+            <span style="color: #071e54; font-size: 18px; font-weight: 800;">Instant Access</span>
+        </div>
+
+        <!-- बैज 4: 10K+ Trusted Students -->
+        <div style="flex: 0 0 280px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <div style="width: 70px; height: 70px; background: rgba(56,189,248,0.1); border: 3px solid #38bdf8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">🎓</div>
+            <span style="color: #071e54; font-size: 18px; font-weight: 800;">10K+ Trusted Students</span>
+        </div>
+
+        <!-- बैज 5: No Hidden Charges -->
+        <div style="flex: 0 0 280px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <div style="width: 70px; height: 70px; background: rgba(251,146,60,0.1); border: 3px solid #fb923c; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">💎</div>
+            <span style="color: #071e54; font-size: 18px; font-weight: 800;">No Hidden Charges</span>
+        </div>
+
+    </div>
+
+    <!-- 2. नीचे स्थिर (Static) रहने वाला सिंगल 'Know More' बटन -->
+    <a href="/verification-page" style="background: #ffcc00; color: #071e54; padding: 12px 35px; border-radius: 8px; font-size: 14px; text-decoration: none; font-weight: 700; box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3); text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">Know More About Our Trust & Security</a>
+
+    <!-- स्क्रॉल बार को छिपाने की CSS ट्रिक -->
+    <style>
+        #pphLargeBadgeSlider::-webkit-scrollbar { display: none; }
+        #pphLargeBadgeSlider { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+
+    <!-- 5 सेकंड का ऑटो-स्क्रॉल टाइमर लॉजिक -->
+    <script>
+        (function() {
+            const slider = document.getElementById('pphLargeBadgeSlider');
+            const cardWidth = 320; // बड़ा साइज + गैप
+
+            function autoScroll() {
+                if (slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth - 10)) {
+                    slider.scrollLeft = 0;
+                } else {
+                    slider.scrollLeft += cardWidth;
+                }
+            }
+
+            let slideTimer = setInterval(autoScroll, 5000);
+
+            slider.addEventListener('touchstart', () => clearInterval(slideTimer));
+            slider.addEventListener('touchend', () => {
+                clearInterval(slideTimer);
+                slideTimer = setInterval(autoScroll, 5000);
+            });
+        })();
+    </script>
+</div>
+
+
+                    
                     <section>
                         <div class="flex justify-between items-center mb-6 px-2">
                             <h3 class="font-black text-[#0a192f] tracking-tight uppercase">Scholarship Categories</h3>
