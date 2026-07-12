@@ -602,12 +602,12 @@
                 }
             }
 
-            let slideTimer = setInterval(autoScroll, 5000);
+            let slideTimer = setInterval(autoScroll, 3000);
 
             slider.addEventListener('touchstart', () => clearInterval(slideTimer));
             slider.addEventListener('touchend', () => {
                 clearInterval(slideTimer);
-                slideTimer = setInterval(autoScroll, 5000);
+                slideTimer = setInterval(autoScroll, 3000);
             });
         })();
     </script>
