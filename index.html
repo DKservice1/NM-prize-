@@ -75,15 +75,18 @@
                     <button onclick="window.location.href='achievements.html'" class="nav-btn w-full flex items-center gap-4 p-3 hover:bg-white/10 transition"><i class="fas fa-trophy w-5"></i> Achievements</button>
                     <button onclick="window.location.href='teachers.html'" class="nav-btn w-full flex items-center gap-4 p-3 hover:bg-white/10 transition"><i class="fas fa-chalkboard-teacher w-5"></i> Become Our Partner</button>
                 </div>
-<div id="sidebar-auth-container" class="mt-10">
-    <button onclick="openAuthModal()" class="w-full flex items-center gap-4 p-3 text-sm font-medium text-green-700 hover:bg-gray-100 rounded-xl">
-        <i class="fas fa-user-circle w-5 text-lg"></i> Sing Up/Login
-    </button>
-    <button id="logoutBtn" onclick="doLogout()" class="w-full flex items-center gap-4 p-3 text-red-500 font-bold text-sm hover:bg-red-50 rounded-xl transition" style="display: none;">
-    <i class="fas fa-sign-out-alt w-5"></i> Logout
-    </button>
 
+                <div id="sidebar-auth-container" class="mt-10">
+    <!-- फंक्शन का नाम toggleAuthModal() किया और स्पेलिंग ठीक की -->
+    <button onclick="toggleAuthModal()" class="w-full flex items-center gap-4 p-3 ...">
+        <i class="fas fa-user-circle w-5 text-lg"></i> Sign Up/Login
+    </button>
+    
+    <button id="logoutBtn" onclick="doLogout()" class="w-full flex items-center ...">
+        <i class="fas fa-sign-out-alt w-5 dat-5"></i> Logout
+    </button>
 </div>
+
     </nav>
              <div class="mt-6 bg-blue-800/50 p-4 rounded-2xl text-center">
                 <p class="text-[10px] font-bold mb-2">Invite Friends & Earn Rewards</p>
