@@ -1637,44 +1637,46 @@ function shareOnWhatsApp() {
     // पॉप-अप खोलने और बंद करने का फंक्शन
 function toggleAuthModal() {
     const modal = document.getElementById('openAuthModal');
-    modal.classList.toggle('hidden');
+    if (modal) modal.classList.toggle('hidden');
 }
 
-// लॉगिन और साइन-अप फॉर्म के बीच स्विच करने का फंक्शन
+     // लॉगिन और साइन-अप फॉर्म के बीच स्विच करने का फंक्शन
 function switchAuthTab(tab) {
     const loginForm = document.getElementById('loginForm');
     const signupForm = document.getElementById('signupForm');
     const loginTabBtn = document.getElementById('loginTabBtn');
     const signupTabBtn = document.getElementById('signupTabBtn');
 
+    if (!loginForm || !signupForm) return;
+
     if (tab === 'login') {
         loginForm.classList.remove('hidden');
         signupForm.classList.add('hidden');
-        loginTabBtn.className = "w-1/2 py-4 text-center font-bold text-blue-600 border-b-2 border-blue-600 transition";
-        signupTabBtn.className = "w-1/2 py-4 text-center font-bold text-gray-500 hover:text-gray-700 transition";
+        if (loginTabBtn) loginTabBtn.className = "w-1/2 py-4 text-center font-bold text-blue-600 border-b-2 border-blue-600 transition";
+        if (signupTabBtn) signupTabBtn.className = "w-1/2 py-4 text-center font-bold text-gray-500 hover:text-gray-700 transition";
     } else {
         loginForm.classList.add('hidden');
         signupForm.classList.remove('hidden');
-        signupTabBtn.className = "w-1/2 py-4 text-center font-bold text-green-600 border-b-2 border-green-600 transition";
-        loginTabBtn.className = "w-1/2 py-4 text-center font-bold text-gray-500 hover:text-gray-700 transition";
+        if (signupTabBtn) signupTabBtn.className = "w-1/2 py-4 text-center font-bold text-green-600 border-b-2 border-green-600 transition";
+        if (loginTabBtn) loginTabBtn.className = "w-1/2 py-4 text-center font-bold text-gray-500 hover:text-gray-700 transition";
     }
 }
 
-    
+// यूजर के लॉगिन/लॉगआउट स्टेटस को ट्रैक करना
 firebase.auth().onAuthStateChanged((user) => {
-    // आपके साइडबार का लॉगिन बटन (लाइन 79)
-    const signupBtn = document.querySelector('[onclick="toggleAuthModal()"]') || document.querySelector('[onclick="openAuthModal()"]');
-    // आपका लॉगआउट बटन
+    // साइडबार में मौजूद लॉगिन बटन का कंटेनर या बटन ढूंढना
+    const authContainer = document.getElementById('sidebar-auth-container');
+    const signupBtn = document.querySelector('[onclick="toggleAuthModal()"]');
     const logoutBtn = document.getElementById('logoutBtn');
 
     if (user) {
         // अगर यूजर लॉग-इन है
-        if (signupBtn) signupBtn.classList.add('hidden'); // लॉगिन छुपाएं
-        if (logoutBtn) logoutBtn.classList.remove('hidden'); // लॉगआउट दिखाएं
+        if (signupBtn) signupBtn.classList.add('hidden'); // लॉगिन बटन छुपाएं
+        if (logoutBtn) logoutBtn.classList.remove('hidden'); // लॉगआउट बटन दिखाएं
     } else {
         // अगर यूजर लॉग-आउट है
-        if (signupBtn) signupBtn.classList.remove('hidden'); // लॉगिन दिखाएं
-        if (logoutBtn) logoutBtn.classList.add('hidden'); // लॉगआउट छुपाएं
+        if (signupBtn) signupBtn.classList.remove('hidden'); // लॉगिन बटन दिखाएं
+        if (logoutBtn) logoutBtn.classList.add('hidden'); // लॉगआउट बटन छुपाएं
     }
 });
 
@@ -1682,25 +1684,33 @@ firebase.auth().onAuthStateChanged((user) => {
 function doLogout() {
     firebase.auth().signOut().then(() => {
         alert("आप सफलतापूर्वक लॉगआउट हो गए हैं! 👋");
-        // लॉगआउट होने के बाद लोकल स्टोरेज भी साफ़ करना चाहें तो:
+        // लोकल स्टोरेज साफ करना
         localStorage.removeItem('student_name');
         localStorage.removeItem('student_email');
         localStorage.removeItem('student_class');
+        localStorage.removeItem('student_id');
+        localStorage.removeItem('student_photo');
         
-        // पेज को रीलोड कर दें ताकि सब कुछ एकदम फ्रेश हो जाए
+        // पेज को रीलोड करें ताकि UI फ्रेश हो जाए
         window.location.reload();
     }).catch((error) => {
         alert("लॉगआउट में दिक्कत आई: " + error.message);
     });
 }
 
+// साइन-अप हैंडल करने का सही फंक्शन
 async function handleSignup(event) {
     event.preventDefault(); // फॉर्म को रीलोड होने से रोकने के लिए
 
     const name = document.getElementById('signupName').value.trim();
     const email = document.getElementById('signupEmail').value.trim();
-    const studentClass = document.getElementById('signupClass').value.trim();
-    const password = document.getElementById('signupPassword').value();
+    
+    // सुरक्षा जांच: अगर क्लास फील्ड HTML में न हो तो एरर न आए
+    const classEl = document.getElementById('signupClass');
+    const studentClass = classEl ? classEl.value.trim() : "N/A";
+    
+    // फिक्स: .value() को हटाकर सिर्फ .value किया गया है
+    const password = document.getElementById('signupPassword').value;
 
     if (password.length < 6) {
         alert("पासवर्ड कम से कम 6 अंकों का होना चाहिए!");
@@ -1712,38 +1722,39 @@ async function handleSignup(event) {
         const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
         const user = userCredential.user;
 
-        // एक रैंडम स्टूडेंट आईडी बनाना (अगर पहले से लोकल स्टोरेज में नहीं है)
+        // फिक्स: सटीक 10 अंकों की रैंडम आईडी जेनरेट करना
         let studentId = localStorage.getItem('student_id');
         if (!studentId) {
-            studentId = Math.floor(1000000000 + Math.random() * 1000000000).toString();
+            studentId = Math.floor(1000000000 + Math.random() * 9000000000).toString();
         }
 
-        // 2. तुरंत लोकल स्टोरेज में डेटा सेव करना (ताकि ऑफलाइन/रिफ्रेश पर न उड़े)
+        // 2. तुरंत लोकल स्टोरेज में डेटा सेव करना
         localStorage.setItem('student_name', name);
         localStorage.setItem('student_email', email);
         localStorage.setItem('student_class', studentClass);
         localStorage.setItem('student_id', studentId);
-        localStorage.setItem('student_bio', ""); // शुरू में बायो खाली रहेगा
+        localStorage.setItem('student_bio', ""); 
 
-        // 3. Firestore (डेटाबेस) में डेटा सुरक्षित करना
+        // 3. Firestore (डेटाबेेस) में डेटा सुरक्षित करना
         await db.collection("users").doc(user.uid).set({
             name: name,
             email: email,
             class: studentClass,
             studentId: studentId,
-            bio: "", // नया यूजर है तो बायो खाली जाएगा
+            bio: "", 
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
 
-        // 4. प्रोफाइल के इनपुट बॉक्स को ऑटोमैटिकली भर देना (Auto-fill)
+        // 4. प्रोफाइल और डैशबोर्ड के इनपुट बॉक्स को ऑटो-फिल (Auto-fill) करना
         if (document.getElementById('inputProfileName')) document.getElementById('inputProfileName').value = name;
         if (document.getElementById('inputProfileEmail')) document.getElementById('inputProfileEmail').value = email;
         if (document.getElementById('inputProfileClass')) document.getElementById('inputProfileClass').value = studentClass;
-        if (document.getElementById('inputProfileBio')) document.getElementById('inputProfileBio').value = "";
         
-        // हेडर और मोडल में नाम अपडेट करना
+        // हेडर और मोडल में टेक्स्ट/नाम लाइव अपडेट करना
         if (document.getElementById('displayModalName')) document.getElementById('displayModalName').innerText = name;
+        if (document.getElementById('displayModalId')) document.getElementById('displayModalId').innerText = studentId;
         if (document.getElementById('user-display-name')) document.getElementById('user-display-name').innerText = name;
+        if (document.getElementById('user-display-id')) document.getElementById('user-display-id').innerText = 'ID: ' + studentId;
 
         alert("अकाउंट सफलतापूर्वक बन गया और प्रोफाइल अपडेट हो गई! 🎉");
         toggleAuthModal(); // पॉप-अप बंद करने के लिए
@@ -1752,6 +1763,7 @@ async function handleSignup(event) {
         alert("साइन-अप में एरर आया: " + error.message);
     }
 }
+
 
     
     
