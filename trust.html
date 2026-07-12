@@ -3,139 +3,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trust & Security - Power pH</title>
+    <title>Trust & Security | Power pH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
-        body { background: #f8fafc; color: #1e293b; padding: 20px 15px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; width: 100%; max-width: 480px; padding: 25px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
-        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ffcc00; padding-bottom: 10px; margin-bottom: 20px; }
-        .title { color: #071e54; font-size: 20px; font-weight: 800; }
-        .lang-btn { background: #071e54; color: #fff; border: none; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer; }
-        .list { display: flex; flex-direction: column; gap: 18px; margin-bottom: 25px; }
-        .item { display: flex; align-items: flex-start; gap: 14px; }
-        .icon { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; background: #fff; }
-        .t-main { color: #071e54; font-size: 15px; font-weight: 700; display: block; margin-bottom: 2px; }
-        .t-desc { color: #64748b; font-size: 12.5px; line-height: 1.4; display: block; }
-        .highlight-box { background: #f1f5f9; padding: 6px 10px; border-radius: 6px; font-family: monospace; font-size: 11.5px; color: #071e54; display: block; margin-top: 4px; border-left: 3px solid #ffcc00; }
-        .back-btn { display: inline-block; background: #ffcc00; color: #071e54; text-decoration: none; padding: 8px 24px; border-radius: 6px; font-size: 12px; font-weight: 700; text-transform: uppercase; box-shadow: 0 4px 10px rgba(255,204,0,0.2); }
-        .footer { text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 12px; margin-top: 20px; letter-spacing: 0.5px; }
+        :root {
+            --navy: #071e54;
+            --gold: #ffcc00;
+            --slate-900: #0f172a;
+            --slate-600: #475569;
+            --slate-100: #f1f5f9;
+            --border: #e2e8f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: #fafafa; color: var(--slate-900); min-height: 100vh; display: flex; flex-direction: column; }
+        
+        /* टॉप नेविगेशन / लैंग्वेज बार */
+        .top-bar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: max-content;
+            justify-content: flex-end;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .lang-btn {
+            background: var(--navy);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(7, 30, 84, 0.15);
+            transition: all 0.2s;
+        }
+        .lang-btn:hover { background: #0c2b73; transform: translateY(-1px); }
+
+        /* मुख्य कंटेनर */
+        .main-wrapper { max-width: 1100px; width: 100%; margin: 0 auto; padding: 40px 20px; flex: 1; }
+
+        /* प्रोफेशनल हीरो सेक्शन */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 20px 0;
+        }
+        .hero-badge {
+            background: rgba(255, 204, 0, 0.15);
+            color: #b28900;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .hero-title { font-size: 32px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+        .hero-subtitle { font-size: 16px; color: var(--slate-600); max-width: 600px; margin: 0 auto; }
+
+        /* मॉडर्न 2-कॉलम ग्रिड लेआउट */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        /* प्रोफेशनल कार्ड डिज़ाइन */
+        .trust-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .trust-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-top { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px; }
+        
+        /* क्लीन और प्रीमियम गोल आइकॉन */
+        .icon-box {
+            width: 50px; height: 50px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+            background: var(--slate-100);
+        }
+
+        .card-title { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+        .card-desc { font-size: 14px; color: var(--slate-600); line-height: 1.5; }
+
+        /* क्रेडेंशियल/डेटा बॉक्स */
+        .data-table {
+            background: var(--slate-100);
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-top: 15px;
+        }
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12.5px;
+            padding: 4px 0;
+            border-bottom: 1px dashed rgba(0,0,0,0.05);
+        }
+        .data-row:last-child { border-bottom: none; }
+        .data-label { color: var(--slate-600); font-weight: 500; }
+        .data-value { color: var(--navy); font-weight: 700; text-align: right; }
+
+        /* नीचे का बटन एरिया */
+        .action-area { text-align: center; margin-bottom: 40px; }
+        .back-btn {
+            background: var(--gold);
+            color: var(--navy);
+            text-decoration: none;
+            padding: 12px 36px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 14px rgba(255, 204, 0, 0.3);
+            transition: all 0.2s;
+            display: inline-block;
+        }
+        .back-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4); }
+
+        /* कॉर्पोरेट फुटर */
+        .site-footer {
+            background: #ffffff;
+            border-top: 1px solid var(--border);
+            padding: 24px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--slate-600);
+            margin-top: auto;
+        }
+
+        /* लैंग्वेज टॉगल क्लास */
         .lang-en { display: none; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <!-- हेडर -->
-    <div class="header">
-        <h3 class="title"><span class="lang-hi">भरोसा और सुरक्षा</span><span class="lang-en">Trust & Security</span></h3>
+    <!-- टॉप बार (लैंग्वेज स्विचर) -->
+    <div class="top-bar">
         <button class="lang-btn" onclick="toggle()">🌐 <span id="btnTxt">English</span></button>
     </div>
-    
-    <!-- पॉइंट्स की लिस्ट -->
-    <div class="list">
-        <!-- 1. Certified & Registered -->
-        <div class="item">
-            <div class="icon" style="border: 1px solid #ffcc00; box-shadow: 0 5px 12px rgba(255,204,0,0.2);">🛡️</div>
-            <div>
-                <b class="t-main"><span class="lang-hi">प्रमाणित संस्थान (Verified Identity)</span><span class="lang-en">Certified & Registered</span></b>
-                <span class="t-desc">
-                    <span class="lang-hi">Power pH (Power Prestigious Hub) एक प्रामाणिक डिजिटल शैक्षणिक संस्थान है।</span>
-                    <span class="lang-en">Power pH (Power Prestigious Hub) is an authentic digital educational institution.</span>
-                    <span class="highlight-box">
-                        📍 HQ: Madhubani, Bihar, India<br>
-                        📧 Support: support@powerph.in
-                    </span>
-                </span>
+
+    <div class="main-wrapper">
+        
+        <!-- हीरो हेडर -->
+        <div class="hero-section">
+            <div class="hero-badge">
+                <span class="lang-hi">🛡️ 100% सुरक्षित एवं सत्यापित</span>
+                <span class="lang-en">🛡️ 100% Secured & Verified</span>
             </div>
+            <h1 class="hero-title">
+                <span class="lang-hi">भरोसा और सुरक्षा केंद्र</span>
+                <span class="lang-en">Trust & Security Center</span>
+            </h1>
+            <p class="hero-subtitle">
+                <span class="lang-hi">Power pH (Power Prestigious Hub) पर आपका विश्वास हमारी प्राथमिकता है। हमारी पारदर्शिता और क्रेडेंशियल्स की लाइव रिपोर्ट नीचे देखें।</span>
+                <span class="lang-en">Your trust is our priority at Power pH. Review our verified identity, operational transparency, and live system credentials below.</span>
+            </p>
         </div>
 
-        <!-- 2. Secure Payment -->
-        <div class="item">
-            <div class="icon" style="border: 1px solid #4ade80; box-shadow: 0 5px 12px rgba(74,222,128,0.2);">🔒</div>
-            <div>
-                <b class="t-main"><span class="lang-hi">100% सुरक्षित भुगतान</span><span class="lang-en">100% Safe Payments</span></b>
-                <span class="t-desc">
-                    <span class="lang-hi">आपके भुगतान पूरी तरह सुरक्षित हैं। हम भारत के शीर्ष गेटवे और कड़े सुरक्षा मानकों का पालन करते हैं।</span>
-                    <span class="lang-en">Your payments are fully secure. We use India's top payment gateways and strict security standards.</span>
-                    <span class="highlight-box">
-                        💳 UPI, Cards, NetBanking<br>
-                        🔒 SSL Encrypted • Razorpay/Instamojo Secured
-                    </span>
-                </span>
+        <!-- 2-कॉलम ग्रिड लेआउट -->
+        <div class="grid-layout">
+            
+            <!-- 1. Verified Identity -->
+            <div class="trust-card">
+                <div>
+                    <div class="card-top">
+                        <div class="icon-box" style="background: rgba(255,204,0,0.1); color: #b28900;">🛡️</div>
+                        <div>
+                            <h3 class="card-title"><span class="lang-hi">प्रमाणित संस्थान</span><span class="lang-en">Verified Institution</span></h3>
+                            <p class="card-desc">
+                                <span class="lang-hi">Power pH एक प्रमाणित डिजिटल शैक्षणिक वेंचर है, जो कड़े मानकों के अंतर्गत संचालित होता है।</span>
+                                <span class="lang-en">Power pH is a fully verified digital educational venture operating under strict brand standards.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-table">
+                    <div class="data-row"><span class="data-label"><span class="lang-hi">मुख्यालय</span><span class="lang-en">Headquarters</span></span><span class="data-value">Madhubani, Bihar, IN</span></div>
+                    <div class="data-row"><span class="data-label"><span class="lang-hi">सपोर्ट ईमेल</span><span class="lang-en">Official Support</span></span><span class="data-value">support@powerph.in</span></div>
+                    <div class="data-row"><span class="data-label"><span class="lang-hi">स्थिति</span><span class="lang-en">Status</span></span><span class="data-value" style="color: #10b981;">● Active & Verified</span></div>
+                </div>
             </div>
+
+            <!-- 2. Safe Payments -->
+            <div class="trust-card">
+                <div>
+                    <div class="card-top">
+                        <div class="icon-box" style="background: rgba(74,222,128,0.1); color: #16a34a;">🔒</div>
+                        <div>
+                            <h3 class="card-title"><span class="lang-hi">100% सुरक्षित भुगतान</span><span class="lang-en">100% Secure Gateway</span></h3>
+                            <p class="card-desc">
+                                <span class="lang-hi">हम सुरक्षा के उच्चतम स्तरों का पालन करते हैं। आपका वित्तीय डेटा पूरी तरह एन्क्रिप्टेड रहता है।</span>
+                                <span class="lang-en">We maintain bank-grade security protocols. Your financial transactional data is completely secure.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-table">
+                    <div class="data-row"><span class="data-label"><span class="lang-hi">सुरक्षा प्रोटोकॉल</span><span class="lang-en">Encryption Standard</span></span><span class="data-value">SSL / TLS Secured</span></div>
+                    <div class="data-row"><span class="data-label"><span class="lang-hi">चैनल पार्टनर</span><span class="lang-en">Payment Partners</span></span><span class="data-value">Razorpay / Instamojo</span></div>
+                    <div class="data-row"><span class="data-label"><span class="lang-hi">माध्यम</span><span class="lang-en">Methods</span></span><span class="data-value">UPI, Cards, NetBanking</span></div>
+                </div>
+            </div>
+
+            <!-- 3. Instant Access -->
+            <div class="trust-card">
+                <div>
+                    <div class="card-top">
+                        <div class="icon-box" style="background: rgba(248,113,113,0.1); color: #dc2626;">⚡</div>
+                        <div>
+                            <h3 class="card-title"><span class="lang-hi">तुरंत ई-बुक डिलीवरी</span><span class="lang-en">Instant eBook Delivery</span></h3>
+                            <p class="card-desc">
+                                <span class="lang-hi">हमारा ऑटोमेटेड डिलीवरी सिस्टम भुगतान की पुष्टि होते ही बिना किसी मानवीय देरी के काम शुरू कर देता है।</span>
+                                <span class="lang-en">Our automated dispatch engine triggers immediately upon payment confirmation without manual dependency.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-table">
+                    <div class="data-row"><span class="data-label"><span class="lang-hi">मुख्य प्रोडक्ट</span><span class="lang-en">Core Product</span></span><span class="data-value">Exam Rocket (10th Class)</span></div>
+                    <div class="data-row"><span class="data-label"><span class="lang-hi">डिलीवरी टाइप</span><span class="lang-en">Delivery Type</span></span><span class="data-value">Instant PDF Download</span></div>
+                    <div class="data-row"><span class="data-label"><span class="lang-hi">बैकअप चैनल</span><span class="lang-en">Backup Channel</span></span><span class="data-value">Registered Email Copy</span></div>
+                </div>
+            </div>
+
+            <!-- 4. Trusted Students -->
+            <div class="trust-card">
+                <div>
+                    <div class="card-top">
+                        <div class="icon-box" style="background: rgba(56,189,248,0.1); color: #0284c7;">🎓</div>
+                        <div>
+                            <h3 class="card-title"><span class="lang-hi">10K+ छात्रों का नेटवर्क</span><span class="lang-en">10K+ Student Network</span></b>
+                            <p class="card-desc">
+                                <span class="lang-hi">पूरे भारत से हिंदी और अंग्रेजी दोनों माध्यमों के छात्र परीक्षाओं में उत्कृष्ट प्रदर्शन के लिए हम पर भरोसा करते हैं।</span>
+                                <span class="lang-en">Students across multiple states trust our curriculum structures for academic excellence.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-table">
+                    <div class="data-row"><span class="data-label"><span class="lang-hi">संतुष्टि दर</span><span class="lang-en">Satisfaction Rate</span></span><span class="data-value">4.8 / 5.0 Rating</span></div>
+                    <div class="data-row"><span class="data-label"><span class="lang-hi">लर्निंग मोड</span><span class="lang-en">Learning Mode</span></span><span class="data-value">Hindi & English Medium</span></div>
+                    <div class="data-row"><span class="data-label"><span class="lang-hi">उद्देश्य</span><span class="lang-en">Focus Area</span></span><span class="data-value">Board Exam Preparation</span></div>
+                </div>
+            </div>
+
         </div>
 
-        <!-- 3. Instant Access -->
-        <div class="item">
-            <div class="icon" style="border: 1px solid #f87171; box-shadow: 0 5px 12px rgba(248,113,113,0.2);">⚡</div>
-            <div>
-                <b class="t-main"><span class="lang-hi">तुरंत डिलीवरी (No Waiting)</span><span class="lang-en">Instant eBook Delivery</span></b>
-                <span class="t-desc">
-                    <span class="lang-hi">पेमेंट होते ही हमारी प्रीमियम "Exam Rocket" (10th Class) ई-बुक बिना किसी देरी के आपके पास पहुंचती है।</span>
-                    <span class="lang-en">Upon payment, our premium "Exam Rocket" (10th Class) eBook is delivered instantly without delay.</span>
-                    <span class="highlight-box">
-                        🚀 Format: Instant PDF Download<br>
-                        📩 Backup: Copy sent to your registered Email
-                    </span>
-                </span>
-            </div>
-        </div>
-
-        <!-- 4. Trusted Students -->
-        <div class="item">
-            <div class="icon" style="border: 1px solid #38bdf8; box-shadow: 0 5px 12px rgba(56,189,248,0.2);">🎓</div>
-            <div>
-                <b class="t-main"><span class="lang-hi">10K+ छात्रों का भरोसा</span><span class="lang-en">10K+ Happy Students</span></b>
-                <span class="t-desc">
-                    <span class="lang-hi">बिहार और पूरे भारत के हजारों हिंदी व अंग्रेजी माध्यम के छात्र अपनी बोर्ड परीक्षा की तैयारी के लिए हम पर भरोसा करते हैं।</span>
-                    <span class="lang-en">Thousands of Hindi & English medium students across India trust us for board exam preparation.</span>
-                    <span class="highlight-box">
-                        ⭐ 4.8/5 User Rating<br>
-                        📚 Trusted for Board Exams Preparation
-                    </span>
-                </span>
-            </div>
-        </div>
-
-        <!-- 5. No Hidden Charges -->
-        <div class="item">
-            <div class="icon" style="border: 1px solid #fb923c; box-shadow: 0 5px 12px rgba(251,146,60,0.2);">💎</div>
-            <div>
-                <b class="t-main"><span class="lang-hi">100% पारदर्शिता (No Hidden Fees)</span><span class="lang-en">Zero Hidden Fees</span></b>
-                <span class="t-desc">
-                    <span class="lang-hi">हमारा उद्देश्य हर छात्र तक सस्ती शिक्षा पहुँचाना है। जो कीमत तय है, उसके अलावा ₹1 भी अतिरिक्त नहीं लिया जाता।</span>
-                    <span class="lang-en">Our goal is affordable education. Not a single rupee is charged beyond the stated price.</span>
-                    <span class="highlight-box">
-                        ✔ One-Time Payment Only<br>
-                        ✔ Lifetime Access to the Purchased Edition
-                    </span>
-                </span>
-            </div>
+        <!-- बटन एरिया -->
+        <div class="action-area">
+            <a href="index.html" class="back-btn">
+                <span class="lang-hi">← मुख्य पेज पर लौटें</span>
+                <span class="lang-en">← Back to Home</span>
+            </a>
         </div>
     </div>
 
-    <!-- बटन और फुटर -->
-    <div style="text-align: center;">
-        <a href="index.html" class="back-btn"><span class="lang-hi">मुख्य पेज पर लौटें</span><span class="lang-en">Back to Home</span></a>
-    </div>
-    <div class="footer">Power Prestigious Hub • Secure Environment</div>
-</div>
+    <!-- कॉर्पोरेट फुटर -->
+    <footer class="site-footer">
+        © 2026 Power Prestigious Hub (Power pH). Verified Operational Environment. All Rights Reserved.
+    </footer>
 
-<!-- छोटा जावास्क्रिप्ट लॉजिक -->
-<script>
-    let lang = 'hi';
-    function toggle() {
-        const hi = document.querySelectorAll('.lang-hi'), en = document.querySelectorAll('.lang-en'), btn = document.getElementById('btnTxt');
-        if (lang === 'hi') {
-            hi.forEach(el => el.style.display = 'none'); en.forEach(el => el.style.display = 'inline-block');
-            btn.innerText = 'हिंदी'; lang = 'en';
-        } else {
-            hi.forEach(el => el.style.display = 'inline-block'); en.forEach(el => el.style.display = 'none');
-            btn.innerText = 'English'; lang = 'hi';
+    <!-- भाषा बदलने का स्क्रिप्ट -->
+    <script>
+        let lang = 'hi';
+        function toggle() {
+            const hi = document.querySelectorAll('.lang-hi'), en = document.querySelectorAll('.lang-en'), btn = document.getElementById('btnTxt');
+            if (lang === 'hi') {
+                hi.forEach(el => el.style.display = 'none'); en.forEach(el => el.style.display = 'inline-block');
+                btn.innerText = 'हिंदी'; lang = 'en';
+            } else {
+                hi.forEach(el => el.style.display = 'inline-block'); en.forEach(el => el.style.display = 'none');
+                btn.innerText = 'English'; lang = 'hi';
+            }
         }
-    }
-</script>
-
+    </script>
 </body>
 </html>
-
