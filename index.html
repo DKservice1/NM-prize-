@@ -76,16 +76,21 @@
                     <button onclick="window.location.href='teachers.html'" class="nav-btn w-full flex items-center gap-4 p-3 hover:bg-white/10 transition"><i class="fas fa-chalkboard-teacher w-5"></i> Become Our Partner</button>
                 </div>
 
-                <div id="sidebar-auth-container" class="mt-10">
-    <!-- फंक्शन का नाम toggleAuthModal() किया और स्पेलिंग ठीक की -->
-    <button onclick="toggleAuthModal()" class="w-full flex items-center gap-4 p-3 ...">
-        <i class="fas fa-user-circle w-5 text-lg"></i> Sign Up/Login
+                <!-- साइडबार ऑथेंटिकेशन कंटेनर -->
+<div id="sidebar-auth-container" class="mt-10 px-2">
+    <!-- साइन-अप / लॉगिन बटन (शुरू में दिखेगा) -->
+    <button id="signupBtn" onclick="toggleAuthModal()" class="w-full flex items-center gap-4 p-3 text-sm font-medium text-slate-300 hover:bg-white/10 rounded-xl transition-all">
+        <i class="fas fa-user-circle text-lg w-5"></i>
+        <span>Sign Up/Login</span>
     </button>
     
-    <button id="logoutBtn" onclick="doLogout()" class="w-full flex items-center ...">
-        <i class="fas fa-sign-out-alt w-5 dat-5"></i> Logout
+    <!-- लॉगआउट बटन (शुरू में छुपा रहेगा) -->
+    <button id="logoutBtn" onclick="doLogout()" class="w-full flex items-center gap-4 p-3 text-sm font-bold text-red-400 hover:bg-red-500/10 rounded-xl transition-all" style="display: none;">
+        <i class="fas fa-sign-out-alt w-5"></i>
+        <span>Logout</span>
     </button>
 </div>
+
 
     </nav>
              <div class="mt-6 bg-blue-800/50 p-4 rounded-2xl text-center">
@@ -1189,51 +1194,59 @@
         <button id="saveBtn" onclick="saveProfile()" class="hidden w-full bg-blue-600 text-white font-black text-xs py-3 rounded-xl uppercase">Save Changes</button>
     </div>
 </div>
-        <div id="toggleAuthModal()" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-    <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-gray-100 overflow-hidden relative animate-fade-in">
+
+        <!-- मुख्य ऑथेंटिकेशन मोडल -->
+<div id="openAuthModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl border border-slate-100 overflow-hidden relative animate-in fade-in zoom-in-95 duration-200">
         
-        <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
-            <i class="fas fa-times text-xl"></i>
+        <!-- बंद करने का बटन -->
+        <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 w-8 h-8 rounded-full hover:bg-slate-100 flex items-center justify-center transition-all">
+            <i class="fas fa-times text-lg"></i>
         </button>
 
-        <div class="flex border-b border-gray-100">
-            <button id="loginTabBtn" onclick="switchAuthTab('login')" class="w-1/2 py-4 text-center font-bold text-blue-600 border-b-2 border-blue-600 transition">लॉगिन</button>
-            <button id="signupTabBtn" onclick="switchAuthTab('signup')" class="w-1/2 py-4 text-center font-bold text-gray-500 hover:text-gray-700 transition">साइन-अप</button>
+        <!-- टैब्स (Tabs) लॉगिन और साइन-अप के बीच स्विच करने के लिए -->
+        <div class="flex border-b border-slate-100 bg-slate-50/50">
+            <button id="loginTabBtn" onclick="switchAuthTab('login')" class="w-1/2 py-4 text-center font-bold text-blue-600 border-b-2 border-blue-600 transition-all text-sm uppercase tracking-wider">लॉगिन</button>
+            <button id="signupTabBtn" onclick="switchAuthTab('signup')" class="w-1/2 py-4 text-center font-bold text-slate-400 hover:text-slate-600 transition-all text-sm uppercase tracking-wider">साइन-अप</button>
         </div>
 
+        <!-- फॉर्म्स का मुख्य हिस्सा -->
         <div class="p-6">
+            
+            <!-- 1. लॉगिन फॉर्म -->
             <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Email</label>
-                    <input type="email" id="loginEmail" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm" placeholder="example@powerph.in">
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Email Address</label>
+                    <input type="email" id="loginEmail" required class="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-blue-500 focus:bg-white outline-none transition-all text-sm" placeholder="yourname@powerph.in">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">password</label>
-                    <input type="password" id="loginPassword" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm" placeholder="••••••••">
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Password</label>
+                    <input type="password" id="loginPassword" required class="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-blue-500 focus:bg-white outline-none transition-all text-sm" placeholder="••••••••">
                 </div>
-                <button type="submit" class="w-full bg-blue-600 text-white font-bold p-3 rounded-xl hover:bg-blue-700 transition shadow-md shadow-blue-200 text-sm">प्रवेश करें</button>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-600/20 active:scale-[0.98] transition-all text-sm uppercase mt-2">प्रवेश करें</button>
             </form>
 
+            <!-- 2. साइन-अप फॉर्म -->
             <form id="signupForm" onsubmit="handleSignup(event)" class="space-y-4 hidden">
                 <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Name</label>
-                    <input type="text" id="signupName" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm" placeholder="Dinesh Kumar">
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Full Name</label>
+                    <input type="text" id="signupName" required class="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-green-500 focus:bg-white outline-none transition-all text-sm" placeholder="Enter Full Name">
                 </div>
                 <div>
-    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Class/College</label>
-    <input type="text" id="signupClass" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm" placeholder="e.g. 10th, 12th">
-</div>
-
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Email</label>
-                    <input type="email" id="signupEmail" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm" placeholder="example@powerph.in">
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Class / College</label>
+                    <input type="text" id="signupClass" required class="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-green-500 focus:bg-white outline-none transition-all text-sm" placeholder="e.g., Class 10, B.Sc">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">password</label>
-                    <input type="password" id="signupPassword" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm" placeholder="न्यूनतम 6 अंक">
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Email Address</label>
+                    <input type="email" id="signupEmail" required class="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-green-500 focus:bg-white outline-none transition-all text-sm" placeholder="name@example.com">
                 </div>
-                <button type="submit" class="w-full bg-green-600 text-white font-bold p-3 rounded-xl hover:bg-green-700 transition shadow-md shadow-green-200 text-sm">नया अकाउंट बनाएं</button>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Password</label>
+                    <input type="password" id="signupPassword" required class="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-green-500 focus:bg-white outline-none transition-all text-sm" placeholder="Minimum 6 characters">
+                </div>
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-green-600/20 active:scale-[0.98] transition-all text-sm uppercase mt-2">अकाउंट बनाएं</button>
             </form>
+            
         </div>
     </div>
 </div>
@@ -1637,13 +1650,16 @@ function shareOnWhatsApp() {
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 }
-    // पॉप-अप खोलने और बंद करने का फंक्शन
+
+// पॉप-अप मोडल खोलने और बंद करने का फंक्शन
 function toggleAuthModal() {
-    const modal = document.getElementById("toggleAuthModal()");
-    if (modal) modal.classList.toggle('hidden');
+    const modal = document.getElementById('openAuthModal');
+    if (modal) {
+        modal.classList.toggle('hidden');
+    }
 }
 
-     // लॉगिन और साइन-अप फॉर्म के बीच स्विच करने का फंक्शन
+// लॉगिन और साइन-अप टैब स्विच करने का फंक्शन
 function switchAuthTab(tab) {
     const loginForm = document.getElementById('loginForm');
     const signupForm = document.getElementById('signupForm');
@@ -1655,65 +1671,63 @@ function switchAuthTab(tab) {
     if (tab === 'login') {
         loginForm.classList.remove('hidden');
         signupForm.classList.add('hidden');
-        if (loginTabBtn) loginTabBtn.className = "w-1/2 py-4 text-center font-bold text-blue-600 border-b-2 border-blue-600 transition";
-        if (signupTabBtn) signupTabBtn.className = "w-1/2 py-4 text-center font-bold text-gray-500 hover:text-gray-700 transition";
+        if (loginTabBtn) loginTabBtn.className = "w-1/2 py-4 text-center font-bold text-blue-600 border-b-2 border-blue-600 transition-all text-sm uppercase tracking-wider";
+        if (signupTabBtn) signupTabBtn.className = "w-1/2 py-4 text-center font-bold text-slate-400 hover:text-slate-600 transition-all text-sm uppercase tracking-wider";
     } else {
         loginForm.classList.add('hidden');
         signupForm.classList.remove('hidden');
-        if (signupTabBtn) signupTabBtn.className = "w-1/2 py-4 text-center font-bold text-green-600 border-b-2 border-green-600 transition";
-        if (loginTabBtn) loginTabBtn.className = "w-1/2 py-4 text-center font-bold text-gray-500 hover:text-gray-700 transition";
+        if (signupTabBtn) signupTabBtn.className = "w-1/2 py-4 text-center font-bold text-green-600 border-b-2 border-green-600 transition-all text-sm uppercase tracking-wider";
+        if (loginTabBtn) loginTabBtn.className = "w-1/2 py-4 text-center font-bold text-slate-400 hover:text-slate-600 transition-all text-sm uppercase tracking-wider";
     }
 }
 
-// यूजर के लॉगिन/लॉगआउट स्टेटस को ट्रैक करना
+// लॉगिन/लॉगआउट होने पर साइडबार बटनों को सिंक करना
 firebase.auth().onAuthStateChanged((user) => {
-    // साइडबार में मौजूद लॉगिन बटन का कंटेनर या बटन ढूंढना
-    const authContainer = document.getElementById('sidebar-auth-container');
-    const signupBtn = document.querySelector('[onclick="toggleAuthModal()"]');
+    const signupBtn = document.getElementById('signupBtn');
     const logoutBtn = document.getElementById('logoutBtn');
 
     if (user) {
-        // अगर यूजर लॉग-इन है
-        if (signupBtn) signupBtn.classList.add('hidden'); // लॉगिन बटन छुपाएं
-        if (logoutBtn) logoutBtn.classList.remove('hidden'); // लॉगआउट बटन दिखाएं
+        if (signupBtn) signupBtn.classList.add('hidden');
+        if (logoutBtn) logoutBtn.classList.remove('hidden');
+        updateUIWithUserData(); // स्क्रीन पर लाइव नाम और आईडी दिखाएं
     } else {
-        // अगर यूजर लॉग-आउट है
-        if (signupBtn) signupBtn.classList.remove('hidden'); // लॉगिन बटन दिखाएं
-        if (logoutBtn) logoutBtn.classList.add('hidden'); // लॉगआउट बटन छुपाएं
+        if (signupBtn) signupBtn.classList.remove('hidden');
+        if (logoutBtn) logoutBtn.classList.add('hidden');
     }
 });
 
-// लॉगआउट करने का पक्का फंक्शन
+// लॉगआउट करने का फंक्शन
 function doLogout() {
     firebase.auth().signOut().then(() => {
         alert("आप सफलतापूर्वक लॉगआउट हो गए हैं! 👋");
-        // लोकल स्टोरेज साफ करना
-        localStorage.removeItem('student_name');
-        localStorage.removeItem('student_email');
-        localStorage.removeItem('student_class');
-        localStorage.removeItem('student_id');
-        localStorage.removeItem('student_photo');
-        
-        // पेज को रीलोड करें ताकि UI फ्रेश हो जाए
+        localStorage.clear(); // सारा डमी और पुराना डेटा साफ़ करें
         window.location.reload();
     }).catch((error) => {
-        alert("लॉगआउट में दिक्कत आई: " + error.message);
+        alert("लॉगआउट में समस्या आई: " + error.message);
     });
 }
 
-// साइन-अप हैंडल करने का सही फंक्शन
+// स्क्रीन पर लोकल स्टोरेज से लाइव आईडी और क्लास का मिलान करना
+function updateUIWithUserData() {
+    const name = localStorage.getItem('student_name');
+    const studentId = localStorage.getItem('student_id');
+    const studentClass = localStorage.getItem('student_class');
+
+    if (name && document.getElementById('user-display-name')) document.getElementById('user-display-name').innerText = name;
+    if (studentId && document.getElementById('user-display-id')) document.getElementById('user-display-id').innerText = 'ID: ' + studentId;
+    if (studentClass && document.getElementById('inputProfileClass')) document.getElementById('inputProfileClass').value = studentClass;
+    if (studentId && document.getElementById('displayModalId')) document.getElementById('displayModalId').innerText = studentId;
+    if (name && document.getElementById('displayModalName')) document.getElementById('displayModalName').innerText = name;
+}
+
+// साइन-अप हैंडलर
 async function handleSignup(event) {
-    event.preventDefault(); // फॉर्म को रीलोड होने से रोकने के लिए
+    event.preventDefault();
 
     const name = document.getElementById('signupName').value.trim();
     const email = document.getElementById('signupEmail').value.trim();
-    
-    // सुरक्षा जांच: अगर क्लास फील्ड HTML में न हो तो एरर न आए
-    const classEl = document.getElementById('signupClass');
-    const studentClass = classEl ? classEl.value.trim() : "N/A";
-    
-    // फिक्स: .value() को हटाकर सिर्फ .value किया गया है
-    const password = document.getElementById('signupPassword').value;
+    const studentClass = document.getElementById('signupClass').value.trim();
+    const password = document.getElementById('signupPassword').value; // फिक्स: नो पैरेंथेसिस ()
 
     if (password.length < 6) {
         alert("पासवर्ड कम से कम 6 अंकों का होना चाहिए!");
@@ -1721,53 +1735,37 @@ async function handleSignup(event) {
     }
 
     try {
-        // 1. Firebase Auth में नया यूजर बनाना
         const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
         const user = userCredential.user;
 
-        // फिक्स: सटीक 10 अंकों की रैंडम आईडी जेनरेट करना
-        let studentId = localStorage.getItem('student_id');
-        if (!studentId) {
-            studentId = Math.floor(1000000000 + Math.random() * 9000000000).toString();
-        }
+        // सटीक 10 अंकों की स्टूडेंट आईडी
+        let studentId = Math.floor(1000000000 + Math.random() * 9000000000).toString();
 
-        // 2. तुरंत लोकल स्टोरेज में डेटा सेव करना
+        // लोकल स्टोरेज में तुरंत सुरक्षित करें
         localStorage.setItem('student_name', name);
         localStorage.setItem('student_email', email);
         localStorage.setItem('student_class', studentClass);
         localStorage.setItem('student_id', studentId);
-        localStorage.setItem('student_bio', ""); 
 
-        // 3. Firestore (डेटाबेेस) में डेटा सुरक्षित करना
+        // Firestore में डेटा भेजना
         await db.collection("users").doc(user.uid).set({
             name: name,
             email: email,
             class: studentClass,
             studentId: studentId,
-            bio: "", 
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
 
-        // 4. प्रोफाइल और डैशबोर्ड के इनपुट बॉक्स को ऑटो-फिल (Auto-fill) करना
-        if (document.getElementById('inputProfileName')) document.getElementById('inputProfileName').value = name;
-        if (document.getElementById('inputProfileEmail')) document.getElementById('inputProfileEmail').value = email;
-        if (document.getElementById('inputProfileClass')) document.getElementById('inputProfileClass').value = studentClass;
-        
-        // हेडर और मोडल में टेक्स्ट/नाम लाइव अपडेट करना
-        if (document.getElementById('displayModalName')) document.getElementById('displayModalName').innerText = name;
-        if (document.getElementById('displayModalId')) document.getElementById('displayModalId').innerText = studentId;
-        if (document.getElementById('user-display-name')) document.getElementById('user-display-name').innerText = name;
-        if (document.getElementById('user-display-id')) document.getElementById('user-display-id').innerText = 'ID: ' + studentId;
-
-        alert("अकाउंट सफलतापूर्वक बन गया और प्रोफाइल अपडेट हो गई! 🎉");
-        toggleAuthModal(); // पॉप-अप बंद करने के लिए
+        updateUIWithUserData(); // यूआई का मिलान तुरंत करें
+        alert("अकाउंट सफलतापूर्वक बन गया! 🎉");
+        toggleAuthModal();
 
     } catch (error) {
-        alert("साइन-अप में एरर आया: " + error.message);
+        alert("साइन-अप फेल हुआ: " + error.message);
     }
 }
 
-
+    
     
     
 </script>
