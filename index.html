@@ -1654,7 +1654,7 @@ function shareOnWhatsApp() {
     window.open(whatsappUrl, '_blank');
 }
 
-/*function toggleAuthModal() {
+function toggleAuthModal() {
     const modal = document.getElementById('openAuthModal');
     if (modal) {
         if (modal.style.display === 'flex') {
@@ -1663,29 +1663,9 @@ function shareOnWhatsApp() {
             modal.style.display = 'flex';
         }
     }
-}*/
-
-    function toggleAuthModal() {
-    const modal = document.getElementById('openAuthModal');
-    
-    // अगर जावास्क्रिप्ट को डिब्बा नहीं मिला
-    if (!modal) {
-        alert("जावास्क्रिप्ट को 'openAuthModal' नाम की ID वाला डिब्बा नहीं मिला। कृपया अपने HTML में div की ID चेक करें!");
-        return;
-    }
-
-    // अगर डिब्बा मिल गया, तो उसे छुपाओ या दिखाओ
-    if (modal.style.display === 'flex') {
-        modal.style.display = 'none';
-        console.log("मोडल को छुपा दिया गया");
-    } else {
-        modal.style.display = 'flex';
-        console.log("मोडल को स्क्रीन पर दिखा दिया गया");
-    }
 }
 
-
-
+    
 // लॉगिन और साइन-अप टैब स्विच करने का फंक्शन
 function switchAuthTab(tab) {
     const loginForm = document.getElementById('loginForm');
