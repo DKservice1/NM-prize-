@@ -1195,9 +1195,12 @@
     </div>
 </div>
 
+
+        
+        <div id="openAuthModal" class="fixed inset-0 z-50 items-center justify-center p-4 bg-black/60 backdrop-blur-sm" style="display: none;">
+
         <!-- मुख्य ऑथेंटिकेशन मोडल -->
-<div id="openAuthModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-    <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl border border-slate-100 overflow-hidden relative animate-in fade-in zoom-in-95 duration-200">
+<div class="bg-white w-full max-w-md rounded-3xl shadow-2xl border border-slate-100 overflow-hidden relative animate-in fade-in zoom-in-95 duration-200">
         
         <!-- बंद करने का बटन -->
         <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 w-8 h-8 rounded-full hover:bg-slate-100 flex items-center justify-center transition-all">
@@ -1651,13 +1654,17 @@ function shareOnWhatsApp() {
     window.open(whatsappUrl, '_blank');
 }
 
-// पॉप-अप मोडल खोलने और बंद करने का फंक्शन
 function toggleAuthModal() {
     const modal = document.getElementById('openAuthModal');
     if (modal) {
-        modal.classList.toggle('hidden');
+        if (modal.style.display === 'flex') {
+            modal.style.display = 'none';
+        } else {
+            modal.style.display = 'flex';
+        }
     }
 }
+
 
 // लॉगिन और साइन-अप टैब स्विच करने का फंक्शन
 function switchAuthTab(tab) {
