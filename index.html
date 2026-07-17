@@ -395,58 +395,66 @@
         </div>
     </div>
 </section>
-
-                    <div class="my-10 px-4">
+                    
+<div class="my-10 px-4">
     <div class="text-center mb-6">
         <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tighter mb-2">FREE Ebook from SIGN UP</h2>
-         <p class="text-xs text-gray-500 font-medium">This is sample ebook for your Exam</p>
+        <p class="text-xs text-gray-500 font-medium">This is sample ebook for your Exam</p>
     </div>
 
-    <div class="flex gap-4 overflow-x-auto pb-4 snap-x hide-scrollbar" style="scrollbar-width: none;">
+    <!-- 1. यहाँ मैंने कंटेनर को मोबाइल पर ग्रिड (1/2 कॉलम) और लैपटॉप (md) पर 4 कॉलम में फैला दिया है -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-7xl mx-auto mt-8">
         
-        <div class="min-w-[140px] bg-white p-3 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center flex-shrink-0 snap-start">
-
-<div class="w-full h-32 rounded-xl mb-2 relative overflow-hidden">
-    <img src="https://i.ibb.co/qFcHYrs9/1782486851907.png" class="w-full h-full object-cover" alt="Master Guide">
-</div>
-
-            <p class="text-[8px] font-bold text-blue-600 uppercase">Primary level</p>
-            <h4 class="text-[10px] font-black text-slate-800"> for 6th to 9th</h4>
+        <!-- पहला ई-बुक कार्ड (यहाँ से min-w-[140px] हटाकर w-full कर दिया है) -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-between w-full transition-all hover:scale-105">
+            <!-- इमेज की हाइट को aspect-[3/4] (बुक शेप) में बदल दिया है -->
+            <div class="w-full aspect-[3/4] rounded-xl mb-3 relative overflow-hidden shadow-sm">
+                <img src="https://i.ibb.co/qFcHYrs9/1782486851907.png" class="w-full h-full object-cover" alt="Master Guide">
+            </div>
+            <div class="text-center w-full">
+                <p class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">Primary level</p>
+                <h4 class="text-xs font-black text-slate-800 mt-1">for 6th to 9th</h4>
+            </div>
         </div>
 
-        <div class="min-w-[140px] bg-white p-3 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center flex-shrink-0 snap-start">
-            <div class="min-w-[140px] w-[140px] aspect-square rounded-xl mb-2 relative overflow-hidden shadow-sm">
-    <img src="https://i.ibb.co/RGBxjxDX/1782545822957.png" class="w-full h-full object-cover" alt="Board Booster">
-</div>
-
-            <p class="text-[8px] font-bold text-blue-600 uppercase">Board Level</p>
-            <h4 class="text-[10px] font-black text-slate-800">for 10th to 12th</h4>
+        <!-- दूसरा ई-बुक कार्ड -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-between w-full transition-all hover:scale-105">
+            <div class="w-full aspect-[3/4] rounded-xl mb-3 relative overflow-hidden shadow-sm">
+                <img src="https://i.ibb.co/RGBxjxDX/1782545822957.png" class="w-full h-full object-cover" alt="Board Booster">
+            </div>
+            <div class="text-center w-full">
+                <p class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">Board Level</p>
+                <h4 class="text-xs font-black text-slate-800 mt-1">for 10th to 12th</h4>
+            </div>
         </div>
 
-        <div class="min-w-[140px] bg-white p-3 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center flex-shrink-0 snap-start">
-
-            <div class="w-full h-32 rounded-xl mb-2 relative overflow-hidden">
-    <img src="https://i.ibb.co/fzNnhgyg/1782488202773.png" class="w-full h-full object-cover" alt="Dr. Grade">
-</div>
-
-            <p class="text-[8px] font-bold text-blue-600 uppercase">College Degree</p>
-            <h4 class="text-[10px] font-black text-slate-800">for Graduation to PG</h4>
+        <!-- तीसरा ई-बुक कार्ड -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-between w-full transition-all hover:scale-105">
+            <div class="w-full aspect-[3/4] rounded-xl mb-3 relative overflow-hidden shadow-sm">
+                <img src="https://i.ibb.co/fzNnhgyg/1782488202773.png" class="w-full h-full object-cover" alt="Dr. Grade">
+            </div>
+            <div class="text-center w-full">
+                <p class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">College Degree</p>
+                <h4 class="text-xs font-black text-slate-800 mt-1">for Graduation to PG</h4>
+            </div>
         </div>
-         <div class="min-w-[140px] bg-white p-3 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center flex-shrink-0 snap-start">
-            <!-- `w-full` की जगह `w-[140px]` का इस्तेमाल करें ताकि कार्ड अपनी सही जगह पर रहे -->
-<div class="min-w-[140px] w-[140px] aspect-square rounded-xl mb-2 relative overflow-hidden shadow-sm">
-    <img src="https://i.ibb.co/SDjQgHCp/1782543166021.png" class="w-full h-full object-cover" alt="The Officer">
-</div>
 
-            <p class="text-[8px] font-bold text-blue-600 uppercase">Competitive Exam Booster</p>
-            <h4 class="text-[10px] font-black text-slate-800">for SSC,RAILWAY, BANKING any Exam</h4>
+        <!-- चौथा ई-बुक कार्ड -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-between w-full transition-all hover:scale-105">
+            <div class="w-full aspect-[3/4] rounded-xl mb-3 relative overflow-hidden shadow-sm">
+                <img src="https://i.ibb.co/SDjQgHCp/1782543166021.png" class="w-full h-full object-cover" alt="The Officer">
+            </div>
+            <div class="text-center w-full">
+                <p class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">Competitive Exam Booster</p>
+                <h4 class="text-xs font-black text-slate-800 mt-1">for SSC, RAILWAY, BANKING any Exam</h4>
+            </div>
         </div>
 
     </div>
-                        
 </div>
+
                     
-<div class="flex flex-col items-center gap-0 my-4">
+                    <div class="flex flex-col items-center gap-0 my-4">
     <button onclick="alert('Thank you for subscribing!')" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm uppercase tracking-wider">
         Sign-up and Download 
     </button>
