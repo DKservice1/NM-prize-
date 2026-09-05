@@ -1,1 +1,741 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiStore - Trending Digital Products</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
 
+    <!-- Top Announcement Bar -->
+    <div class="bg-indigo-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium">
+        🔥 Special Offer: Get 50% OFF on all trending digital bundles today! Instant Download.
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-bolt text-indigo-600 text-2xl"></i>
+                <span class="text-xl font-bold tracking-tight text-slate-900">Digi<span class="text-indigo-600">Store</span></span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                <a href="#home" class="hover:text-indigo-600 transition">Home</a>
+                <a href="#products" class="hover:text-indigo-600 transition">Trending Products</a>
+                <a href="#features" class="hover:text-indigo-600 transition">Why Us</a>
+                <a href="#contact" class="hover:text-indigo-600 transition">Support</a>
+            </div>
+            <div class="flex items-center space-x-4">
+               <a href="product.html?id=chatgpt-prompts" class="block w-full bg-indigo-600 text-white text-center py-2.5 rounded-xl font-semibold hover:bg-indigo-700 transition">
+    <i class="fa-solid fa-bag-shopping mr-1"></i> Buy Now
+</a>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Hero Carousel (5 Slides) -->
+<section id="hero" class="relative w-full h-[500px] overflow-hidden bg-slate-900">
+    <div id="carousel" class="w-full h-full relative">
+        
+        <!-- स्लाइड 1 (Notion) -->
+        <div class="slide absolute w-full h-full transition-opacity duration-1000 opacity-100">
+            <!-- Desktop Image (Laptop/Tablet पर दिखेगी) -->
+        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1400&auto=format&fit=crop&q=80" class="hidden md:block w-full h-full object-cover">
+        
+        <!-- Mobile Image (सिर्फ मोबाइल फोन पर दिखेगी) -->
+        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&auto=format&fit=crop&q=80" class="md:hidden w-full h-full object-cover">
+        
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white px-4 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Notion Business Systems</h1>
+                <p class="text-lg md:text-xl">Example: Use our templates to track your daily client tasks.</p>
+            </div>
+        </div>
+
+        <!-- स्लाइड 2 (AI Prompts) -->
+        <div class="slide absolute w-full h-full transition-opacity duration-1000 opacity-0">
+            <img src="desktop-2.jpg" class="hidden md:block w-full h-full object-cover brightness-[0.4]">
+            <img src="mobile-2.jpg" class="md:hidden w-full h-full object-cover brightness-[0.4]">
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white px-4 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">AI Prompt Library</h1>
+                <p class="text-lg md:text-xl">Example: Generate professional ad copy in seconds.</p>
+            </div>
+        </div>
+
+        <!-- स्लाइड 3 (Design Kits) -->
+        <div class="slide absolute w-full h-full transition-opacity duration-1000 opacity-0">
+            <img src="desktop-3.jpg" class="hidden md:block w-full h-full object-cover brightness-[0.4]">
+            <img src="mobile-3.jpg" class="md:hidden w-full h-full object-cover brightness-[0.4]">
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white px-4 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">UI/UX Design Kits</h1>
+                <p class="text-lg md:text-xl">Example: Pre-made components for your next SaaS project.</p>
+            </div>
+        </div>
+
+        <!-- स्लाइड 4 (Social Media) -->
+        <div class="slide absolute w-full h-full transition-opacity duration-1000 opacity-0">
+            <img src="desktop-4.jpg" class="hidden md:block w-full h-full object-cover brightness-[0.4]">
+            <img src="mobile-4.jpg" class="md:hidden w-full h-full object-cover brightness-[0.4]">
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white px-4 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Social Media Growth Kits</h1>
+                <p class="text-lg md:text-xl">Example: High-converting reels templates for Instagram.</p>
+            </div>
+        </div>
+
+        <!-- स्लाइड 5 (E-books/Guides) -->
+        <div class="slide absolute w-full h-full transition-opacity duration-1000 opacity-0">
+            <img src="desktop-5.jpg" class="hidden md:block w-full h-full object-cover brightness-[0.4]">
+            <img src="mobile-5.jpg" class="md:hidden w-full h-full object-cover brightness-[0.4]">
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white px-4 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Expert Digital Guides</h1>
+                <p class="text-lg md:text-xl">Example: Master digital marketing with our 30-day plan.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Auto-Slide Script -->
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    setInterval(() => {
+        slides[currentSlide].style.opacity = 0;
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].style.opacity = 1;
+    }, 4000); // 4 सेकंड में स्लाइड बदलेगी
+</script>
+
+
+    <!-- Hero Section -->
+    <section id="home" class="py-16 md:py-24 bg-gradient-to-b from-indigo-50/50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="inline-block bg-indigo-100 text-indigo-700 text-xs sm:text-sm font-semibold px-3 py-1 rounded-full mb-4">
+                🚀 Best Selling Digital Assets of 2026
+            </span>
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight max-w-4xl mx-auto leading-tight">
+               Dinesh Supercharge Your Workflow With <span class="text-indigo-600">Pro Digital Products</span>
+            </h1>
+            <p class="mt-6 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
+                Discover high-converting e-books, UI design kits, AI prompt bundles, and social media templates. Instant download, lifetime access.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#products" class="bg-indigo-600 text-white font-medium px-8 py-3.5 rounded-xl shadow-lg shadow-indigo-600/30 hover:bg-indigo-700 transition">
+                    Explore Products
+                </a>
+                <a href="#features" class="bg-white text-slate-700 font-medium px-8 py-3.5 rounded-xl border border-slate-200 hover:bg-slate-50 transition">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Products Section -->
+    <section id="products" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Trending Digital Products 🔥</h2>
+                <p class="text-slate-600 mt-1">Most downloaded products by creators and entrepreneurs this week.</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex gap-2">
+                <span class="text-xs bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-medium cursor-pointer">All</span>
+                <span class="text-xs bg-white text-slate-600 border border-slate-200 px-3 py-1.5 rounded-lg font-medium hover:bg-slate-50 cursor-pointer">Bundles</span>
+                <span class="text-xs bg-white text-slate-600 border border-slate-200 px-3 py-1.5 rounded-lg font-medium hover:bg-slate-50 cursor-pointer">E-Books</span>
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <!-- Product 1 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl transition flex flex-col justify-between">
+                <div>
+                    <div class="relative bg-indigo-100 h-48 flex items-center justify-center overflow-hidden">
+                        <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-md">Bestseller</span>
+                        <i class="fa-solid fa-robot text-6xl text-indigo-600"></i>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+                            <span>AI Prompts</span>
+                            <div class="flex items-center text-amber-500 font-semibold">
+                                <i class="fa-solid fa-star mr-1"></i> 4.9 (1.2k)
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 line-clamp-1">Ultimate ChatGPT & AI Bundle</h3>
+                        <p class="text-xs text-slate-500 mt-1 line-clamp-2">5000+ curated prompts for marketing, coding, and business automation.</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex items-center justify-between mt-4">
+                    <div>
+                        <span class="text-xs text-slate-400 line-through">₹1,999</span>
+                        <div class="text-lg font-bold text-indigo-600">₹499</div>
+                    </div>
+                    <a href="product.html?id=ai-video-kit" class="block w-full bg-indigo-600 text-white text-center py-2.5 rounded-xl font-semibold hover:bg-indigo-700 transition">
+    <i class="fa-solid fa-bag-shopping mr-1"></i> Buy Now
+</a>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl transition flex flex-col justify-between">
+                <div>
+                    <div class="relative bg-purple-100 h-48 flex items-center justify-center overflow-hidden">
+                        <span class="absolute top-3 left-3 bg-amber-500 text-white text-xs font-bold px-2.5 py-1 rounded-md">Trending</span>
+                        <i class="fa-solid fa-palette text-6xl text-purple-600"></i>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+                            <span>Design UI/UX</span>
+                            <div class="flex items-center text-amber-500 font-semibold">
+                                <i class="fa-solid fa-star mr-1"></i> 4.8 (850)
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 line-clamp-1">Figma Design System Kit</h3>
+                        <p class="text-xs text-slate-500 mt-1 line-clamp-2">Modern components, dark/light modes, and mobile templates.</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex items-center justify-between mt-4">
+                    <div>
+                        <span class="text-xs text-slate-400 line-through">₹2,499</span>
+                        <div class="text-lg font-bold text-indigo-600">₹799</div>
+                    </div>
+                    <button onclick="addToCart('Figma Design System Kit', 799)" class="bg-indigo-600 text-white text-sm font-medium px-4 py-2.5 rounded-xl hover:bg-indigo-700 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Buy Now</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl transition flex flex-col justify-between">
+                <div>
+                    <div class="relative bg-emerald-100 h-48 flex items-center justify-center overflow-hidden">
+                        <span class="absolute top-3 left-3 bg-emerald-600 text-white text-xs font-bold px-2.5 py-1 rounded-md">New</span>
+                        <i class="fa-solid fa-chart-line text-6xl text-emerald-600"></i>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+                            <span>Social Media</span>
+                            <div class="flex items-center text-amber-500 font-semibold">
+                                <i class="fa-solid fa-star mr-1"></i> 5.0 (420)
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 line-clamp-1">Instagram Growth Toolkit</h3>
+                        <p class="text-xs text-slate-500 mt-1 line-clamp-2">300+ viral reels templates, hook lists, and carousel ideas.</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex items-center justify-between mt-4">
+                    <div>
+                        <span class="text-xs text-slate-400 line-through">₹1,299</span>
+                        <div class="text-lg font-bold text-indigo-600">₹399</div>
+                    </div>
+                    <button onclick="addToCart('Instagram Growth Toolkit', 399)" class="bg-indigo-600 text-white text-sm font-medium px-4 py-2.5 rounded-xl hover:bg-indigo-700 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Buy Now</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl transition flex flex-col justify-between">
+                <div>
+                    <div class="relative bg-blue-100 h-48 flex items-center justify-center overflow-hidden">
+                        <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-md">Hot Deal</span>
+                        <i class="fa-solid fa-code text-6xl text-blue-600"></i>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+                            <span>Development</span>
+                            <div class="flex items-center text-amber-500 font-semibold">
+                                <i class="fa-solid fa-star mr-1"></i> 4.7 (930)
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 line-clamp-1">Full-Stack SaaS Boilerplate</h3>
+                        <p class="text-xs text-slate-500 mt-1 line-clamp-2">Next.js & Tailwind boilerplate with built-in payments and Auth.</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex items-center justify-between mt-4">
+                    <div>
+                        <span class="text-xs text-slate-400 line-through">₹4,999</span>
+                        <div class="text-lg font-bold text-indigo-600">₹1,499</div>
+                    </div>
+                    <button onclick="addToCart('Full-Stack SaaS Boilerplate', 1499)" class="bg-indigo-600 text-white text-sm font-medium px-4 py-2.5 rounded-xl hover:bg-indigo-700 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Buy Now</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- Trending Marketing & Social Media Section Start -->
+<!-- AI & Automation Resources Section Start -->
+<section class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Heading -->
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-slate-900">AI & Automation Masterclasses</h2>
+            <p class="text-slate-600 mt-2">Supercharge your productivity with cutting-edge AI prompt bundles and guides.</p>
+        </div>
+
+        <!-- 4 Grid Layout -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Item 1: ChatGPT Prompts -->
+            <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="h-40 mb-4 overflow-hidden rounded-xl bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780efad99a?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                    </div>
+                    <span class="text-xs bg-indigo-100 text-indigo-700 font-medium px-2 py-0.5 rounded">AI Guide</span>
+                    <h3 class="font-bold text-slate-800 mt-2 text-lg">ChatGPT Mega Prompts</h3>
+                    <p class="text-xs text-slate-500 mt-1">2000+ ready-to-use prompts for business & marketing.</p>
+                </div>
+                <div class="mt-6 flex justify-between items-center">
+                    <span class="font-bold text-indigo-600 text-lg">₹349</span>
+                    <a href="#" class="bg-indigo-600 text-white text-xs px-3.5 py-2 rounded-lg hover:bg-indigo-700">Get Instant</a>
+                </div>
+            </div>
+
+            <!-- Item 2: AI Video Tools -->
+            <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="h-40 mb-4 overflow-hidden rounded-xl bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                    </div>
+                    <span class="text-xs bg-purple-100 text-purple-700 font-medium px-2 py-0.5 rounded">Video</span>
+                    <h3 class="font-bold text-slate-800 mt-2 text-lg">AI Video Creation Kit</h3>
+                    <p class="text-xs text-slate-500 mt-1">Make viral faceless reels using AI tools.</p>
+                </div>
+                <div class="mt-6 flex justify-between items-center">
+                    <span class="font-bold text-indigo-600 text-lg">₹499</span>
+                    <a href="#" class="bg-indigo-600 text-white text-xs px-3.5 py-2 rounded-lg hover:bg-indigo-700">Get Instant</a>
+                </div>
+            </div>
+
+            <!-- Item 3: No-Code Automation -->
+            <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="h-40 mb-4 overflow-hidden rounded-xl bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                    </div>
+                    <span class="text-xs bg-blue-100 text-blue-700 font-medium px-2 py-0.5 rounded">Automation</span>
+                    <h3 class="font-bold text-slate-800 mt-2 text-lg">Zapier Workflow Vault</h3>
+                    <p class="text-xs text-slate-500 mt-1">Automate your business tasks without coding.</p>
+                </div>
+                <div class="mt-6 flex justify-between items-center">
+                    <span class="font-bold text-indigo-600 text-lg">₹699</span>
+                    <a href="#" class="bg-indigo-600 text-white text-xs px-3.5 py-2 rounded-lg hover:bg-indigo-700">Get Instant</a>
+                </div>
+            </div>
+
+            <!-- Item 4: AI Business E-Book -->
+            <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="h-40 mb-4 overflow-hidden rounded-xl bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                    </div>
+                    <span class="text-xs bg-emerald-100 text-emerald-700 font-medium px-2 py-0.5 rounded">E-Book</span>
+                    <h3 class="font-bold text-slate-800 mt-2 text-lg">AI Startup Blueprint</h3>
+                    <p class="text-xs text-slate-500 mt-1">Build a solo digital agency powered by AI.</p>
+                </div>
+                <div class="mt-6 flex justify-between items-center">
+                    <span class="font-bold text-indigo-600 text-lg">₹399</span>
+                    <a href="#" class="bg-indigo-600 text-white text-xs px-3.5 py-2 rounded-lg hover:bg-indigo-700">Get Instant</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- AI & Automation Resources Section End -->
+
+    <!-- Freelance Success & Passive Income Section Start -->
+<section class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Heading -->
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-slate-900">Start Your Digital Journey</h2>
+            <p class="text-slate-600 mt-2">Tools to help you build a freelance career and generate passive income.</p>
+        </div>
+
+        <!-- 4 Grid Layout -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Card 1: Freelance Client Finder -->
+            <div class="group bg-white p-5 rounded-3xl border border-slate-200 hover:border-indigo-500 transition shadow-sm hover:shadow-xl">
+                <div class="h-40 mb-4 overflow-hidden rounded-2xl">
+                    <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <span class="text-indigo-600 font-bold text-xs uppercase tracking-widest">Freelancing</span>
+                <h3 class="font-bold text-slate-900 text-lg mt-1">Client Acquisition Map</h3>
+                <p class="text-slate-500 text-sm mt-2">Get your first 10 high-paying clients in 30 days.</p>
+                <div class="mt-5 flex items-center justify-between">
+                    <span class="text-xl font-bold text-slate-900">₹799</span>
+                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700">Get Access</button>
+                </div>
+            </div>
+
+            <!-- Card 2: Digital Product Mastery -->
+            <div class="group bg-white p-5 rounded-3xl border border-slate-200 hover:border-indigo-500 transition shadow-sm hover:shadow-xl">
+                <div class="h-40 mb-4 overflow-hidden rounded-2xl">
+                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <span class="text-purple-600 font-bold text-xs uppercase tracking-widest">Passive Income</span>
+                <h3 class="font-bold text-slate-900 text-lg mt-1">Digital Product Blueprint</h3>
+                <p class="text-slate-500 text-sm mt-2">Create & sell your first digital product on auto-pilot.</p>
+                <div class="mt-5 flex items-center justify-between">
+                    <span class="text-xl font-bold text-slate-900">₹999</span>
+                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700">Get Access</button>
+                </div>
+            </div>
+
+            <!-- Card 3: Portfolio Template -->
+            <div class="group bg-white p-5 rounded-3xl border border-slate-200 hover:border-indigo-500 transition shadow-sm hover:shadow-xl">
+                <div class="h-40 mb-4 overflow-hidden rounded-2xl">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Growth</span>
+                <h3 class="font-bold text-slate-900 text-lg mt-1">Pro Portfolio Pack</h3>
+                <p class="text-slate-500 text-sm mt-2">High-converting website layouts for freelancers.</p>
+                <div class="mt-5 flex items-center justify-between">
+                    <span class="text-xl font-bold text-slate-900">₹599</span>
+                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700">Get Access</button>
+                </div>
+            </div>
+
+            <!-- Card 4: Remote Work Survival -->
+            <div class="group bg-white p-5 rounded-3xl border border-slate-200 hover:border-indigo-500 transition shadow-sm hover:shadow-xl">
+                <div class="h-40 mb-4 overflow-hidden rounded-2xl">
+                    <img src="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest">Lifestyle</span>
+                <h3 class="font-bold text-slate-900 text-lg mt-1">Remote Success Vault</h3>
+                <p class="text-slate-500 text-sm mt-2">Learn to work from anywhere like a pro.</p>
+                <div class="mt-5 flex items-center justify-between">
+                    <span class="text-xl font-bold text-slate-900">₹449</span>
+                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700">Get Access</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Freelance Success & Passive Income Section End -->
+    <!-- Local Business & Agency Digital Toolkits Section Start -->
+<section class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Heading -->
+        <div class="text-center mb-12">
+            <span class="text-indigo-600 font-bold text-sm uppercase tracking-widest bg-indigo-50 px-3 py-1 rounded-full">B2B & Local Businesses</span>
+            <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Digital Toolkits for Local Businesses & Agencies</h2>
+            <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Ready-to-use websites, marketing kits, and automation systems for hospitals, malls, real estate, and retail shops.</p>
+        </div>
+
+        <!-- 8 Grid Layout (4 columns on large, 2 on small) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Card 1: Real Estate -->
+            <div class="group bg-white rounded-2xl p-4 border border-slate-200 hover:border-indigo-500 transition shadow-sm hover:shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="h-40 mb-4 overflow-hidden rounded-xl bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <span class="text-xs bg-amber-100 text-amber-800 font-semibold px-2.5 py-0.5 rounded">Real Estate</span>
+                    <h3 class="font-bold text-slate-900 mt-2 text-base">Real Estate Lead Website</h3>
+                    <p class="text-xs text-slate-500 mt-1">Property listing template with CRM integration for brokers.</p>
+                </div>
+                <div class="mt-5 flex items-center justify-between border-t border-slate-100 pt-3">
+                    <span class="font-bold text-indigo-600 text-lg">₹999</span>
+                    <a href="#" class="bg-indigo-600 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-indigo-700">Get Kit</a>
+                </div>
+            </div>
+
+            <!-- Card 2: Hospital & Clinic -->
+            <div class="group bg-white rounded-2xl p-4 border border-slate-200 hover:border-indigo-500 transition shadow-sm hover:shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="h-40 mb-4 overflow-hidden rounded-xl bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <span class="text-xs bg-emerald-100 text-emerald-800 font-semibold px-2.5 py-0.5 rounded">Healthcare</span>
+                    <h3 class="font-bold text-slate-900 mt-2 text-base">Hospital & Clinic Web System</h3>
+                    <p class="text-xs text-slate-500 mt-1">Online doctor appointment booking & patient management portal.</p>
+                </div>
+                <div class="mt-5 flex items-center justify-between border-t border-slate-100 pt-3">
+                    <span class="font-bold text-indigo-600 text-lg">₹1,499</span>
+                    <a href="#" class="bg-indigo-600 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-indigo-700">Get Kit</a>
+                </div>
+            </div>
+
+            <!-- Card 3: Retail & Local Shop -->
+            <div class="group bg-white rounded-2xl p-4 border border-slate-200 hover:border-indigo-500 transition shadow-sm hover:shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="h-40 mb-4 overflow-hidden rounded-xl bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <span class="text-xs bg-blue-100 text-blue-800 font-semibold px-2.5 py-0.5 rounded">Retail Shop</span>
+                    <h3 class="font-bold text-slate-900 mt-2 text-base">Local Store E-Commerce Pack</h3>
+                    <p class="text-xs text-slate-500 mt-1">WhatsApp ordering system & digital store for local shopkeepers.</p>
+                </div>
+                <div class="mt-5 flex items-center justify-between border-t border-slate-100 pt-3">
+                    <span class="font-bold text-indigo-600 text-lg">₹799</span>
+                    <a href="#" class="bg-indigo-600 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-indigo-700">Get Kit</a>
+                </div>
+            </div>
+
+            <!-- Card 4: Malls & Complexes -->
+            <div class="group bg-white rounded-2xl p-4 border border-slate-200 hover:border-indigo-500 transition shadow-sm hover:shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="h-40 mb-4 overflow-hidden rounded-xl bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <span class="text-xs bg-purple-100 text-purple-800 font-semibold px-2.5 py-0.5 rounded">Commercial</span>
+                    <h3 class="font-bold text-slate-900 mt-2 text-base">Mall & Restaurant Marketing Kit</h3>
+                    <p class="text-xs text-slate-500 mt-1">Digital menu, event promoter ads, and festive social media posts.</p>
+                </div>
+                <div class="mt-5 flex items-center justify-between border-t border-slate-100 pt-3">
+                    <span class="font-bold text-indigo-600 text-lg">₹699</span>
+                    <a href="#" class="bg-indigo-600 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-indigo-700">Get Kit</a>
+                </div>
+            </div>
+
+            <!-- Card 5: Real Estate Agent Social Pack -->
+            <div class="group bg-white rounded-2xl p-4 border border-slate-200 hover:border-indigo-500 transition shadow-sm hover:shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="h-40 mb-4 overflow-hidden rounded-xl bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <span class="text-xs bg-amber-100 text-amber-800 font-semibold px-2.5 py-0.5 rounded">Real Estate</span>
+                    <h3 class="font-bold text-slate-900 mt-2 text-base">Realtor Instagram Bundle</h3>
+                    <p class="text-xs text-slate-500 mt-1">Ready reels, property open-house flyers, and ad creatives.</p>
+                </div>
+                <div class="mt-5 flex items-center justify-between border-t border-slate-100 pt-3">
+                    <span class="font-bold text-indigo-600 text-lg">₹499</span>
+                    <a href="#" class="bg-indigo-600 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-indigo-700">Get Kit</a>
+                </div>
+            </div>
+
+            <!-- Card 6: Doctor & Clinic Branding -->
+            <div class="group bg-white rounded-2xl p-4 border border-slate-200 hover:border-indigo-500 transition shadow-sm hover:shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="h-40 mb-4 overflow-hidden rounded-xl bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <span class="text-xs bg-emerald-100 text-emerald-800 font-semibold px-2.5 py-0.5 rounded">Healthcare</span>
+                    <h3 class="font-bold text-slate-900 mt-2 text-base">Clinic Trust & Growth Pack</h3>
+                    <p class="text-xs text-slate-500 mt-1">Health awareness graphics, review request scripts, & landing page.</p>
+                </div>
+                <div class="mt-5 flex items-center justify-between border-t border-slate-100 pt-3">
+                    <span class="font-bold text-indigo-600 text-lg">₹599</span>
+                    <a href="#" class="bg-indigo-600 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-indigo-700">Get Kit</a>
+                </div>
+            </div>
+
+            <!-- Card 7: Local Shop Local SEO Kit -->
+            <div class="group bg-white rounded-2xl p-4 border border-slate-200 hover:border-indigo-500 transition shadow-sm hover:shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="h-40 mb-4 overflow-hidden rounded-xl bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1556742049-0a67d553c253?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <span class="text-xs bg-blue-100 text-blue-800 font-semibold px-2.5 py-0.5 rounded">Retail Shop</span>
+                    <h3 class="font-bold text-slate-900 mt-2 text-base">Google My Business Dominator</h3>
+                    <p class="text-xs text-slate-500 mt-1">Rank local shops on Google Maps to get more walk-in customers.</p>
+                </div>
+                <div class="mt-5 flex items-center justify-between border-t border-slate-100 pt-3">
+                    <span class="font-bold text-indigo-600 text-lg">₹399</span>
+                    <a href="#" class="bg-indigo-600 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-indigo-700">Get Kit</a>
+                </div>
+            </div>
+
+            <!-- Card 8: Complete Web Agency Starter Kit -->
+            <div class="group bg-white rounded-2xl p-4 border border-slate-200 hover:border-indigo-500 transition shadow-sm hover:shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="h-40 mb-4 overflow-hidden rounded-xl bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=500&auto=format&fit=crop&q=60" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <span class="text-xs bg-indigo-100 text-indigo-800 font-semibold px-2.5 py-0.5 rounded">Agency</span>
+                    <h3 class="font-bold text-slate-900 mt-2 text-base">Freelance Web Agency Kit</h3>
+                    <p class="text-xs text-slate-500 mt-1">Contract templates, client proposals, and 20+ ready website themes.</p>
+                </div>
+                <div class="mt-5 flex items-center justify-between border-t border-slate-100 pt-3">
+                    <span class="font-bold text-indigo-600 text-lg">₹1,299</span>
+                    <a href="#" class="bg-indigo-600 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-indigo-700">Get Kit</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Local Business Section End -->
+    
+
+    <!-- Collection Showcase Section with Full Details -->
+<section id="collections" class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-slate-900">Digital Product Collections</h2>
+            <p class="text-slate-600 mt-2">Professional assets to scale your workflow instantly.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- Notion Card -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200 hover:shadow-xl transition-all">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=600" alt="Notion" class="w-full h-48 object-cover rounded-2xl mb-6">
+                <h3 class="text-xl font-bold text-slate-900">Notion Systems</h3>
+                <p class="text-slate-600 text-sm mt-2 mb-4">Complete business operating systems built for Notion. Manage clients, tasks, and finances in one place.</p>
+                <div class="bg-slate-50 p-3 rounded-xl mb-4 text-xs text-slate-500">
+                    <span class="font-bold text-slate-800">Use case:</span> Perfect for Agency owners & Freelancers.
+                </div>
+                <button onclick="window.location.href='#products'" class="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold hover:bg-indigo-700 transition">View Collection</button>
+            </div>
+
+            <!-- AI Prompts Card -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200 hover:shadow-xl transition-all">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=600" alt="AI" class="w-full h-48 object-cover rounded-2xl mb-6">
+                <h3 class="text-xl font-bold text-slate-900">AI Prompt Library</h3>
+                <p class="text-slate-600 text-sm mt-2 mb-4">Curated prompt bundles for ChatGPT & Midjourney. Get professional results in seconds instead of hours.</p>
+                <div class="bg-slate-50 p-3 rounded-xl mb-4 text-xs text-slate-500">
+                    <span class="font-bold text-slate-800">Example:</span> "Write high-converting email copy for SaaS products."
+                </div>
+                <button onclick="window.location.href='#products'" class="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold hover:bg-indigo-700 transition">View Collection</button>
+            </div>
+
+            <!-- Design Kits Card -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200 hover:shadow-xl transition-all">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=600" alt="Design" class="w-full h-48 object-cover rounded-2xl mb-6">
+                <h3 class="text-xl font-bold text-slate-900">UI/UX Design Kits</h3>
+                <p class="text-slate-600 text-sm mt-2 mb-4">Professional components, icons, and landing page layouts. Drag, drop, and build your site faster.</p>
+                <div class="bg-slate-50 p-3 rounded-xl mb-4 text-xs text-slate-500">
+                    <span class="font-bold text-slate-800">Use case:</span> Web designers & No-code builders.
+                </div>
+                <button onclick="window.location.href='#products'" class="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold hover:bg-indigo-700 transition">View Collection</button>
+            </div>
+            
+      <!-- Social Media Collection Card -->
+<div class="bg-white rounded-3xl p-6 border border-slate-200 hover:shadow-xl transition-all">
+    <!-- फोटो सेक्शन (यहाँ सोशल मीडिया से जुड़ी फोटो का लिंक है) -->
+    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=600" alt="Social Media Kits" class="w-full h-48 object-cover rounded-2xl mb-6">
+    
+    <h3 class="text-xl font-bold text-slate-900">Social Media Growth Kits</h3>
+    <p class="text-slate-600 text-sm mt-2 mb-4">Viral Reels templates, Instagram carousel sets, and brand identity kits to dominate your niche.</p>
+    
+    <!-- हिंट और एग्जांपल -->
+    <div class="bg-slate-50 p-3 rounded-xl mb-4 text-xs text-slate-500">
+        <span class="font-bold text-slate-800">Example:</span> 50+ Editable Canva templates for daily posting.
+    </div>
+    
+    <!-- बटन -->
+    <button onclick="window.location.href='#products'" class="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold hover:bg-indigo-700 transition">
+        View Collection
+    </button>
+</div>
+
+        </div>
+    </div>
+</section>
+
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Why Choose DigiStore?</h2>
+                <p class="text-slate-600 mt-2">Everything you need to grow your digital business seamlessly.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 text-center">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900">Instant Delivery</h3>
+                    <p class="text-slate-600 text-sm mt-2">Get direct download links right to your inbox instantly after checkout.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 text-center">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900">100% Secure Payments</h3>
+                    <p class="text-slate-600 text-sm mt-2">Trusted gateway integrations ensuring total safety for your transactions.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 text-center">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900">24/7 Creator Support</h3>
+                    <p class="text-slate-600 text-sm mt-2">We are always available to help you with product access and troubleshooting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-slate-900 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <div class="flex items-center space-x-2 text-white mb-4">
+                    <i class="fa-solid fa-bolt text-indigo-500 text-xl"></i>
+                    <span class="text-lg font-bold tracking-tight">DigiStore</span>
+                </div>
+                <p class="text-sm">Your trusted marketplace for top-rated digital products and developer assets.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold text-sm mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#home" class="hover:text-white transition">Home</a></li>
+                    <li><a href="#products" class="hover:text-white transition">Trending Products</a></li>
+                    <li><a href="#features" class="hover:text-white transition">Features</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold text-sm mb-4">Categories</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><span class="hover:text-white transition cursor-pointer">AI Prompts</span></li>
+                    <li><span class="hover:text-white transition cursor-pointer">UI Kits</span></li>
+                    <li><span class="hover:text-white transition cursor-pointer">Social Media</span></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold text-sm mb-4">Stay Updated</h4>
+                <p class="text-sm mb-3">Get trending asset alerts directly in your inbox.</p>
+                <div class="flex">
+                    <input type="email" placeholder="Your email" class="bg-slate-800 text-sm px-4 py-2 rounded-l-lg outline-none text-white w-full border border-slate-700">
+                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700 transition">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800 text-center text-xs">
+            &copy; 2026 DigiStore. All rights reserved. Built with Tailwind CSS.
+        </div>
+    </footer>
+
+    <!-- JavaScript for Cart Interactivity -->
+    <script>
+        let cartCount = 0;
+
+        function addToCart(productName, price) {
+            cartCount++;
+            document.getElementById('cart-count').innerText = cartCount;
+            alert(`🎉 "${productName}" has been added to your cart!\nPrice: ₹${price}\n\n(Tip: GitHub पर लाइव होने के बाद आप यहाँ अपना पेमेंट गेटवे जोड़ सकते हैं।)`);
+        }
+
+        function openCart() {
+            if(cartCount === 0) {
+                alert("Your cart is empty! Add some trending products first.");
+            } else {
+                alert(`You have ${cartCount} item(s) in your cart. Ready for checkout!`);
+            }
+        }
+    </script>
+</body>
+  </html>
